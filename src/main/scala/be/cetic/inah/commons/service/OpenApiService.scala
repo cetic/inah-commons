@@ -1,6 +1,5 @@
 package be.cetic.inah.commons.service
 
-import java.io.FileInputStream
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
@@ -15,13 +14,8 @@ trait OpenApiService extends SprayJsonSupport {
     pathEnd {
       get {
         complete {
-          val jsonString: String = if (openApiSpec == null){
-            try {
-              Source.fromResource("openapi.json").getLines().mkString("")
-            } catch  {
-              case e: Exception=>
-                Source.fromFile("openapi.json").getLines().mkString("")
-            }
+          val jsonString: String = if (openApiSpec == null) {
+            Source.fromResource("openapi.json").getLines().mkString("")
           } else openApiSpec
 
           jsonString.parseJson

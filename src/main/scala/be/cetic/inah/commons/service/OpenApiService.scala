@@ -9,16 +9,21 @@ import scala.io.Source
 
 
 trait OpenApiService extends SprayJsonSupport {
+  val openApiSpec: String = null
+
   def openApiRoute: Route = pathPrefix("openapi") {
     pathEnd {
       get {
         complete {
-          val jsonString: String = try {
-             Source.fromResource("openapi.json").getLines().mkString("")
-          } catch  {
-            case e: Exception=>
-              Source.fromFile("openapi.json").getLines().mkString("")
-          }
+          val jsonString: String = if (openApiSpec == null){
+            try {
+              Source.fromResource("openapi.json").getLines().mkString("")
+            } catch  {
+              case e: Exception=>
+                Source.fromFile("openapi.json").getLines().mkString("")
+            }
+          } else openApiSpec
+
           jsonString.parseJson
         }
       }

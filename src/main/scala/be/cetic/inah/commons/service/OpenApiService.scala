@@ -13,7 +13,12 @@ trait OpenApiService extends SprayJsonSupport {
     pathEnd {
       get {
         complete {
-          val jsonString: String = Source.fromResource("openapi.json").getLines().mkString("")
+          val jsonString: String = try {
+             Source.fromResource("openapi.json").getLines().mkString("")
+          } catch  {
+            case e: Exception=>
+              Source.fromFile("openapi.json").getLines().mkString("")
+          }
           jsonString.parseJson
         }
       }

@@ -11,7 +11,7 @@ import scala.concurrent.duration._
 import scala.concurrent.ExecutionContextExecutor
 
 object Main extends App {
-   implicit val system : ActorSystem =  ActorSystem("CommonsSystem")
+   implicit val system : ActorSystem =  ActorSystem("Search")
    implicit val materializer: ActorMaterializer = ActorMaterializer()
    implicit val executionContext: ExecutionContextExecutor = system.dispatcher
    implicit val timeout: Timeout = Timeout(10.seconds)

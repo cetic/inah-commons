@@ -1,4 +1,6 @@
 name := "inah-commons"
+val thisVersion = "0.0.1"
+version := thisVersion
 scalaVersion := "2.12.8"
 
 val akkaVersion = "2.5.13"
@@ -9,6 +11,9 @@ val scalaTestVersion = "3.0.0"
 mainClass in(Compile, run) := Some("be.cetic.inah.commons.Main")
 mainClass in(Compile, packageBin) := Some("be.cetic.inah.commons.Main")
 mainClass in(Compile, packageBin) := Some("be.cetic.inah.commons.Main")
+
+assemblyOutputPath in assembly := file("releases/inah-commons-" + thisVersion + ".jar")
+
 
 assemblyMergeStrategy in assembly := {
   case PathList("javax", "servlet", xs@_*) => MergeStrategy.first
@@ -22,11 +27,11 @@ assemblyMergeStrategy in assembly := {
 
 
 libraryDependencies := Seq(
-  "io.spray" %%  "spray-json" % sprayVersion,
+  "io.spray" %% "spray-json" % sprayVersion,
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
   "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
-  "com.typesafe.akka" %% "akka-stream" %  akkaVersion,
+  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
   "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
 
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test",

@@ -9,7 +9,7 @@ import akka.http.scaladsl.server.Route
 import akka.pattern.ask
 import akka.stream.ActorMaterializer
 import akka.util.Timeout
-import be.cetic.inah.commons.dao.couch._
+import be.cetic.inah.commons.database.couchdb._
 import org.lightcouch.NoDocumentException
 import spray.json.{JsValue, _}
 

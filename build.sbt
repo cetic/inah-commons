@@ -1,5 +1,7 @@
+import sbt.Keys.libraryDependencies
+
 name := "inah-commons"
-val thisVersion = "0.0.1"
+val thisVersion = "0.0.2"
 version := thisVersion
 scalaVersion := "2.12.8"
 
@@ -13,7 +15,7 @@ mainClass in(Compile, packageBin) := Some("be.cetic.inah.commons.Main")
 mainClass in(Compile, packageBin) := Some("be.cetic.inah.commons.Main")
 
 assemblyOutputPath in assembly := file("releases/inah-commons-" + thisVersion + ".jar")
-
+test in assembly := {}
 
 assemblyMergeStrategy in assembly := {
   case PathList("javax", "servlet", xs@_*) => MergeStrategy.first
@@ -32,19 +34,21 @@ libraryDependencies := Seq(
   "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
   "com.typesafe.akka" %% "akka-stream" % akkaVersion,
-  "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
-
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test",
-  "org.scalacheck" %% "scalacheck" % "1.13.5" % Test,
+  "com.typesafe.slick" %% "slick" % "3.3.1",
+  "com.typesafe.slick" %% "slick-codegen" % "3.3.1",
 
+  "org.postgresql" % "postgresql" % "42.2.5",
+  "org.xerial" % "sqlite-jdbc" % "3.28.0",
 
-  "com.michaelpollmeier" %% "gremlin-scala" % "3.3.1.2",
-  "org.apache.tinkerpop" % "gremlin-driver" % "3.3.1",
-  "org.apache.tinkerpop" % "tinkergraph-gremlin" % "3.3.1",
+  "org.janusgraph" % "janusgraph-core" % "0.4.0",
+  "org.janusgraph" % "janusgraph-cassandra" % "0.4.0",
+  "org.janusgraph" % "janusgraph-cql" % "0.4.0",
+  "org.janusgraph" % "janusgraph-es" % "0.4.0",
 
-  "org.janusgraph" % "janusgraph-core" % "0.3.1",
   "org.slf4j" % "slf4j-simple" % "1.7.12",
   "org.lightcouch" % "lightcouch" % "0.2.0",
 
-
+  "org.scalacheck" %% "scalacheck" % "1.13.5" % Test,
+  "org.scalatest" %% "scalatest" % scalaTestVersion % "test"
 )

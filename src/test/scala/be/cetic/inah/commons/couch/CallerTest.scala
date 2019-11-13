@@ -2,7 +2,7 @@ package couch
 
 import akka.actor.ActorSystem
 import akka.testkit.{ImplicitSender, TestKit}
-import be.cetic.inah.commons.dao.couch.{CouchCaller, CouchConnector, Create, CreateSuccess, Delete, DeleteSuccess, Read, ReadAllSuccess, ReadSuccess, Update, UpdateSuccess}
+import be.cetic.inah.commons.database.couchdb._
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 import spray.json._
 

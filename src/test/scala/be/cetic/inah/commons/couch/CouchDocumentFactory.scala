@@ -4,7 +4,7 @@ import akka.actor.{ActorRef, ActorSystem}
 import akka.pattern.ask
 import akka.testkit.{ImplicitSender, TestKit}
 import akka.util.Timeout
-import be.cetic.inah.commons.dao.couch.{CouchDocumentActor, CreateSuccess, DeleteSuccess, ReadSuccess}
+import be.cetic.inah.commons.database.couchdb.{CouchDocumentActor, CreateSuccess, DeleteSuccess, ReadSuccess}
 import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 import spray.json.{DefaultJsonProtocol, JsValue, RootJsonFormat}
 

@@ -41,7 +41,7 @@ class JsonLike[A](jsonSource: A) {
       case json: JsValue => json.asInstanceOf[JsArray].elements
       case seq: Iterable[Any] =>
         seq.headOption.map {
-          case t: (String, Any) => throw new ModelException("Expected json array")
+          case (t: String, a: Any) => throw new ModelException("Expected json array")
           case _ => seq
         }.getOrElse(seq)
       case _ => ???

@@ -1,5 +1,9 @@
 # Inah Common library
 
+sbt: 
+libraryDependencies +=  "be.cetic.inah.commons" % "commons" % "VERSION" from "https://github.com/cetic/inah-commons/raw/master/releases/inah-commons-VERSION.jar"
+
+
 ## Janusgraph
 
 ### Connector

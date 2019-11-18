@@ -8,7 +8,10 @@ object Janusgraph {
   private var singleGraph: Option[StandardJanusGraph] = None
 
   def graph: StandardJanusGraph = {
-    if (singleGraph.isEmpty) singleGraph = Some(JanusGraphFactory.open("./src/main/resources/janus.conf")).map(_.asInstanceOf[StandardJanusGraph])
+    if (singleGraph.isEmpty) {
+      setGraphInMemory()
+      println(Console.RED + "Empty graph setting, using inmemory.")
+    }
     singleGraph.get
   }
 

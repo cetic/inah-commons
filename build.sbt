@@ -1,11 +1,11 @@
 import sbt.Keys.libraryDependencies
 
 name := "inah-commons"
-val thisVersion = "0.0.3"
+val thisVersion = "0.0.4"
 version := thisVersion
 scalaVersion := "2.12.8"
 
-val akkaVersion = "2.5.13"
+val akkaVersion = "2.6.0"
 val akkaHttpVersion = "10.1.5"
 val sprayVersion = "1.3.2"
 val scalaTestVersion = "3.0.0"
@@ -35,6 +35,7 @@ libraryDependencies := Seq(
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
   "com.typesafe.akka" %% "akka-stream" % akkaVersion,
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test",
+  "com.typesafe.akka" %% "akka-stream-kafka" % "1.1.0",
   "com.typesafe.slick" %% "slick" % "3.3.1",
   "com.typesafe.slick" %% "slick-codegen" % "3.3.1",
 
@@ -51,4 +52,5 @@ libraryDependencies := Seq(
 
   "org.scalacheck" %% "scalacheck" % "1.13.5" % Test,
   "org.scalatest" %% "scalatest" % scalaTestVersion % "test"
+
 )

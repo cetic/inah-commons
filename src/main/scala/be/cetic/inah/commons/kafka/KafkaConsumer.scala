@@ -17,10 +17,10 @@ object KafkaConsumer {
   case object StreamComplete
   case class StreamError(e: Throwable)
 
-  def props(forwardTo: ActorRef, groupId: String, topic: String, configPath: Option[String], bootstrapServer: String)(implicit materializer: Materializer) = Props(new KafkaConsumer(forwardTo, groupId, topic, configPath, bootstrapServer))
+  def props(forwardTo: ActorRef, groupId: String, topic: String, configPath: Option[String], bootstrapServer: String, backPressure: Boolean)(implicit materializer: Materializer) = Props(new KafkaConsumer(forwardTo, groupId, topic, configPath, bootstrapServer, backPressure))
 }
 
-class KafkaConsumer(forwardTo: ActorRef, groupId: String, topic: String, configPath: Option[String], bootstrapServer: String, backPressure: Boolean = false)(implicit val materializer: Materializer) extends Actor with ActorLogging {
+class KafkaConsumer(forwardTo: ActorRef, groupId: String, topic: String, configPath: Option[String], bootstrapServer: String, backPressure: Boolean)(implicit val materializer: Materializer) extends Actor with ActorLogging {
 
   val config = configPath.map(ConfigFactory.load).getOrElse(ConfigFactory.load).getConfig("akka.kafka.producer")
   val consumerSettings = ConsumerSettings(context.system, new StringDeserializer, new StringDeserializer)

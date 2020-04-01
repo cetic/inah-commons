@@ -36,12 +36,12 @@ class KafkaConsumer(forwardTo: ActorRef, groupId: String, topic: String, configP
 
   consumerSource.to(kafkaSink).run
 
-  var sourceSender: ActorRef = _
-
   def receive = {
     case StreamComplete => log.info(s"$this : stream completed, topic: $topic")
 
-    case StreamInit => sender() ! Ack
+    case StreamInit =>
+      forwardTo.forward(StreamInit)
+      sender ! Ack
 
     case t: Throwable => log.error(t.getMessage)
 

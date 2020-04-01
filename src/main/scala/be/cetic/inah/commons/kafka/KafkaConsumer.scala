@@ -31,17 +31,13 @@ class KafkaConsumer(forwardTo: ActorRef, groupId: String, topic: String, configP
 
   val consumerSource: Source[ConsumerRecord[String, String], Consumer.Control] = Consumer.plainSource(consumerSettings, Subscriptions.topics(topic))
 
-  val kafkaSink = if(backPressure) Sink.actorRefWithBackpressure[ConsumerRecord[String, String]](self, StreamInit, KafkaConsumer.Ack, StreamComplete, e=> StreamError(e))
+  val kafkaSink = if(backPressure) Sink.actorRefWithBackpressure[ConsumerRecord[String, String]](forwardTo, StreamInit, KafkaConsumer.Ack, StreamComplete, e=> StreamError(e))
   else Sink.actorRef[ConsumerRecord[String, String]](self, StreamComplete, (t: Throwable) => t)
 
   consumerSource.to(kafkaSink).run
 
   def receive = {
     case StreamComplete => log.info(s"$this : stream completed, topic: $topic")
-
-    case StreamInit =>
-      forwardTo.forward(StreamInit)
-      sender ! Ack
 
     case t: Throwable => log.error(t.getMessage)
 

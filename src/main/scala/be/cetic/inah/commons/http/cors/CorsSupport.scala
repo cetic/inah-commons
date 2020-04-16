@@ -6,6 +6,8 @@ import akka.http.scaladsl.model.{HttpHeader, HttpResponse}
 import akka.http.scaladsl.server.Directives.{complete, handleRejections, mapInnerRoute, respondWithHeaders}
 import akka.http.scaladsl.server.{Directive0, MethodRejection, RejectionHandler}
 
+
+@Deprecated
 trait CorsSupport {
 
   val corsAllowOrigins: List[String] = List("*")

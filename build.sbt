@@ -30,27 +30,44 @@ assemblyMergeStrategy in assembly := {
 
 libraryDependencies := Seq(
   "io.spray" %% "spray-json" % sprayVersion,
+
+ //Akka
   "com.typesafe.akka" %% "akka-actor" % akkaVersion,
   "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
   "com.typesafe.akka" %% "akka-stream" % akkaVersion,
   "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test",
   "com.typesafe.akka" %% "akka-stream-kafka" % "1.1.0",
+
+  //sql
+  "org.postgresql" % "postgresql" % "42.2.5",
+  "org.xerial" % "sqlite-jdbc" % "3.28.0",
   "com.typesafe.slick" %% "slick" % "3.3.1",
   "com.typesafe.slick" %% "slick-codegen" % "3.3.1",
 
-  "org.postgresql" % "postgresql" % "42.2.5",
-  "org.xerial" % "sqlite-jdbc" % "3.28.0",
+  //Spray
+  "io.spray" %% "spray-json" % sprayVersion,
 
+  //Cors
+  "ch.megard" %% "akka-http-cors" % "0.4.2",
+
+  //Tests
+  "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
+  "org.scalacheck" %% "scalacheck" % "1.13.5" % Test,
+
+  //Auth Hash
+  "de.mkammerer" % "argon2-jvm" % "2.6",
+
+  //Janusgraph
   "org.janusgraph" % "janusgraph-core" % "0.4.0",
   "org.janusgraph" % "janusgraph-cassandra" % "0.4.0",
   "org.janusgraph" % "janusgraph-cql" % "0.4.0",
   "org.janusgraph" % "janusgraph-es" % "0.4.0",
 
-  "org.slf4j" % "slf4j-simple" % "1.7.12",
+  //CouchDb
   "org.lightcouch" % "lightcouch" % "0.2.0",
 
-  "org.scalacheck" %% "scalacheck" % "1.13.5" % Test,
-  "org.scalatest" %% "scalatest" % scalaTestVersion % "test"
+  //Log
+  "org.slf4j" % "slf4j-simple" % "1.7.12",
 
 )

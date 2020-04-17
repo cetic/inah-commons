@@ -1,8 +1,8 @@
 package be.cetic.inah.commons.database.sql.management.model
 
 import be.cetic.inah.commons.database.sql.enumeration.DatasourceStatus
-import be.cetic.inah.commons.database.sql.management.Management
-import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoWithId, ManagementResource}
+import be.cetic.inah.commons.database.sql.management.ManagementResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoWithId, SchemaNames}
 import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
@@ -11,11 +11,11 @@ import scala.concurrent.ExecutionContextExecutor
 
 case class DatasourceDto(id: Option[Int], name: String, serviceUrl: String, satus: String = DatasourceStatus.UP, createdAt: Long) extends DtoWithId[Int] with ManagementResource
 
-trait DatasourcesDtoMultiDb extends DriverComponent with Management {
+trait DatasourcesDtoMultiDb extends DriverComponent {
 
   import driver.api._
 
-  class DatasourcesDto(tag: Tag) extends Table[DatasourceDto](tag, managementSchemaName, "datasource") {
+  class DatasourcesDto(tag: Tag) extends Table[DatasourceDto](tag, SchemaNames.managementSchemaName, "datasource") {
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
     def name = column[String]("name")

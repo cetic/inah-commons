@@ -1,19 +1,20 @@
 package be.cetic.inah.commons.database.sql.access_control.model
 
-import be.cetic.inah.commons.database.sql.DriverComponent
-import be.cetic.inah.commons.database.sql.access_control.AccessControl
+import be.cetic.inah.commons.database.sql.access_control.AccessControlResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoWithId, SchemaNames}
 import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class PolicyDto(id: Option[Int], name: String, description: String, required: Boolean, ruleId: Option[Int], routeId: Option[Int]) extends DtoWithId[Int]
+case class PolicyDto(id: Option[Int], name: String, description: String, required: Boolean,
+                     ruleId: Option[Int], routeId: Option[Int]) extends DtoWithId[Int] with AccessControlResource
 
-trait PoliciesDtoMultiDb extends DriverComponent with RulesDtoMultiDb with RoutesDtoMultiDb with AccessControl {
+trait PoliciesDtoMultiDb extends DriverComponent with RulesDtoMultiDb with RoutesDtoMultiDb {
 
   import driver.api._
 
-  class PoliciesDto(tag: Tag) extends Table[PolicyDto](tag, schemaName.orElse(accessControlSchemaName), "policies") {
+  class PoliciesDto(tag: Tag) extends Table[PolicyDto](tag,  SchemaNames.accessControlSchemaName, "policies") {
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
     def name = column[String]("name")
@@ -36,8 +37,8 @@ trait PoliciesDtoMultiDb extends DriverComponent with RulesDtoMultiDb with Route
 
   implicit val dispatcher: ExecutionContextExecutor
 
-  object AccessPoliciesDao {
-
+  implicit object AccessPoliciesDao extends Dao[PolicyDto,Int] {
+    override val thisDriver = driver
     val policies = TableQuery[PoliciesDto]
 
 
@@ -47,7 +48,7 @@ trait PoliciesDtoMultiDb extends DriverComponent with RulesDtoMultiDb with Route
       (aAutoInc += element).map(id => element.copy(id = Some(id)))
     }
 
-    def update(element: PolicyDto): DBIOAction[Any, NoStream, Write] = aAutoInc.insertOrUpdate(element)
+    def update(element: PolicyDto): DBIOAction[PolicyDto, NoStream, Write] = aAutoInc.insertOrUpdate(element)
       .map { maybeId =>
         maybeId.map { id =>
           element.copy(id = Some(id))

@@ -1,20 +1,20 @@
 package be.cetic.inah.commons.database.sql.access_control.model
 
-import be.cetic.inah.commons.database.sql.access_control.AccessControl
-import be.cetic.inah.commons.database.sql.{DriverComponent, DtoWithId}
+import be.cetic.inah.commons.database.sql.access_control.AccessControlResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoWithId, SchemaNames}
 import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
 
-case class RouteDto(id: Option[Int], endpoint: String, serviceId: Option[Int], method: String) extends DtoWithId[Int]
+case class RouteDto(id: Option[Int], endpoint: String, serviceId: Option[Int], method: String) extends DtoWithId[Int] with AccessControlResource
 
-trait RoutesDtoMultiDb extends DriverComponent with ServicesDtoMultiDb with AccessControl {
+trait RoutesDtoMultiDb extends DriverComponent with ServicesDtoMultiDb  {
 
   import driver.api._
 
-  class RoutesDto(tag: Tag) extends Table[RouteDto](tag, schemaName.orElse(accessControlSchemaName), "routes") {
+  class RoutesDto(tag: Tag) extends Table[RouteDto](tag,  SchemaNames.accessControlSchemaName, "routes") {
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
     def serviceId = column[Option[Int]]("service_id")
@@ -31,8 +31,8 @@ trait RoutesDtoMultiDb extends DriverComponent with ServicesDtoMultiDb with Acce
 
   implicit val dispatcher: ExecutionContextExecutor
 
-  object RoutesDao {
-
+  implicit object RoutesDao extends Dao[RouteDto, Int ]{
+    override val thisDriver = driver
     val routes = TableQuery[RoutesDto]
 
     private val aAutoInc = routes returning routes.map(_.id)
@@ -41,7 +41,7 @@ trait RoutesDtoMultiDb extends DriverComponent with ServicesDtoMultiDb with Acce
       (aAutoInc += element).map(id => element.copy(id = Some(id)))
     }
 
-    def update(element: RouteDto): DBIOAction[Any, NoStream, Write] = aAutoInc.insertOrUpdate(element)
+    def update(element: RouteDto): DBIOAction[RouteDto, NoStream, Write] = aAutoInc.insertOrUpdate(element)
       .map { maybeId =>
         maybeId.map { id =>
           element.copy(id = Some(id))

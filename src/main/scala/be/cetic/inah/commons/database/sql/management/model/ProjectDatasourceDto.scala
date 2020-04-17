@@ -1,6 +1,7 @@
 package be.cetic.inah.commons.database.sql.management.model
 
-import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, ManagementResource, SchemaName}
+import be.cetic.inah.commons.database.sql.management.ManagementResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, SchemaNames}
 import slick.dbio.Effect.Write
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
@@ -9,11 +10,11 @@ import scala.concurrent.ExecutionContextExecutor
 case class ProjectDatasourceDto(projectId: String, dataSourceId: Int, acceptedAt: Option[Long] = Some(System.currentTimeMillis() / 1000)) extends ManagementResource
 
 
-trait ProjectDatasourcesDtoMultiDb extends ProjectsDtoMultiDb with DriverComponent with DatasourcesDtoMultiDb with SchemaName{
+trait ProjectDatasourcesDtoMultiDb extends ProjectsDtoMultiDb with DriverComponent with DatasourcesDtoMultiDb {
 
   import driver.api._
 
-  class ProjectDatasourcesDto(tag: Tag) extends Table[ProjectDatasourceDto](tag, schemaName.orElse(managementSchemaName), "project_datasource") {
+  class ProjectDatasourcesDto(tag: Tag) extends Table[ProjectDatasourceDto](tag, SchemaNames.managementSchemaName, "project_datasource") {
     def projectId: Rep[String] = column[String]("project_id")
 
     def datasourceId: Rep[Int] = column[Int]("datasource_id")

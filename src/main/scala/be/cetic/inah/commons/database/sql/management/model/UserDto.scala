@@ -2,8 +2,8 @@ package be.cetic.inah.commons.database.sql.management.model
 
 import be.cetic.inah.commons.authentication.PasswordUtil
 import be.cetic.inah.commons.database.sql.enumeration.UserRoles
-import be.cetic.inah.commons.database.sql.management.Management
-import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, ManagementResource, SchemaName}
+import be.cetic.inah.commons.database.sql.management.ManagementResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, SchemaNames}
 import slick.dbio.Effect.{Read, Write}
 import slick.sql.FixedSqlStreamingAction
 
@@ -15,11 +15,11 @@ case class UserDto(email: String, name: String, password: String, role: String =
 }
 
 
-trait UsersDtoMultiDb extends DriverComponent with PasswordUtil with Management with SchemaName {
+trait UsersDtoMultiDb extends DriverComponent with PasswordUtil {
 
   import driver.api._
 
-  class UsersDto(tag: Tag) extends Table[UserDto](tag, schemaName.orElse(managementSchemaName), "user") {
+  class UsersDto(tag: Tag) extends Table[UserDto](tag, SchemaNames.managementSchemaName, "user") {
 
     def email = column[String]("email", O.PrimaryKey)
 

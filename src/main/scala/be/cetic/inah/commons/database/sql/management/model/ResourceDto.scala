@@ -1,8 +1,8 @@
 package be.cetic.inah.commons.database.sql.management.model
 
-import be.cetic.inah.commons.database.sql.management.Management
-import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoWithId, ManagementResource, SchemaName}
-import slick.dbio.Effect.{Read, Schema, Write}
+import be.cetic.inah.commons.database.sql.management.ManagementResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoWithId, SchemaNames}
+import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
@@ -16,11 +16,11 @@ case class ResourceDto(id: Option[Int], name: String, `type`: String, value: Str
 }
 
 
-trait ResourcesDtoMultiDb extends DriverComponent with Management with SchemaName{
+trait ResourcesDtoMultiDb extends DriverComponent{
 
   import driver.api._
 
-  class ResourcesDto(tag: Tag) extends Table[ResourceDto](tag, schemaName.orElse(managementSchemaName), "resource") {
+  class ResourcesDto(tag: Tag) extends Table[ResourceDto](tag, SchemaNames.managementSchemaName, "resource") {
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
     def name = column[String]("name")

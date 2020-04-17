@@ -1,19 +1,19 @@
 package be.cetic.inah.commons.database.sql.access_control.model
 
-import be.cetic.inah.commons.database.sql.access_control.AccessControl
-import be.cetic.inah.commons.database.sql.{DriverComponent, DtoWithId}
-import slick.dbio.Effect.{Read, Write}
-import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
+import be.cetic.inah.commons.database.sql.access_control.AccessControlResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoWithId, SchemaNames}
+import slick.dbio.Effect.Write
+import slick.sql.FixedSqlAction
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class DataDto(id: Option[Int], key: String, value: String) extends DtoWithId[Int]
+case class DataDto(id: Option[Int], key: String, value: String) extends DtoWithId[Int] with AccessControlResource
 
-trait ContextsDtoMultiDb extends DriverComponent with AccessControl {
+trait ContextsDtoMultiDb extends DriverComponent  {
 
   import driver.api._
 
-  class ContextsDto(tag: Tag) extends Table[DataDto](tag, schemaName.orElse(accessControlSchemaName), "contexts") {
+  class DatasDto(tag: Tag) extends Table[DataDto](tag,  SchemaNames.accessControlSchemaName, "contexts") {
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
     def key = column[String]("key")
@@ -26,9 +26,10 @@ trait ContextsDtoMultiDb extends DriverComponent with AccessControl {
 
   implicit val dispatcher: ExecutionContextExecutor
 
-  object ContextsDao {
+  implicit object ContextsDao extends Dao[DataDto, Int] {
+    val thisDriver = driver
 
-    val contexts = TableQuery[ContextsDto]
+    val contexts = TableQuery[DatasDto]
 
     private val aAutoInc = contexts returning contexts.map(_.id)
 
@@ -36,19 +37,14 @@ trait ContextsDtoMultiDb extends DriverComponent with AccessControl {
       (aAutoInc += element).map(id => element.copy(id = Some(id)))
     }
 
-    def update(element: DataDto): DBIOAction[Any, NoStream, Write] = aAutoInc.insertOrUpdate(element)
-      .map { maybeId =>
-        maybeId.map { id =>
-          element.copy(id = Some(id))
-        }
-          .getOrElse(element)
-      }
+    def update(element: DataDto): DBIOAction[DataDto, NoStream, Write] = aAutoInc.insertOrUpdate(element).map(_=> element)
+
 
     private def queryId(id: Int) = contexts.filter(_.id === id)
 
-    def read(id: Int): FixedSqlStreamingAction[Seq[DataDto], DataDto, Read] = queryId(id).result
+    def read(id: Int)= queryId(id).result
 
-    def readAll: FixedSqlStreamingAction[Seq[DataDto], DataDto, Read] = contexts.result
+    def readAll= contexts.result
 
     def delete(id: Int): FixedSqlAction[Int, NoStream, Write] = queryId(id).delete
 

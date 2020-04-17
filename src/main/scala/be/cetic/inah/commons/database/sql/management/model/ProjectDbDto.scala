@@ -4,8 +4,8 @@ import java.util.UUID
 
 import be.cetic.inah.commons.database.sql.access_control.model.TokensDtoMultiDb
 import be.cetic.inah.commons.database.sql.enumeration.ProjectStatus
-import be.cetic.inah.commons.database.sql.management.Management
-import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, Dto, ManagementResource, SchemaName}
+import be.cetic.inah.commons.database.sql.management.ManagementResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, Dto, SchemaNames}
 import slick.dbio.Effect.{Read, Write}
 import slick.sql.FixedSqlStreamingAction
 
@@ -24,10 +24,10 @@ case class ProjectDto(id: Option[String], name: String, status: String = Project
 case class ProjectDbDto(id: String, name: String, status: String = ProjectStatus.PENDING, createdAt: Long = System.currentTimeMillis() / 1000, tokenId: Option[Int]) extends Dto
 
 
-trait ProjectsDtoMultiDb extends TokensDtoMultiDb with DriverComponent with Management with SchemaName {
+trait ProjectsDtoMultiDb extends TokensDtoMultiDb with DriverComponent{
   import driver.api._
 
-  class ProjectsDto(tag: Tag) extends Table[ProjectDto](tag, schemaName.orElse(managementSchemaName), "project") {
+  class ProjectsDto(tag: Tag) extends Table[ProjectDto](tag, SchemaNames.managementSchemaName, "project") {
     def id = column[String]("id", O.PrimaryKey)
 
     def name = column[String]("name")

@@ -1,22 +1,20 @@
 package be.cetic.inah.commons.database.sql.access_control.model
 
-import be.cetic.inah.commons.database.sql.access_control.AccessControl
-import be.cetic.inah.commons.database.sql.{DriverComponent, DtoCompositeId}
+import be.cetic.inah.commons.database.sql.access_control.AccessControlResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoCompositeId, SchemaNames}
 import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
 
-case class RightPolicy(access: RightDto, policy: PolicyDto)
+case class RightPolicyDto(accessId: Int, policyId: Int) extends DtoCompositeId with AccessControlResource
 
-case class RightPolicyDto(accessId: Int, policyId: Int) extends DtoCompositeId
-
-trait RightPoliciesDtoMultiDb extends DriverComponent with RightsDtoMultiDb with PoliciesDtoMultiDb with AccessControl {
+trait RightPoliciesDtoMultiDb extends DriverComponent with RightsDtoMultiDb with PoliciesDtoMultiDb  {
 
   import driver.api._
 
-  class RightPoliciesDto(tag: Tag) extends Table[RightPolicyDto](tag,  schemaName.orElse(accessControlSchemaName), "right_policies") {
+  class RightPoliciesDto(tag: Tag) extends Table[RightPolicyDto](tag,  SchemaNames.accessControlSchemaName, "right_policies") {
 
     def rightId = column[Int]("right_id")
 
@@ -34,8 +32,8 @@ trait RightPoliciesDtoMultiDb extends DriverComponent with RightsDtoMultiDb with
 
   implicit val dispatcher: ExecutionContextExecutor
 
-  object RightPoliciesDao {
-
+  implicit object RightPoliciesDao extends Dao[RightPolicyDto , Int]{
+    override val thisDriver = driver
     val rightPolicies = TableQuery[RightPoliciesDto]
 
 
@@ -43,7 +41,7 @@ trait RightPoliciesDtoMultiDb extends DriverComponent with RightsDtoMultiDb with
       (rightPolicies += element).map(_ => element)
     }
 
-    def update(element: RightPolicyDto): DBIOAction[Any, NoStream, Write] = rightPolicies.insertOrUpdate(element).map { _ => element}
+    def update(element: RightPolicyDto): DBIOAction[RightPolicyDto, NoStream, Write] = rightPolicies.insertOrUpdate(element).map { _ => element}
 
 
     private def queryId(rightId: Int, policyId: Int) = rightPolicies

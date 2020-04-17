@@ -1,7 +1,7 @@
 package be.cetic.inah.commons.database.sql.management.model
 
-import be.cetic.inah.commons.database.sql.management.Management
-import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, ManagementResource, SchemaName}
+import be.cetic.inah.commons.database.sql.management.ManagementResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, SchemaNames}
 import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
@@ -11,10 +11,10 @@ case class ProjectResourceDto(projectId: String, resourceId: Int) extends Manage
 
 
 
-trait ProjectResourcesDtoMultiDb extends ProjectsDtoMultiDb with DriverComponent with ResourcesDtoMultiDb with Management with SchemaName{
+trait ProjectResourcesDtoMultiDb extends ProjectsDtoMultiDb with DriverComponent with ResourcesDtoMultiDb{
   import driver.api._
 
-  class ProjectResourcesDto(tag: Tag) extends Table[ProjectResourceDto](tag, schemaName.orElse(managementSchemaName), "project_resource") {
+  class ProjectResourcesDto(tag: Tag) extends Table[ProjectResourceDto](tag, SchemaNames.managementSchemaName, "project_resource") {
     def projectId = column[String]("project_id")
 
     def resourceId = column[Int]("resource_id")

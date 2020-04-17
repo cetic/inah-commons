@@ -1,20 +1,20 @@
 package be.cetic.inah.commons.database.sql.access_control.model
 
-import be.cetic.inah.commons.database.sql.access_control.AccessControl
-import be.cetic.inah.commons.database.sql.{DriverComponent, DtoWithId}
+import be.cetic.inah.commons.database.sql.access_control.AccessControlResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoWithId, SchemaNames}
 import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
 
-case class RightDto(id: Option[Int], name: String, description: String, required: Boolean) extends DtoWithId[Int]
+case class RightDto(id: Option[Int], name: String, description: String, required: Boolean) extends DtoWithId[Int] with AccessControlResource
 
-trait RightsDtoMultiDb extends DriverComponent with AccessControl {
+trait RightsDtoMultiDb extends DriverComponent  {
 
   import driver.api._
 
-  class RightsDto(tag: Tag) extends Table[RightDto](tag, schemaName.orElse(accessControlSchemaName), "rights") {
+  class RightsDto(tag: Tag) extends Table[RightDto](tag,  SchemaNames.accessControlSchemaName, "rights") {
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
     def name = column[String]("name")
@@ -27,11 +27,10 @@ trait RightsDtoMultiDb extends DriverComponent with AccessControl {
   }
 
 
-
   implicit val dispatcher: ExecutionContextExecutor
 
-  object RightsDao {
-
+  implicit object RightsDao extends Dao[RightDto, Int] {
+    override val thisDriver = driver
     val rights = TableQuery[RightsDto]
 
     private val aAutoInc = rights returning rights.map(_.id)
@@ -40,7 +39,7 @@ trait RightsDtoMultiDb extends DriverComponent with AccessControl {
       (aAutoInc += element).map(id => element.copy(id = Some(id)))
     }
 
-    def update(element: RightDto): DBIOAction[Any, NoStream, Write] = aAutoInc.insertOrUpdate(element)
+    def update(element: RightDto): DBIOAction[RightDto, NoStream, Write] = aAutoInc.insertOrUpdate(element)
       .map { maybeId =>
         maybeId.map { id =>
           element.copy(id = Some(id))
@@ -56,4 +55,5 @@ trait RightsDtoMultiDb extends DriverComponent with AccessControl {
 
     def delete(id: Int): FixedSqlAction[Int, NoStream, Write] = queryId(id).delete
   }
+
 }

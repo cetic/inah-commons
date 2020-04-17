@@ -1,23 +1,23 @@
 package be.cetic.inah.commons.database.sql.access_control.model
 
-import be.cetic.inah.commons.database.sql.access_control.AccessControl
-import be.cetic.inah.commons.database.sql.{DriverComponent, DtoWithId}
+import be.cetic.inah.commons.database.sql.access_control.AccessControlResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoWithId, SchemaNames}
 import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
 
-case class ServiceDto(id: Option[Int], name: String, description: String, baseUrl: String, domain: String) extends DtoWithId[Int]
+case class ServiceDto(id: Option[Int], name: String, description: String, baseUrl: String, domain: String) extends DtoWithId[Int] with AccessControlResource
 
 
-trait ServicesDtoMultiDb extends DriverComponent with AccessControl {
+trait ServicesDtoMultiDb extends DriverComponent {
 
   import driver.api._
 
   implicit val dispatcher: ExecutionContextExecutor
 
-  class ServicesDto(tag: Tag) extends Table[ServiceDto](tag, schemaName.orElse(accessControlSchemaName), "services") {
+  class ServicesDto(tag: Tag) extends Table[ServiceDto](tag,  SchemaNames.accessControlSchemaName, "services") {
     def id = column[Int]("id", O.AutoInc, O.PrimaryKey)
 
     def name = column[String]("name")
@@ -31,7 +31,8 @@ trait ServicesDtoMultiDb extends DriverComponent with AccessControl {
     def * = (id.?, name, description, baseUrl, domain) <> (ServiceDto.tupled, ServiceDto.unapply)
   }
 
-  object ServicesDao {
+  implicit object ServicesDao extends Dao[ServiceDto, Int] {
+    override val thisDriver = driver
     val services = TableQuery[ServicesDto]
 
     private val serviceAutoInc = services returning services.map(_.id)
@@ -40,7 +41,7 @@ trait ServicesDtoMultiDb extends DriverComponent with AccessControl {
       (serviceAutoInc += service).map(id => service.copy(id = Some(id)))
     }
 
-    def update(service: ServiceDto): DBIOAction[Any, NoStream, Write] = serviceAutoInc.insertOrUpdate(service)
+    def update(service: ServiceDto): DBIOAction[ServiceDto, NoStream, Write] = serviceAutoInc.insertOrUpdate(service)
       .map { maybeId =>
         maybeId.map { id =>
           service.copy(id = Some(id))

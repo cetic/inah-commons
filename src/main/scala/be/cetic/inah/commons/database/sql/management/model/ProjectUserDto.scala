@@ -1,7 +1,7 @@
 package be.cetic.inah.commons.database.sql.management.model
 
-import be.cetic.inah.commons.database.sql.management.Management
-import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, ManagementResource, SchemaName}
+import be.cetic.inah.commons.database.sql.management.ManagementResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, SchemaNames}
 import slick.dbio.Effect.Write
 import slick.sql.FixedSqlStreamingAction
 
@@ -9,10 +9,10 @@ import scala.concurrent.ExecutionContextExecutor
 
 case class ProjectUserDto (projectId : String, userId : String) extends ManagementResource
 
-trait ProjectUsersDtoMultiDb extends ProjectsDtoMultiDb with UsersDtoMultiDb with DriverComponent with Management with SchemaName{
+trait ProjectUsersDtoMultiDb extends ProjectsDtoMultiDb with UsersDtoMultiDb with DriverComponent{
 import driver.api._
 
-  class ProjectUsersDto (tag: Tag) extends Table[ProjectUserDto] (tag, schemaName.orElse(managementSchemaName), "project_user") {
+  class ProjectUsersDto (tag: Tag) extends Table[ProjectUserDto] (tag, SchemaNames.managementSchemaName, "project_user") {
 
     def projectId  = column[String]("project_id")
     def userId = column[String]("user_id")

@@ -1,20 +1,20 @@
 package be.cetic.inah.commons.database.sql.access_control.model
 
-import be.cetic.inah.commons.database.sql.access_control.AccessControl
-import be.cetic.inah.commons.database.sql.{DriverComponent, DtoWithId}
+import be.cetic.inah.commons.database.sql.access_control.AccessControlResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoWithId, SchemaNames}
 import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
 
-case class TokenDto(id: Option[Int], token: String, status: String, createdAt: Long, expiresAt: Long) extends DtoWithId[Int]
+case class TokenDto(id: Option[Int], token: String, status: String, createdAt: Long, expiresAt: Long) extends DtoWithId[Int] with AccessControlResource
 
-trait TokensDtoMultiDb extends DriverComponent with AccessControl {
+trait TokensDtoMultiDb extends DriverComponent {
 
   import driver.api._
 
-  class TokensDto(tag: Tag) extends Table[TokenDto](tag, schemaName.orElse(accessControlSchemaName), "tokens") {
+  class TokensDto(tag: Tag) extends Table[TokenDto](tag,  SchemaNames.accessControlSchemaName, "tokens") {
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
     def token = column[String]("token", O.Unique)
@@ -30,8 +30,9 @@ trait TokensDtoMultiDb extends DriverComponent with AccessControl {
 
   implicit val dispatcher: ExecutionContextExecutor
 
-  object TokensDao {
+  implicit object TokensDao extends Dao[TokenDto, Int] {
 
+    override val thisDriver = driver
     val tokens = TableQuery[TokensDto]
 
     private val aAutoInc = tokens returning tokens.map(_.id)
@@ -40,7 +41,7 @@ trait TokensDtoMultiDb extends DriverComponent with AccessControl {
       (aAutoInc += element).map(id => element.copy(id = Some(id)))
     }
 
-    def update(element: TokenDto): DBIOAction[Any, NoStream, Write] = aAutoInc.insertOrUpdate(element)
+    def update(element: TokenDto): DBIOAction[TokenDto, NoStream, Write] = aAutoInc.insertOrUpdate(element)
       .map { maybeId =>
         maybeId.map { id =>
           element.copy(id = Some(id))

@@ -1,7 +1,7 @@
 package be.cetic.inah.commons.database.sql.access_control.model
 
-import be.cetic.inah.commons.database.sql.access_control.AccessControl
-import be.cetic.inah.commons.database.sql.{DriverComponent, DtoWithId}
+import be.cetic.inah.commons.database.sql.access_control.AccessControlResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, DtoWithId, SchemaNames}
 import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
@@ -9,15 +9,16 @@ import scala.concurrent.ExecutionContextExecutor
 
 
 case class RuleDto(id: Option[Int], operandId1: Option[Int], operandId2: Option[Int], operand1: Option[String], operand2: Option[String],
-                   operator: String) extends DtoWithId[Int]
+                   operator: String) extends DtoWithId[Int] with AccessControlResource
 
 
-trait RulesDtoMultiDb extends DriverComponent with AccessControl {
+
+trait RulesDtoMultiDb extends DriverComponent {
   import driver.api._
 
   implicit val dispatcher: ExecutionContextExecutor
 
-  class RulesDto(tag: Tag) extends Table[RuleDto](tag, schemaName.orElse(accessControlSchemaName), "rule_triplets") {
+  class RulesDto(tag: Tag) extends Table[RuleDto](tag, SchemaNames.accessControlSchemaName, "rule_triplets") {
     def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
 
     def op1Id = column[Option[Int]]("rule_id1")
@@ -39,7 +40,8 @@ trait RulesDtoMultiDb extends DriverComponent with AccessControl {
   }
 
 
-  object RulesDao {
+  implicit object RulesDao extends Dao[RuleDto , Int]{
+    override val thisDriver = driver
     val rules = TableQuery[RulesDto]
 
     private val aAutoInc = rules returning rules.map(_.id)
@@ -48,7 +50,7 @@ trait RulesDtoMultiDb extends DriverComponent with AccessControl {
       (aAutoInc += element).map(id => element.copy(id = Some(id)))
     }
 
-    def update(element: RuleDto): DBIOAction[Any, NoStream, Write] = aAutoInc.insertOrUpdate(element)
+    def update(element: RuleDto): DBIOAction[RuleDto, NoStream, Write] = aAutoInc.insertOrUpdate(element)
       .map { maybeId =>
         maybeId.map { id =>
           element.copy(id = Some(id))

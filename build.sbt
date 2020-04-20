@@ -1,7 +1,7 @@
 import sbt.Keys.libraryDependencies
 
 name := "inah-commons"
-val thisVersion = "0.1.0"
+val thisVersion = "0.1.1"
 version := thisVersion
 scalaVersion := "2.12.8"
 
@@ -10,9 +10,13 @@ val akkaHttpVersion = "10.1.5"
 val sprayVersion = "1.3.2"
 val scalaTestVersion = "3.0.0"
 
-mainClass in(Compile, run) := Some("be.cetic.inah.commons.Main")
-mainClass in(Compile, packageBin) := Some("be.cetic.inah.commons.Main")
-mainClass in(Compile, packageBin) := Some("be.cetic.inah.commons.Main")
+enablePlugins(JavaAppPackaging, DockerPlugin)
+import NativePackagerHelper._
+
+
+
+mainClass in(Compile, run) := Some("be.cetic.inah.commons.DbScripts")
+mainClass in(Compile, packageBin) := Some("be.cetic.inah.commons.DbScripts")
 
 assemblyOutputPath in assembly := file("releases/inah-commons-" + thisVersion + ".jar")
 test in assembly := {}
@@ -73,3 +77,15 @@ libraryDependencies := Seq(
   //Scala
   "org.scala-lang" % "scala-reflect" % scalaVersion.value
 )
+
+
+test in assembly := {}
+
+packageName in Docker := packageName.value
+version in Docker := version.value
+//dockerLabels := Map("maintainer" -> "NoReply@steveking.site")
+dockerBaseImage := "openjdk"
+dockerRepository := Some("teereence")
+defaultLinuxInstallLocation in Docker := "/usr/local"
+daemonUser in Docker := "daemon"
+mappings in Universal ++= directory(baseDirectory.value / "src" / "main" / "resources")

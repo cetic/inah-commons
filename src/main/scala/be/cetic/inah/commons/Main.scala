@@ -10,7 +10,7 @@ import be.cetic.inah.commons.service.Commons
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContextExecutor
 
-object Main extends App {
+object Main  {
    implicit val system : ActorSystem =  ActorSystem("Search")
    implicit val materializer: ActorMaterializer = ActorMaterializer()
    implicit val executionContext: ExecutionContextExecutor = system.dispatcher

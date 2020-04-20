@@ -12,7 +12,7 @@ import scala.concurrent.ExecutionContextExecutor
 case class PseudoDto(populationId: String, personIid: String, personPseudo: String) extends PopulationResource
 
 
-trait PseudoDtoMultiDb extends DriverComponent with CoversDtoMultiDb {
+trait PseudoDtoMultiDb extends DriverComponent with CoversDtoMultiDb with PopulationsDtoMultiDb {
 
   import driver.api._
 
@@ -22,9 +22,11 @@ trait PseudoDtoMultiDb extends DriverComponent with CoversDtoMultiDb {
 
     def personIid = column[String]("person_iid")//, O.PrimaryKey)
 
-    def pk = primaryKey("id", (populationId, personIid))
+    def pk = primaryKey("pseudo_pk", (populationId, personIid))
 
     def personPseudo = column[String]("person_pseudo")
+
+    def populationForeignKey = foreignKey("pseudo_population_fk", populationId, PopulationDao.populations)(_.id)
 
     def * = (populationId, personIid,personPseudo) <> (PseudoDto.tupled, PseudoDto.unapply)
   }

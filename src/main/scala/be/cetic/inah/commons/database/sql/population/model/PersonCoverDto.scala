@@ -25,7 +25,7 @@ trait PersonCoversDtoMultiDb extends DriverComponent with CoversDtoMultiDb {
 
     def personIid = column[String]("person_iid") //, O.PrimaryKey)
 
-    def pk = primaryKey("id", (coverId, personIid))
+    def pk = primaryKey("person_cover_pk", (coverId, personIid))
 
     def from = column[Long]("from")
 

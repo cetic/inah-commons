@@ -70,4 +70,6 @@ libraryDependencies := Seq(
   //Log
   "org.slf4j" % "slf4j-simple" % "1.7.12",
 
+  //Scala
+  "org.scala-lang" % "scala-reflect" % scalaVersion.value
 )

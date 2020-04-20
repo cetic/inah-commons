@@ -26,7 +26,7 @@ trait PersonPopulationDtoMultiDb extends DriverComponent with PopulationsDtoMult
 
     def personIid = column[String]("person_iid")//, O.PrimaryKey)
 
-    def pk = primaryKey("id", (populationId, personIid))
+    def pk = primaryKey("person_population_pk", (populationId, personIid))
     def from = column[Long]("from")
 
     def to = column[Long]("to")

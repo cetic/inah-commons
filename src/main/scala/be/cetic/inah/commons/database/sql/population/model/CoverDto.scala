@@ -25,10 +25,8 @@ trait CoversDtoMultiDb extends DriverComponent with TargetsDtoMultiDb {
 
     def targetOrder = column[Int]("target_order")
 
-    def targetOrderFk = foreignKey("target_order_fk", targetOrder, TargetDao.targets)(_.order)
-
-    def populationFk =
-      foreignKey("target_population_id_fk", populationId, TargetDao.targets)(_.populationId)
+    def targetFk =
+      foreignKey("target_order_fk", (populationId, targetOrder), TargetDao.targets)(obj=> (obj.populationId, obj.order))
 
     def description = column[String]("description")
 

@@ -38,7 +38,7 @@ trait DaoFactory {
 
   def setupActions = Seq(schemaName.map(createSchema), Some(createTables)).filter(_.isDefined).map(_.get)
 
-  def setup = DBIO.seq(setupActions: _*)
+  def setup = DBIO.seq(setupActions: _*).transactionally
 
   def create[T, PK](pkType: Class[PK], element: T)(implicit dao: Dao[T, PK]): dao.thisDriver.api.DBIOAction[T, dao.thisDriver.api.NoStream, Write] = dao.create(element)
 

@@ -15,7 +15,7 @@ case class TargetId(populationId: String, order: Int)
 case class TargetDto(id: TargetId, delay: String, description: String) extends DtoCompositeId with PopulationResource
 
 
-trait TargetsDtoMultiDb extends DriverComponent {
+trait TargetsDtoMultiDb extends DriverComponent with PopulationsDtoMultiDb {
 
   import driver.api._
 
@@ -24,10 +24,13 @@ trait TargetsDtoMultiDb extends DriverComponent {
 
     def order: Rep[Int] = column[Int]("order")//, O.PrimaryKey)
 
-    def pk = primaryKey("id", (populationId, order))
+    def pk = primaryKey("target_pk", (populationId, order))
+
     def delay = column[String]("delay")
 
     def description = column[String]("description")
+
+    def populationForeignKey = foreignKey("target_population_fk", populationId, PopulationDao.populations)(_.id)
 
     def targetTupled = (x: (String, Int, String, String)) => TargetDto(TargetId(x._1, x._2), x._3, x._4)
 

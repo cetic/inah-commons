@@ -20,7 +20,5 @@ class ManagementDaoFactory(val driver: JdbcProfile, val dbProfile: Option[String
       ProjectDatasourceDao.projectDatasources.schema ++
       ProjectResourceDao.projectResources.schema ++
       UserDao.users.schema ++
-      ProjectUserDao.projectUsers.schema ++
-      TokensDao.tokens.schema
-
+      ProjectUserDao.projectUsers.schema
 }

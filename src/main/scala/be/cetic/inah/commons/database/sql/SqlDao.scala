@@ -25,7 +25,6 @@ class SqlDao(val driver: JdbcProfile, val dbProfile: Option[String] = None)(impl
   val managementDao = new ManagementDaoFactory(driver, dbProfile)
   val populationDao = new PopulationDaoFactory(driver, dbProfile)
 
-
   val createSchemaStatements: Seq[SqlAction[Int, NoStream, Effect]] = SchemaNames.schemaNames.map(createSchema)
 
   override def schemas: driver.DDL = accessControlDao.schemas.asInstanceOf[driver.DDL] ++ managementDao.schemas.asInstanceOf[driver.DDL] ++

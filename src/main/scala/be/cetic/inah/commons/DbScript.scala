@@ -1,20 +1,21 @@
 package be.cetic.inah.commons
 
 import akka.actor.ActorSystem
-import be.cetic.inah.commons.database.sql.access_control.model.TokenDto
-import be.cetic.inah.commons.database.sql.{SchemaNames, SqlDao}
-import be.cetic.inah.commons.database.sql.management.ManagementDaoFactory
+import be.cetic.inah.commons.database.sql.SqlDao
 
-import scala.concurrent.ExecutionContextExecutor
+import scala.concurrent.duration.Duration
+import scala.concurrent.{Await, ExecutionContextExecutor, Future}
 
 object DbScript extends App {
 
-  implicit val system: ActorSystem = ActorSystem("Search")
+  implicit val system: ActorSystem = ActorSystem("DbDpl")
   implicit val dispatcher: ExecutionContextExecutor = system.dispatcher
   val sqlDao = new SqlDao(slick.jdbc.PostgresProfile)
-  SchemaNames.setNoGivenSchema
-  println(sqlDao.createSchemaStatements.map(_.statements.head).mkString("\n"))
-  println(sqlDao.schemas.createIfNotExistsStatements.mkString("\n"))
 
+  val setup = for {
+    _ <- sqlDao.db.run(sqlDao.driver.api.DBIO.sequence(sqlDao.createSchemaStatements)).recoverWith{case t:Throwable => Future(Nil)   }
+    _ <- sqlDao.db.run(sqlDao.setup)
+  } yield {}
+  Await.result(setup, Duration.Inf)
   system.terminate()
 }

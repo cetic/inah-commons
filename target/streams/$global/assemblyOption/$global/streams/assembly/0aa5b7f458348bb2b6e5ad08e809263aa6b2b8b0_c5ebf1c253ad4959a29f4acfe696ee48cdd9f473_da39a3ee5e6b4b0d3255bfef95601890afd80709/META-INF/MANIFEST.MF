@@ -1,0 +1,84 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.8.1
+Created-By: 1.6.0_04-b12 (Sun Microsystems Inc.)
+Specification-Title: Apache Ivy with Ant tasks
+Specification-Version: 2.3.0
+Specification-Vendor: Apache Software Foundation
+Implementation-Title: org.apache.ivy
+Implementation-Version: 2.3.0
+Implementation-Vendor: Apache Software Foundation
+Implementation-Vendor-Id: org.apache
+Extension-name: org.apache.ivy
+Build-Version: 2.3.0
+Main-Class: org.apache.ivy.Main
+Bundle-Version: 2.3.0.final_20130110142753
+Bundle-Name: Ivy
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.ivy
+Bundle-Vendor: Apache Software Foundation
+Bundle-DocURL: http://ant.apache.org/ivy/
+Import-Package: com.jcraft.jsch;resolution:=optional,javax.crypto,java
+ x.swing;resolution:=optional,javax.swing.event;resolution:=optional,j
+ avax.xml.parsers,javax.xml.transform,javax.xml.transform.sax,javax.xm
+ l.transform.stream,org.apache.commons.httpclient;resolution:=optional
+ ,org.apache.commons.httpclient.methods;resolution:=optional,org.apach
+ e.commons.httpclient.params;resolution:=optional,org.apache.commons.h
+ ttpclient.protocol;resolution:=optional,org.apache.commons.net.ftp;re
+ solution:=optional,org.apache.commons.vfs;resolution:=optional,org.ap
+ ache.commons.vfs.impl;resolution:=optional,org.apache.commons.vfs.pro
+ vider;resolution:=optional,org.apache.commons.vfs.provider.ftp;resolu
+ tion:=optional,org.apache.commons.vfs.provider.local;resolution:=opti
+ onal,org.apache.commons.vfs.provider.sftp;resolution:=optional,org.ap
+ ache.commons.vfs.provider.url;resolution:=optional,org.apache.oro.tex
+ t;resolution:=optional,org.apache.oro.text.regex;resolution:=optional
+ ,org.apache.tools.ant;resolution:=optional,org.apache.tools.ant.filte
+ rs;resolution:=optional,org.apache.tools.ant.taskdefs;resolution:=opt
+ ional,org.apache.tools.ant.types;resolution:=optional,org.apache.tool
+ s.ant.util;resolution:=optional,org.apache.webdav;resolution:=optiona
+ l,org.xml.sax,org.xml.sax.ext,org.xml.sax.helpers
+Export-Package: org.apache.ivy;version="2.0.0",org.apache.ivy.ant;vers
+ ion="2.0.0",org.apache.ivy.core;version="2.0.0",org.apache.ivy.core.c
+ ache;version="2.0.0",org.apache.ivy.core.check;version="2.0.0",org.ap
+ ache.ivy.core.deliver;version="2.0.0",org.apache.ivy.core.event;versi
+ on="2.0.0",org.apache.ivy.core.event.download;version="2.0.0",org.apa
+ che.ivy.core.event.publish;version="2.0.0",org.apache.ivy.core.event.
+ resolve;version="2.0.0",org.apache.ivy.core.event.retrieve;version="2
+ .0.0",org.apache.ivy.core.install;version="2.0.0",org.apache.ivy.core
+ .module.descriptor;version="2.0.0",org.apache.ivy.core.module.id;vers
+ ion="2.0.0",org.apache.ivy.core.module.status;version="2.0.0",org.apa
+ che.ivy.core.publish;version="2.0.0",org.apache.ivy.core.report;versi
+ on="2.0.0",org.apache.ivy.core.repository;version="2.0.0",org.apache.
+ ivy.core.resolve;version="2.0.0",org.apache.ivy.core.retrieve;version
+ ="2.0.0",org.apache.ivy.core.search;version="2.0.0",org.apache.ivy.co
+ re.settings;version="2.0.0",org.apache.ivy.core.sort;version="2.0.0",
+ org.apache.ivy.osgi.core;version="2.3.0",org.apache.ivy.osgi.obr;vers
+ ion="2.3.0",org.apache.ivy.osgi.obr.filter;version="2.3.0",org.apache
+ .ivy.osgi.obr.xml;version="2.3.0",org.apache.ivy.osgi.p2;version="2.3
+ .0",org.apache.ivy.osgi.repo;version="2.3.0",org.apache.ivy.osgi.upda
+ tesite;version="2.3.0",org.apache.ivy.osgi.updatesite.xml;version="2.
+ 3.0",org.apache.ivy.osgi.util;version="2.3.0",org.apache.ivy.plugins;
+ version="2.0.0",org.apache.ivy.plugins.circular;version="2.0.0",org.a
+ pache.ivy.plugins.conflict;version="2.0.0",org.apache.ivy.plugins.lat
+ est;version="2.0.0",org.apache.ivy.plugins.lock;version="2.0.0",org.a
+ pache.ivy.plugins.matcher;version="2.0.0",org.apache.ivy.plugins.name
+ space;version="2.0.0",org.apache.ivy.plugins.parser;version="2.0.0",o
+ rg.apache.ivy.plugins.parser.m2;version="2.0.0",org.apache.ivy.plugin
+ s.parser.xml;version="2.0.0",org.apache.ivy.plugins.report;version="2
+ .0.0",org.apache.ivy.plugins.repository;version="2.0.0",org.apache.iv
+ y.plugins.repository.file;version="2.0.0",org.apache.ivy.plugins.repo
+ sitory.jar;version="2.3.0",org.apache.ivy.plugins.repository.sftp;ver
+ sion="2.0.0",org.apache.ivy.plugins.repository.ssh;version="2.0.0",or
+ g.apache.ivy.plugins.repository.url;version="2.0.0",org.apache.ivy.pl
+ ugins.repository.vfs;version="2.0.0",org.apache.ivy.plugins.repositor
+ y.vsftp;version="2.0.0",org.apache.ivy.plugins.resolver;version="2.0.
+ 0",org.apache.ivy.plugins.resolver.packager;version="2.0.0",org.apach
+ e.ivy.plugins.resolver.util;version="2.0.0",org.apache.ivy.plugins.si
+ gner;version="2.2.0",org.apache.ivy.plugins.signer.bouncycastle;versi
+ on="2.2.0",org.apache.ivy.plugins.trigger;version="2.0.0",org.apache.
+ ivy.plugins.version;version="2.0.0",org.apache.ivy.tools.analyser;ver
+ sion="2.0.0",org.apache.ivy.util;version="2.0.0",org.apache.ivy.util.
+ cli;version="2.0.0",org.apache.ivy.util.extendable;version="2.0.0",or
+ g.apache.ivy.util.filter;version="2.0.0",org.apache.ivy.util.url;vers
+ ion="2.0.0"
+Bundle-ClassPath: .
+

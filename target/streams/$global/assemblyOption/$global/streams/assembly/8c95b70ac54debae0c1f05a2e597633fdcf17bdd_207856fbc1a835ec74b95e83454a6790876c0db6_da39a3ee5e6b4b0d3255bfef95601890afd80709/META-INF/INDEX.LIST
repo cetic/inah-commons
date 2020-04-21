@@ -1,0 +1,8 @@
+JarIndex-Version: 1.0
+
+groovy-jsr223-2.5.6-indy.jar
+org
+org/codehaus
+org/codehaus/groovy
+org/codehaus/groovy/jsr223
+

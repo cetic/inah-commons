@@ -1,0 +1,37 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.11
+Created-By: Gradle
+Bundle-ManifestVersion: 2
+Tool: Bnd-3.4.0.201707252008
+Export-Package: groovy.json;version="2.5.6",org.apache.groovy.json;ver
+ sion="2.5.6",org.apache.groovy.json.internal;version="2.5.6"
+Import-Package: groovy.io;resolution:=optional,groovy.json;resolution:
+ =optional;version="[2.5,3)",groovy.lang;resolution:=optional,groovy.t
+ ransform.stc;resolution:=optional,groovy.util;resolution:=optional,or
+ g.apache.groovy.io;resolution:=optional,org.apache.groovy.json;resolu
+ tion:=optional;version="[2.5,3)",org.apache.groovy.json.internal;reso
+ lution:=optional;version="[2.5,3)",org.codehaus.groovy.runtime;resolu
+ tion:=optional,org.codehaus.groovy.runtime.memoize;resolution:=option
+ al
+Require-Capability: osgi.extender;filter:="(osgi.extender=osgi.service
+ loader.registrar)",osgi.extender;filter:="(osgi.extender=osgi.service
+ loader.processor)",osgi.serviceloader;filter:="(osgi.serviceloader=or
+ g.apache.groovy.json.FastStringServiceFactory)";cardinality:=multiple
+ ,osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Provide-Capability: osgi.serviceloader;osgi.serviceloader="org.apache.
+ groovy.json.FastStringServiceFactory"
+Fragment-Host: groovy
+Bundle-Version: 2.5.6
+Automatic-Module-Name: org.codehaus.groovy.json
+Bundle-SymbolicName: groovy-json
+Specification-Title: Groovy: a powerful, dynamic language for the JVM
+Specification-Version: 2.5.6
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: Groovy: a powerful, dynamic language for the JVM
+Implementation-Version: 2.5.6
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Vendor: The Apache Software Foundation
+Bundle-ClassPath: .
+Eclipse-BuddyPolicy: dependent
+DynamicImport-Package: *
+

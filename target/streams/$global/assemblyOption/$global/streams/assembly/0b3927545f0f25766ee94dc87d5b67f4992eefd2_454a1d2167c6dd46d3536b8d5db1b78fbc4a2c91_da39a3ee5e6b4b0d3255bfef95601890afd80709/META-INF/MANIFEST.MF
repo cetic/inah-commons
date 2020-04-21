@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-Description: Annotation and processor for structural pattern ma
+ tching.
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-SymbolicName: io.vavr.match
+Built-By: daniel
+Bnd-LastModified: 1494454046678
+Bundle-ManifestVersion: 2
+Import-Package: io.vavr.match.annotation,io.vavr.match.generator,io.va
+ vr.match.model,javax.annotation.processing,javax.lang.model,javax.lan
+ g.model.element,javax.lang.model.type,javax.lang.model.util,javax.too
+ ls
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+Tool: Bnd-3.2.0.201605172007
+Export-Package: io.vavr.match.annotation;version="0.9.0",io.vavr.match
+ .generator;uses:="io.vavr.match.model";version="0.9.0",io.vavr.match.
+ model;uses:="javax.lang.model.element,javax.lang.model.type,javax.lan
+ g.model.util";version="0.9.0",io.vavr.match;uses:="javax.annotation.p
+ rocessing,javax.lang.model,javax.lang.model.element";version="0.9.0"
+Bundle-Name: Vavr Match
+Bundle-Version: 0.9.0
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.8.0_121
+

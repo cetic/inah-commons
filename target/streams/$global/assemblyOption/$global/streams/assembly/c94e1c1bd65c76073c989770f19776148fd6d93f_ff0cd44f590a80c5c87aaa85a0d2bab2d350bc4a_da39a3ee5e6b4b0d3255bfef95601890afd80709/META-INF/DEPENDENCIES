@@ -1,0 +1,15 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+Apache ServiceMix
+
+
+From: 'an unknown organization'
+  - Commons CSV (Sandbox) (http://commons.apache.org/sandbox/csv/) org.apache.commons:commons-csv:jar:1.0-r706899
+
+
+
+
+

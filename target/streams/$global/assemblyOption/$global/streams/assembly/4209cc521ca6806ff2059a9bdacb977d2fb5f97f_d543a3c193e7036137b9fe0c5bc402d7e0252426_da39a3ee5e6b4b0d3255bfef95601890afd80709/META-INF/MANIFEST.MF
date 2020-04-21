@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Specification-Title: akka-protobuf-v3
+Specification-Version: 2.6.0
+Specification-Vendor: Lightbend Inc.
+Implementation-Title: akka-protobuf-v3
+Implementation-Version: 2.6.0
+Implementation-Vendor: Lightbend Inc.
+Implementation-Vendor-Id: com.typesafe.akka
+Implementation-URL: https://akka.io/
+Automatic-Module-Name: akka.protobuf.v3
+

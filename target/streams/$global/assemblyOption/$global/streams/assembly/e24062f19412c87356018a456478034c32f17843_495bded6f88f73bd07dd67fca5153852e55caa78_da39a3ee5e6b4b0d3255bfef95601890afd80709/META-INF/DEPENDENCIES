@@ -1,0 +1,57 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+Apache TinkerPop :: Gremlin Core
+
+
+From: 'an unknown organization'
+  - exp4j (http://www.objecthunter.net/exp4j) net.objecthunter:exp4j:jar:0.4.8
+    License: Apache License 2.0  (http://www.apache.org/licenses/LICENSE-2.0)
+  - SnakeYAML (http://www.snakeyaml.org) org.yaml:snakeyaml:bundle:1.15
+    License: Apache License Version 2.0  (LICENSE.txt)
+
+From: 'Apache Software Foundation' (http://www.apache.org/)
+  - Apache TinkerPop :: Gremlin Shaded (http://tinkerpop.apache.org/gremlin-shaded/) org.apache.tinkerpop:gremlin-shaded:jar:3.4.1
+    License: Apache 2  (http://www.opensource.org/licenses/Apache-2.0)
+
+From: 'Carrot Search s.c.' (http://www.carrotsearch.com)
+  - HPPC Collections (http://labs.carrotsearch.com/hppc.html/hppc) com.carrotsearch:hppc:jar:0.7.1
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'jcabi.com' (http://www.jcabi.com)
+  - jcabi-log (http://www.jcabi.com/jcabi-log) com.jcabi:jcabi-log:jar:0.14
+    License: BSD  (http://www.jcabi.com/LICENSE.txt)
+  - jcabi-manifests (http://www.jcabi.com/jcabi-manifests) com.jcabi:jcabi-manifests:jar:1.1
+    License: BSD  (http://www.jcabi.com/LICENSE.txt)
+
+From: 'QOS.ch' (http://www.qos.ch)
+  - JCL 1.2 implemented over SLF4J (http://www.slf4j.org) org.slf4j:jcl-over-slf4j:jar:1.7.25
+    License: MIT License  (http://www.opensource.org/licenses/mit-license.php)
+  - SLF4J API Module (http://www.slf4j.org) org.slf4j:slf4j-api:jar:1.7.25
+    License: MIT License  (http://www.opensource.org/licenses/mit-license.php)
+
+From: 'Square, Inc.' (http://squareup.com)
+  - JavaPoet (http://github.com/square/javapoet/) com.squareup:javapoet:jar:1.8.0
+    License: Apache 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The Apache Software Foundation' (http://www.apache.org/)
+  - Apache Commons Collections (http://commons.apache.org/collections/) commons-collections:commons-collections:jar:3.2.2
+    License: Apache License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Apache Commons Configuration (http://commons.apache.org/configuration/) commons-configuration:commons-configuration:jar:1.10
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+  - Commons Lang (http://commons.apache.org/lang/) commons-lang:commons-lang:jar:2.6
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The Apache Software Foundation' (https://www.apache.org/)
+  - Apache Commons Lang (http://commons.apache.org/proper/commons-lang/) org.apache.commons:commons-lang3:jar:3.8.1
+    License: Apache License, Version 2.0  (https://www.apache.org/licenses/LICENSE-2.0.txt)
+
+From: 'The JAVATUPLES team' (http://www.javatuples.org)
+  - javatuples (http://www.javatuples.org) org.javatuples:javatuples:jar:1.2
+    License: The Apache Software License, Version 2.0  (http://www.apache.org/licenses/LICENSE-2.0.txt)
+
+
+
+

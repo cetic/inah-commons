@@ -1,0 +1,4 @@
+moduleName=groovy-swing
+moduleVersion=2.5.6
+extensionClasses=org.codehaus.groovy.runtime.SwingGroovyMethods
+staticExtensionClasses=

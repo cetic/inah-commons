@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Built-By: jb
+Created-By: Apache Maven Bundle Plugin
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bnd-LastModified: 1282729146368
+Export-Package: org.apache.commons.csv.writer;version="1.0.0.r706899",
+ org.apache.commons.csv;version="1.0.0.r706899"
+Bundle-Version: 1.0.0.r706900_3
+Bundle-Name: Apache ServiceMix :: Bundles :: commons-csv
+Bundle-Description: This bundle simply wraps commons-csv-1.0-r706899.j
+ ar.
+Build-Jdk: 1.5.0_14
+Bundle-DocURL: http://www.apache.org/
+Bundle-Vendor: The Apache Software Foundation
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: org.apache.servicemix.bundles.commons-csv
+Tool: Bnd-0.0.357
+

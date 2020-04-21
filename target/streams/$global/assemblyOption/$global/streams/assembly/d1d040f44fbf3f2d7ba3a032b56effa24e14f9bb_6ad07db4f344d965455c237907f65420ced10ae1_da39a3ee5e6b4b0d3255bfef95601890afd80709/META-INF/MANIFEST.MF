@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Bundle-Description: A StAX implementation for JSON.
+Implementation-Title: Jettison
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0
+Bundle-SymbolicName: org.codehaus.jettison.jettison
+Implementation-Version: 1.3.8
+Bundle-ManifestVersion: 2
+Bnd-LastModified: 1468856217446
+Include-Resource: src/main/resources
+Import-Package: javax.xml,javax.xml.namespace,javax.xml.parsers,javax.
+ xml.stream,javax.xml.stream.events,javax.xml.stream.util,javax.xml.tr
+ ansform,javax.xml.transform.dom,javax.xml.transform.stream,org.codeha
+ us.jettison;version=1.3.8,org.codehaus.jettison.badgerfish;version=1.
+ 3.8,org.codehaus.jettison.json;version=1.3.8,org.codehaus.jettison.ma
+ pped;version=1.3.8,org.codehaus.jettison.util;version=1.3.8,org.w3c.d
+ om
+Tool: Bnd-0.0.160
+Export-Package: org.codehaus.jettison.json;uses:=org.codehaus.jettison
+ ;version=1.3.8,org.codehaus.jettison.badgerfish;uses:="org.codehaus.j
+ ettison.json,javax.xml,javax.xml.namespace,javax.xml.stream,org.codeh
+ aus.jettison,org.codehaus.jettison.util";version=1.3.8,org.codehaus.j
+ ettison.mapped;uses:="org.codehaus.jettison.json,javax.xml,javax.xml.
+ namespace,javax.xml.stream,org.codehaus.jettison,org.codehaus.jettiso
+ n.util";version=1.3.8,org.codehaus.jettison;uses:="org.codehaus.jetti
+ son.json,org.w3c.dom,javax.xml.stream,javax.xml.parsers,javax.xml.tra
+ nsform.dom,javax.xml.transform,javax.xml.namespace,javax.xml.transfor
+ m.stream,javax.xml.stream.util,org.codehaus.jettison.util,javax.xml.s
+ tream.events";version=1.3.8,org.codehaus.jettison.util;version=1.3.8
+Bundle-Version: 1.3.8
+Bundle-Name: jettison
+Private-Package: !*
+Created-By: 1.8.0_25 (Oracle Corporation)
+

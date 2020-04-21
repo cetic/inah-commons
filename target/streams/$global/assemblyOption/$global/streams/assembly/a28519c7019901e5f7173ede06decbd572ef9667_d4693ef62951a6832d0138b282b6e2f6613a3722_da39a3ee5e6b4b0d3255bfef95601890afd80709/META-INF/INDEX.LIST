@@ -1,0 +1,12 @@
+JarIndex-Version: 1.0
+
+groovy-groovysh-2.5.6-indy.jar
+org
+org/codehaus
+org/codehaus/groovy
+org/codehaus/groovy/tools
+org/codehaus/groovy/tools/shell
+org/codehaus/groovy/tools/shell/commands
+org/codehaus/groovy/tools/shell/completion
+org/codehaus/groovy/tools/shell/util
+

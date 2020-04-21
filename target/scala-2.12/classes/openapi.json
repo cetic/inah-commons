@@ -1,0 +1,35 @@
+{"openapi": "3.0.0",
+  "info": {
+    "description": "",
+    "version": "1.0.0",
+    "title": "Inah-Commons"
+  },
+  "components": {
+    "schemas": {}
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000 "
+    }
+  ],
+  "tags":[],
+  "paths": {
+    "/openapi": {
+      "get": {
+        "description": "Open API description",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Ok"
+          }
+        }
+      }
+    }
+  }
+}

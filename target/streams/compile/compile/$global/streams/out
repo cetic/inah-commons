@@ -1,0 +1,21 @@
+[0m[[0m[33mwarn[0m] [0m[0m/home/runner/work/inah-commons/inah-commons/src/main/scala/be/cetic/inah/commons/authorization/jsonschema/SchemaModel.scala:23:13: non-variable type argument String in type pattern (String, B) is unchecked since it is eliminated by erasure[0m
+[0m[[0m[33mwarn[0m] [0m[0m    case t: (String, B) =>[0m
+[0m[[0m[33mwarn[0m] [0m[0m            ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/runner/work/inah-commons/inah-commons/src/main/scala/be/cetic/inah/commons/authorization/jsonschema/SchemaModel.scala:29:15: non-variable type argument String in type pattern (String, be.cetic.inah.commons.authorization.jsonschema.SchemaModel, Boolean) is unchecked since it is eliminated by erasure[0m
+[0m[[0m[33mwarn[0m] [0m[0m    case stb: (String, SchemaModel, Boolean) => ModelKeyValue(stb._1, stb._2, stb._3)[0m
+[0m[[0m[33mwarn[0m] [0m[0m              ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/runner/work/inah-commons/inah-commons/src/main/scala/be/cetic/inah/commons/database/couchdb/CouchDocumentActor.scala:44:30: abstract type pattern T is unchecked since it is eliminated by erasure[0m
+[0m[[0m[33mwarn[0m] [0m[0m    case CreateDocument(doc: T) => dbActor ? Create(getKey(doc), getJson(doc)) pipeTo sender[0m
+[0m[[0m[33mwarn[0m] [0m[0m                             ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/runner/work/inah-commons/inah-commons/src/main/scala/be/cetic/inah/commons/database/couchdb/CouchDocumentActor.scala:46:30: abstract type pattern T is unchecked since it is eliminated by erasure[0m
+[0m[[0m[33mwarn[0m] [0m[0m    case UpdateDocument(doc: T) => (dbActor ? Update(getKey(doc), getJson(doc))).mapTo[UpdateResponse] pipeTo sender[0m
+[0m[[0m[33mwarn[0m] [0m[0m                             ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/runner/work/inah-commons/inah-commons/src/main/scala/be/cetic/inah/commons/kafka/KafkaConsumer.scala:37:13: non-variable type argument String in type pattern org.apache.kafka.clients.consumer.ConsumerRecord[String,String] is unchecked since it is eliminated by erasure[0m
+[0m[[0m[33mwarn[0m] [0m[0m    case c: ConsumerRecord[String, String] =>[0m
+[0m[[0m[33mwarn[0m] [0m[0m            ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/runner/work/inah-commons/inah-commons/src/main/scala/be/cetic/inah/commons/kafka/KafkaProducer.scala:34:14: non-variable type argument String in type pattern org.apache.kafka.clients.producer.ProducerRecord[String,String] is unchecked since it is eliminated by erasure[0m
+[0m[[0m[33mwarn[0m] [0m[0m    case rc: ProducerRecord[String, String] =>[0m
+[0m[[0m[33mwarn[0m] [0m[0m             ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere were 5 deprecation warnings (since 2.6.0); re-run with -deprecation for details[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere were 12 feature warnings; re-run with -feature for details[0m
+[0m[[0m[33mwarn[0m] [0m[0m8 warnings found[0m

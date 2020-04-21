@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Export-Package: com.lmax.disruptor.collections;version="3.0.1",com.lma
+ x.disruptor;uses:="com.lmax.disruptor.util,sun.misc,com.lmax.disrupto
+ r.dsl";version="3.0.1",com.lmax.disruptor.dsl;uses:="com.lmax.disrupt
+ or,com.lmax.disruptor.util";version="3.0.1",com.lmax.disruptor.util;u
+ ses:="sun.misc,com.lmax.disruptor";version="3.0.1"
+Built-By: mike
+Tool: Bnd-1.50.0
+Bundle-Name: Disruptor Framework
+Created-By: 1.7.0_10 (Oracle Corporation)
+Bundle-Vendor: LMAX Disruptor Development Team
+Bundle-Version: 3.0.1
+Bnd-LastModified: 1366073507000
+Bundle-ManifestVersion: 2
+Bundle-Description: Disruptor - Concurrent Programming Framework
+Bundle-SymbolicName: com.lmax.disruptor
+Import-Package: sun.misc
+Bundle-DocURL: http://lmax-exchange.github.com/disruptor
+

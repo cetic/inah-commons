@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Export-Package: org.supercsv.encoder;uses:="org.supercsv.prefs,org.sup
+ ercsv.util,org.supercsv.quote";version="2.1.0",org.supercsv.exception
+ ;uses:="org.supercsv.cellprocessor.ift,org.supercsv.util";version="2.
+ 1.0",org.supercsv.io;uses:="org.supercsv.exception,org.supercsv.cellp
+ rocessor.ift,org.supercsv.prefs,org.supercsv.util,org.supercsv.encode
+ r,org.supercsv.comment";version="2.1.0",org.supercsv.quote;uses:="org
+ .supercsv.prefs,org.supercsv.util";version="2.1.0",org.supercsv.cellp
+ rocessor.ift;uses:="org.supercsv.util";version="2.1.0",org.supercsv.p
+ refs;uses:="org.supercsv.encoder,org.supercsv.quote,org.supercsv.comm
+ ent";version="2.1.0",org.supercsv.util;uses:="org.supercsv.exception,
+ org.supercsv.cellprocessor.ift";version="2.1.0",org.supercsv.cellproc
+ essor.constraint;uses:="org.supercsv.exception,org.supercsv.cellproce
+ ssor.ift,org.supercsv.util,org.supercsv.cellprocessor";version="2.1.0
+ ",org.supercsv.comment;version="2.1.0",org.supercsv.cellprocessor;use
+ s:="org.supercsv.cellprocessor.ift,org.supercsv.util,org.supercsv.exc
+ eption";version="2.1.0"
+Built-By: jim
+Tool: Bnd-1.50.0
+Bundle-Name: Super CSV Core
+Created-By: Apache Maven Bundle Plugin
+Bundle-Vendor: Super CSV
+Build-Jdk: 1.7.0_21
+Bundle-Version: 2.1.0
+Bnd-LastModified: 1366778197297
+Bundle-ManifestVersion: 2
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.html
+Bundle-Description: Super CSV is a fast, programmer-friendly, free CSV
+  package for Java
+Bundle-SymbolicName: net.sf.supercsv.super-csv
+Bundle-DocURL: http://supercsv.sourceforge.net/
+Archiver-Version: Plexus Archiver
+

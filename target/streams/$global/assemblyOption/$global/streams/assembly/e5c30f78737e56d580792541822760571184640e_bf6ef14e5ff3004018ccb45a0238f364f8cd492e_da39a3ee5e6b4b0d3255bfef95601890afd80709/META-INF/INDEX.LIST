@@ -1,0 +1,17 @@
+JarIndex-Version: 1.0
+
+groovy-swing-2.5.6.jar
+groovy
+groovy/inspect
+groovy/inspect/swingui
+groovy/model
+groovy/swing
+groovy/swing/binding
+groovy/swing/factory
+groovy/swing/impl
+org
+org/codehaus
+org/codehaus/groovy
+org/codehaus/groovy/binding
+org/codehaus/groovy/runtime
+

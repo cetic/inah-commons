@@ -1,0 +1,4 @@
+hosts: ["inah.int.cetic.be"]
+port: 30563
+serializer: { className: org.apache.tinkerpop.gremlin.driver.ser.GraphSONMessageSerializerGremlinV2d0,
+  config:{ioRegistries:[org.janusgraph.graphdb.tinkerpop.JanusGraphIoRegistryV1d0,org.apache.tinkerpop.gremlin.tinkergraph.structure.TinkerIoRegistryV2d0]}}

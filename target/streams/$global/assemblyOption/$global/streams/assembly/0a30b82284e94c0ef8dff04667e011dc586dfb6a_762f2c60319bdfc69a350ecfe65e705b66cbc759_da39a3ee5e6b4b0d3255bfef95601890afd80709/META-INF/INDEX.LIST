@@ -1,0 +1,11 @@
+JarIndex-Version: 1.0
+
+groovy-console-2.5.6.jar
+groovy
+groovy/inspect
+groovy/inspect/swingui
+groovy/ui
+groovy/ui/icons
+groovy/ui/text
+groovy/ui/view
+

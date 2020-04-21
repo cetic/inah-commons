@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: picocli
+Automatic-Module-Name: info.picocli
+Implementation-Version: 3.9.2
+Specification-Vendor: Remko Popma
+Specification-Title: picocli
+Specification-Version: 3.9.2
+Implementation-Vendor: Remko Popma
+Main-Class: picocli.AutoComplete
+

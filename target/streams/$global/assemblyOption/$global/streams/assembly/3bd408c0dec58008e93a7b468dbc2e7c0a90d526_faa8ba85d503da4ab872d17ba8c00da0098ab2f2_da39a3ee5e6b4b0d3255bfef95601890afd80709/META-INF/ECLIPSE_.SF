@@ -1,0 +1,368 @@
+Signature-Version: 1.0
+SHA-256-Digest-Manifest-Main-Attributes: b+wtgRbKI6oVQr2RfrTmVkUfGro4o
+ QBHkB6MHgWa3DM=
+SHA-256-Digest-Manifest: /G5rFWSU/W/Qmv3HM2JK20VcVP9M8GsL/faz4OyxW68=
+Created-By: 1.8.0_131 (Oracle Corporation)
+
+Name: org/locationtech/spatial4j/io/jackson/ShapesAsGeoJSONModule.clas
+ s
+SHA-256-Digest: HQHTD6zbJbOlaUFnBfqOd1GlIY+Je/BNbiJp+qao4sU=
+
+Name: org/locationtech/spatial4j/distance/DistanceUtils.class
+SHA-256-Digest: BFNR9EVfGqRZH8gSuxlzB0vnER2CuNRZU9odbwGVKyQ=
+
+Name: org/locationtech/spatial4j/io/ShapeReader.class
+SHA-256-Digest: CrTCxvDSxCqL5YyuqgfoITEzUmP11wEefPy6nVaqz7M=
+
+Name: org/locationtech/spatial4j/io/PolyshapeReader$XReader.class
+SHA-256-Digest: 58UEzhgekjFbohJ1aupbMPatKwfg+HUG/y3l/YheQcA=
+
+Name: org/locationtech/spatial4j/distance/GeodesicSphereDistCalc$LawOf
+ Cosines.class
+SHA-256-Digest: VnbrkBmqwduO3Pno1f7GPPWb8eSSgUPiWaXdmtBsG/s=
+
+Name: org/locationtech/spatial4j/shape/impl/BufferedLineString.class
+SHA-256-Digest: cVgdZ6SQYWd+JQaeV5XhdOyGDxzx+RrpVV5gi1xkmF8=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsShapeFactory$JtsMultiPol
+ ygonBuilder.class
+SHA-256-Digest: fT05ZwrDYTcvazsDjaflcGKWyJI5v8BZ0vmNg9iBbP0=
+
+Name: org/locationtech/spatial4j/io/PolyshapeWriter.class
+SHA-256-Digest: +ebODvLLTY5q0UuFJq8Ib6SH9PNcTifyP71jY0E2luY=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsShapeFactory$JtsMultiPoi
+ ntBuilder.class
+SHA-256-Digest: ei65HZfQEQj6pQhQ3rPZOkC7NWv2ujzEu6aVMUyayoM=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsShapeFactory$JtsPolygonB
+ uilder.class
+SHA-256-Digest: ZpWPeOOaZcDio5n+aIdWkLm+AJfnHJzbzOdJ1e2tuE0=
+
+Name: org/locationtech/spatial4j/context/SpatialContext.class
+SHA-256-Digest: bbElzASj1aHaEAQ0nJ07qqU+pFZl2w/zwmvzq4vEKfE=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsShapeFactory$Coordinates
+ Accumulator.class
+SHA-256-Digest: prdDcSqoKTn2dgkh0QW0YCLB8akk6zKka9e9XrCISNs=
+
+Name: org/locationtech/spatial4j/io/PolyshapeReader.class
+SHA-256-Digest: c98xqb/Pb6W+qtwNTLqwgWMglNIvxPJfWDdZXdEqRfw=
+
+Name: org/locationtech/spatial4j/shape/impl/RectangleImpl.class
+SHA-256-Digest: 97tKgq58z0yGVP/ATzZ3u4vveOP8eIbkFoPI+3qxar4=
+
+Name: org/locationtech/spatial4j/io/LegacyShapeWriter.class
+SHA-256-Digest: PNwXU68lFCiTfLjr/FLTI2oI4aGVFosx+JTBuvFbGzY=
+
+Name: org/locationtech/spatial4j/io/GeoJSONWriter.class
+SHA-256-Digest: YchDchd8dW7zd+ReWXdH2Ab8hIIAW8f8IlF1Jao74OU=
+
+Name: org/locationtech/spatial4j/distance/GeodesicSphereDistCalc$Vince
+ nty.class
+SHA-256-Digest: 2BCRc0e+r4kQfBmU4P9WJjlIwgn/N9Deyst3Rmk9g+w=
+
+Name: org/locationtech/spatial4j/SpatialPredicate$7.class
+SHA-256-Digest: xjR2Xb5r97bhkZINdkpqgyDz/BUoU/uBSKbAIHwHQOw=
+
+Name: org/locationtech/spatial4j/context/jts/ValidationRule.class
+SHA-256-Digest: mrV4AGFB5OKmCi1OAZPFHeVGe+JOWCWeS5a+VeyE6Ws=
+
+Name: org/locationtech/spatial4j/shape/ShapeCollection.class
+SHA-256-Digest: HWfS5Jrpjm4wmlvCz6QguvRjyExOnAW/oelophvq0B4=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsGeometry$4.class
+SHA-256-Digest: 27iVnROMyWgwOc5UsIGj7znAyLIZFlQTM2E+caNONAc=
+
+Name: org/locationtech/spatial4j/io/GeoJSONReader.class
+SHA-256-Digest: uAR4x5FcyAzZxwBnk5+bhJCmDB4oj+V0xJt8TCwNfWY=
+
+Name: org/locationtech/spatial4j/shape/ShapeFactory$PointsBuilder.clas
+ s
+SHA-256-Digest: I/rrQ6zS8SRZX0QKTCcdbZM/i4I6pxGc+9kieGUxMPU=
+
+Name: org/locationtech/spatial4j/distance/GeodesicSphereDistCalc$Haver
+ sine.class
+SHA-256-Digest: pm/sLvjjJFslsDUha4hR9BLOD3dp8Scj32qk+jPDE/g=
+
+Name: org/locationtech/spatial4j/shape/ShapeFactory$PolygonBuilder$Hol
+ eBuilder.class
+SHA-256-Digest: doLqx518XKDfwXQeBt0yrhxk0/mpfA1V6EshYw3XHRY=
+
+Name: org/locationtech/spatial4j/io/jts/JtsBinaryCodec.class
+SHA-256-Digest: te/L3IjLeigtJFJ3+jC6N2uv5y4db8+XmKzi4qKHzoo=
+
+Name: org/locationtech/spatial4j/exception/UnsupportedSpatialPredicate
+ .class
+SHA-256-Digest: VMp8GyhFm3WzD4Fvy0CfUamtkqxG9r4ZNrJSwc6vGPY=
+
+Name: org/locationtech/spatial4j/io/PolyshapeWriter$Encoder.class
+SHA-256-Digest: KCvkzV2a/fhWCwmMQ2kpGjHLdZehhG0Q7donPX0DBLY=
+
+Name: org/locationtech/spatial4j/distance/GeodesicSphereDistCalc.class
+SHA-256-Digest: mQFWJyaMwof0WL6tqIdQzI3HiOKDLL0sEm5n8yH0l5k=
+
+Name: org/locationtech/spatial4j/io/SupportedFormats.class
+SHA-256-Digest: WcNRg3OehPIAtCdj1JcxsPp5B0EycEWpGoZUiphu6Rc=
+
+Name: org/locationtech/spatial4j/shape/impl/BufferedLine.class
+SHA-256-Digest: Zt/qWAE79idC1Ef0nxYRA5xpZBz165K5sajf3fBZtl0=
+
+Name: org/locationtech/spatial4j/SpatialPredicate$4.class
+SHA-256-Digest: LG1BpGARj7U7nEB51QWsyDTnD/TpAh41vg5EQCqmJFA=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsGeometry$1.class
+SHA-256-Digest: uUe6qGI2+h0Hq7+TQNUYlBeUB9Q4EevuPVqS+8ws5cA=
+
+Name: org/locationtech/spatial4j/shape/ShapeFactory$MultiLineStringBui
+ lder.class
+SHA-256-Digest: zAaI2Q4rXnrHio/nDS24/1PY6DKqpGJ76iKTKeps0oY=
+
+Name: org/locationtech/spatial4j/shape/impl/BBoxCalculator.class
+SHA-256-Digest: tS5qnJoRkjaSgpFzGoboaXRdYktWeQktNmjHrGx7n/I=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsGeometry$2.class
+SHA-256-Digest: noegOQeo7VH7qNacRghZeNNQWaV8CVyNOQx+jaob5Yo=
+
+Name: org/locationtech/spatial4j/distance/AbstractDistanceCalculator.c
+ lass
+SHA-256-Digest: wbvZ6K8tk3lot+0Tc2TKrXTu7pKkiF5nr6CJHfEeE8Q=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsPoint.class
+SHA-256-Digest: 9cHS1SWdUd3UlWHn32wnVIfteby8BbGuwHM/AMLjous=
+
+Name: org/locationtech/spatial4j/io/jts/JtsBinaryCodec$1.class
+SHA-256-Digest: JPDgW+waXJRKAo3BFr2r0VisSjJN1DuED894q/1T1dg=
+
+Name: org/locationtech/spatial4j/io/jackson/PackageVersion.class
+SHA-256-Digest: ByGnv4e5RisNr9EmUQhQzkQlMeYZfB46AvgOT4GknOQ=
+
+Name: org/locationtech/spatial4j/distance/CartesianDistCalc.class
+SHA-256-Digest: dnL4IGA5EBYZN65LDt2VJ23xyx8mWxhu+8GnJtb+3kY=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsShapeFactory$1.class
+SHA-256-Digest: h532gSET2VZ5YLxlLtuhaeuDNIsmMtF3UpjYyFKkzW4=
+
+Name: org/locationtech/spatial4j/SpatialPredicate$5.class
+SHA-256-Digest: MTtKNrHBsA+j5VMTIaGUE8JFrTvrWeCtt9F0RDY7Jjs=
+
+Name: org/locationtech/spatial4j/io/jackson/GeometryAsGeoJSONSerialize
+ r.class
+SHA-256-Digest: 9/HUgermxz4s1AFQhqd6vteFOUdggozdKrMPxEDRGFI=
+
+Name: org/locationtech/spatial4j/shape/SpatialRelation.class
+SHA-256-Digest: YLvzgIwnZd6NyuDLx08oqJneaEhCYwDPf4paIaoBgNE=
+
+Name: org/locationtech/spatial4j/shape/ShapeFactory$MultiPolygonBuilde
+ r.class
+SHA-256-Digest: btqrovvYTHS2N9FD4Gw9184mp0jlKh5Cs/0jz0pugNU=
+
+Name: org/locationtech/spatial4j/shape/Rectangle.class
+SHA-256-Digest: fNE9SvUBfMCQfoPEA6yM6LQ0ECsqc/+YyIc1+6Yc/PY=
+
+Name: org/locationtech/spatial4j/io/LegacyShapeReader.class
+SHA-256-Digest: 1L1+c+91tGLnLG86owmmGIzfHqbvGJfzflR2i2hmhWU=
+
+Name: org/locationtech/spatial4j/io/WktShapeParser.class
+SHA-256-Digest: GV6TwVj1xFPO6D7zt+4lDzgWoppSH/U7Vf50nSgkuhA=
+
+Name: org/locationtech/spatial4j/shape/ShapeFactory$MultiPointBuilder.
+ class
+SHA-256-Digest: wKqbJ+slZOmxzQ8Q2gx2/9r7UYlcIUx+SSqe7neIRxM=
+
+Name: org/locationtech/spatial4j/shape/impl/BufferedLineString$1.class
+SHA-256-Digest: qf5sFGW6EtxGTET/Z+mkG/O50t0mRdElLio2vMleXJY=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsShapeFactory$JtsMultiLin
+ eStringBuilder.class
+SHA-256-Digest: p3YcYLbNZdrkb/6yZt4nOTbtZNsMZTLyeMK5nWSyq6Q=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsGeometry.class
+SHA-256-Digest: hqXh+xcCY8Ak8tpt5KP7Fmh5p26v9cK13KrfKbZuEIA=
+
+Name: org/locationtech/spatial4j/shape/impl/Range.class
+SHA-256-Digest: MV/yazac62oxxLf4wlrLm6UIOo4fRmMk5EKW5MFs0XI=
+
+Name: org/locationtech/spatial4j/shape/Circle.class
+SHA-256-Digest: wLfXoI9oA6BqrQ/eTAYi+yA6omT4N9zzh2y8dkBbNHQ=
+
+Name: org/locationtech/spatial4j/SpatialPredicate$6.class
+SHA-256-Digest: sQbe7ZkXzTuaALiVrb6BeUfPNvmIY4cPhEEdKWQ2rbQ=
+
+Name: org/locationtech/spatial4j/shape/ShapeFactory$PolygonBuilder.cla
+ ss
+SHA-256-Digest: Z4X602JN639Ma0dsYlCOuUgbvNu2KI9Nta4KcsrCcbs=
+
+Name: org/locationtech/spatial4j/shape/BaseShape.class
+SHA-256-Digest: Qsfa3XB6PfhyrAQAC4Kj4WCrhhwr+ccANGi8AT5Pd5M=
+
+Name: org/locationtech/spatial4j/io/OnePointsBuilder.class
+SHA-256-Digest: Q5V/9vJRom5B4lWc85zapY3cuWbFBtV5pMPcSNnObR4=
+
+Name: org/locationtech/spatial4j/io/jackson/ShapesAsWKTModule.class
+SHA-256-Digest: tVpj2Q+GeOLDuKZewAFLmHig3ShVqs+iCpJgucj+lQM=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsGeometry$3.class
+SHA-256-Digest: qhGj5TsXk0NWuNaWHcQY0aOE6zFJxo7ZfecQe6j9rQQ=
+
+Name: org/locationtech/spatial4j/io/jts/JtsPolyshapeWriter.class
+SHA-256-Digest: C7mCgO1fTef/D2iu0A+RdCqgx4EUigpx0n0nN3JrNoM=
+
+Name: org/locationtech/spatial4j/distance/DistanceCalculator.class
+SHA-256-Digest: h/IjraRfZfiLBbS7C7EnACI0Dnjcr9Qu3hcxjbGuUCI=
+
+Name: org/locationtech/spatial4j/io/WKTWriter.class
+SHA-256-Digest: CQnvrwJndUoibUUGdCnXu9U3lq0p9+aXU8XCKMpvaGQ=
+
+Name: org/locationtech/spatial4j/shape/impl/Range$LongitudeRange.class
+SHA-256-Digest: 18HERkAJ5sKQz3P5Vle3+KOzu1Ui54SPloSWHPDhRvA=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsShapeFactory.class
+SHA-256-Digest: XaQ7En998IPeFVpwnG/Te+f+azf+zKRbGwUc8PfVAPQ=
+
+Name: org/locationtech/spatial4j/io/jts/JtsBinaryCodec$2.class
+SHA-256-Digest: MubCMjQbZON5fY8e2CAY40EIpo7EX0ntS7aQWZziQUk=
+
+Name: org/locationtech/spatial4j/shape/impl/ShapeFactoryImpl$1.class
+SHA-256-Digest: /ERw4LkCC7yi8UzrToEtcx8MT/g+gj6gNeyclDwb/KA=
+
+Name: org/locationtech/spatial4j/io/jackson/GeometryAsWKTSerializer.cl
+ ass
+SHA-256-Digest: +9xEmQwqiK3rJgigq1/YqTkoT/00RlKlTBv3PajtpSM=
+
+Name: org/locationtech/spatial4j/io/jackson/GeometryDeserializer.class
+SHA-256-Digest: axy7VjE5XtFAYD+dwdarHsTFtyKJi4IIfs9iGMrmpS4=
+
+Name: org/locationtech/spatial4j/io/GeohashUtils.class
+SHA-256-Digest: jktm2Je0Q1qRTwP8GZYg3x5gQGn63bTiEmLuCALsRN8=
+
+Name: org/locationtech/spatial4j/io/jackson/ShapeAsGeoJSONSerializer.c
+ lass
+SHA-256-Digest: l5gY3L5BXCX/rt18+tmUJi2FUofCquJbBNG0+tRnyZM=
+
+Name: org/locationtech/spatial4j/exception/InvalidShapeException.class
+SHA-256-Digest: AM2yy8I8Q59lvgT4WX7SLE5Vef4iDFYOE8nh0xs5uMU=
+
+Name: org/locationtech/spatial4j/shape/impl/ShapeFactoryImpl$GeneralSh
+ apeMultiShapeBuilder.class
+SHA-256-Digest: 4JZlR17TLHW120ktJDKW0ernY3xeTPI6T9j8ErBKJ7w=
+
+Name: org/locationtech/spatial4j/shape/Shape.class
+SHA-256-Digest: pcgoV2d+ebcgnFjZ2fgOJdxUPUK/OnkQpch7KkRP00E=
+
+Name: org/locationtech/spatial4j/shape/ShapeFactory$MultiShapeBuilder.
+ class
+SHA-256-Digest: wLSmos0JJ0Fo+BBreNLXesWLuwCn9jxCLfTL6Vdj1vc=
+
+Name: org/locationtech/spatial4j/shape/impl/CircleImpl.class
+SHA-256-Digest: 20rmNRzpMoHR3onIxjBNKP5fept95JIhe6E/OcSOxjg=
+
+Name: org/locationtech/spatial4j/io/ShapeIO.class
+SHA-256-Digest: vijyYjpluhtHvDGedMnxu7afZDnqhoAHMCdAKANuqoQ=
+
+Name: org/locationtech/spatial4j/context/jts/DatelineRule.class
+SHA-256-Digest: zZPtvpZmc/a6vZFNd1ISjAVSXDF9aRofw1pzm7Kut90=
+
+Name: org/locationtech/spatial4j/io/ParseUtils.class
+SHA-256-Digest: +x81HaiRRod6nbrP1ShVIxRDr+I5eZ0YYAJxCrVwAKo=
+
+Name: META-INF/maven/org.locationtech.spatial4j/spatial4j/pom.xml
+SHA-256-Digest: AUKfWqa7rHw4Z1dRbDLq99Nd1+3MCu/Rddq1+ds+xRA=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsShapeFactory$JtsMultiSha
+ peBuilder.class
+SHA-256-Digest: fv0guKv0vGNAJER1zlsiEtTw5WY0N0C011xHlgiU5dc=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsShapeFactory$JtsLineStri
+ ngBuilder.class
+SHA-256-Digest: XRm1RPyA+1vuKeOemYmo+xZHGEWBTZzxRSCC4zQ/4dY=
+
+Name: org/locationtech/spatial4j/io/WKTReader.class
+SHA-256-Digest: tD9XGa4nPDNni/RjzrCgl+gY24dV28jJme+waGbiVZc=
+
+Name: org/locationtech/spatial4j/SpatialPredicate$3.class
+SHA-256-Digest: vfUXQEqBs2+zG8AtnbqEGEtdTf7wBCBZ8mO7UA/re/U=
+
+Name: org/locationtech/spatial4j/io/BinaryCodec.class
+SHA-256-Digest: f9nH/4uqVYQymqZJNOYFLsaNEZJR8DoDwW/SUAK6XgM=
+
+Name: org/locationtech/spatial4j/shape/impl/GeoCircle.class
+SHA-256-Digest: dZ85S79gitTnFTlCuEtUUm97z4kxI/ch21tv7BiVq9Y=
+
+Name: org/locationtech/spatial4j/SpatialPredicate$1.class
+SHA-256-Digest: IyQjkZiTHRjlHmFbqsy1D8PKZtjYDk0faqy0rWmYNmU=
+
+Name: org/locationtech/spatial4j/io/WKTReader$State.class
+SHA-256-Digest: q8ELyRu/hYq852SIi9/KCt4FZH3KgI5HJvtwZXXHh7k=
+
+Name: org/locationtech/spatial4j/context/SpatialContextFactory.class
+SHA-256-Digest: in13r8XoMKDu+aC70Qu+UVRqJEREiUHBa06gnVtCizE=
+
+Name: org/locationtech/spatial4j/SpatialPredicate.class
+SHA-256-Digest: s9LydHYH9sD87wbA/2DyNmV3GINFsS46laW0pEnNuGU=
+
+Name: org/locationtech/spatial4j/context/jts/JtsSpatialContextFactory.
+ class
+SHA-256-Digest: 827Zu591fuDUNOQqVZpAqLd7cm6kdznzP0inDw1Wtdo=
+
+Name: org/locationtech/spatial4j/shape/impl/ShapeFactoryImpl.class
+SHA-256-Digest: h//F1TqW1jAlH7/7ToQkvsibL8S8xEZ9QBY7Nbe9Ns0=
+
+Name: org/locationtech/spatial4j/shape/SpatialRelation$1.class
+SHA-256-Digest: B5F9Qhodc+q7x78vm2dVoy/rWWQfeXEJmIWPeUbJDoI=
+
+Name: org/locationtech/spatial4j/shape/jts/JtsShapeFactory$JtsPolygonB
+ uilder$JtsHoleBuilder.class
+SHA-256-Digest: PWSZfnhJ1sY4+N/NAIt5Qrq2+yoCdMPyuLkz/2kiHvw=
+
+Name: org/locationtech/spatial4j/io/jts/JtsGeoJSONWriter.class
+SHA-256-Digest: mEacRjl1cDi6GkVRSL0yuSm3HWqVNFHHBoxKAsQXiYo=
+
+Name: org/locationtech/spatial4j/io/jackson/ShapeDeserializer.class
+SHA-256-Digest: zH/n3/Ufi1N7sdr9WqZGcxQEFTEeFVKfCqNh9p+Tx74=
+
+Name: org/locationtech/spatial4j/shape/ShapeFactory$LineStringBuilder.
+ class
+SHA-256-Digest: gULuVn6vV9IjCzpGki3mTPsvxMpHGCrjd7Uad3Vueo4=
+
+Name: org/locationtech/spatial4j/shape/ShapeFactory.class
+SHA-256-Digest: Zu9LwkQPnZ7ZwSiNZ93kY66OuTi4uHUn659OHrqEEU8=
+
+Name: org/locationtech/spatial4j/io/jackson/ShapeAsWKTSerializer.class
+SHA-256-Digest: 1xtIzoOJSqRkgbRokAWFwQ1NjutFA3QUxWsFY6ROQ6A=
+
+Name: org/locationtech/spatial4j/io/jts/JtsWKTWriter.class
+SHA-256-Digest: O8nv5pDS+ocd7vxQSVtZ/urFKWkxH+lOE/51IZYOwb8=
+
+Name: org/locationtech/spatial4j/SpatialPredicate$2.class
+SHA-256-Digest: +YYD8EK6jVFJvW2fLiklX6/VPdE3YeluJPFayVNE85Y=
+
+Name: org/locationtech/spatial4j/io/jts/JtsWKTReaderShapeParser.class
+SHA-256-Digest: slLTT16ANU3C/wS6Lad/JgsXkFEby5R8m4Wbw7L3+Hk=
+
+Name: org/locationtech/spatial4j/shape/Point.class
+SHA-256-Digest: kDHO0HQ7WDPlzNm3fIJ/AwUyWl6wZ+xVBh+Q2Vye9p4=
+
+Name: org/locationtech/spatial4j/shape/impl/InfBufLine.class
+SHA-256-Digest: sb6sT0UJbG0Bnjzxn+j/FQLB6z4vhahPuukiFZd1GMQ=
+
+Name: org/locationtech/spatial4j/shape/impl/PointImpl.class
+SHA-256-Digest: f1BoeD04CXa9vDMqgu3t53cjZKTgdOVhlBmD/GUCgwQ=
+
+Name: org/locationtech/spatial4j/SpatialPredicate$8.class
+SHA-256-Digest: m9JSrZyB35TDMAkzr0u5MnpF6WLyj0gc2eHluLdXxcY=
+
+Name: org/locationtech/spatial4j/io/ShapeWriter.class
+SHA-256-Digest: CoH/kJ3vW7KKG8o3ZT+KeaffOOD3mRrOzT6GBE+AKMs=
+
+Name: org/locationtech/spatial4j/io/jts/JtsWKTReaderShapeParser$1.clas
+ s
+SHA-256-Digest: Og+NuSRn4k49hBJ9Du69fMq9eeeivWTYFk62RY3I9Iw=
+
+Name: org/locationtech/spatial4j/context/jts/JtsSpatialContext.class
+SHA-256-Digest: tBdBEq/iyRr4+Qv1g6xMr85vQEKyG7v0aVXEkBpeO/c=
+
+Name: META-INF/maven/org.locationtech.spatial4j/spatial4j/pom.properti
+ es
+SHA-256-Digest: aHRZJn7hTNyuHLyGa7HoVDMUCbaAkNa9RsBHej3fLIU=
+

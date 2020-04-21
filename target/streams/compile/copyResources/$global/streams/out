@@ -1,0 +1,7 @@
+[0m[[0m[0mdebug[0m] [0m[0mCopy resource mappings: [0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/home/runner/work/inah-commons/inah-commons/src/main/resources/openapi.json,/home/runner/work/inah-commons/inah-commons/target/scala-2.12/classes/openapi.json)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/home/runner/work/inah-commons/inah-commons/src/main/resources/gremlin-remote-objects_janus3.1.conf,/home/runner/work/inah-commons/inah-commons/target/scala-2.12/classes/gremlin-remote-objects_janus3.1.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/home/runner/work/inah-commons/inah-commons/src/main/resources/couchdb.template.properties,/home/runner/work/inah-commons/inah-commons/target/scala-2.12/classes/couchdb.template.properties)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/home/runner/work/inah-commons/inah-commons/src/main/resources/gremlin-remote-objects.janus-v2.template.conf,/home/runner/work/inah-commons/inah-commons/target/scala-2.12/classes/gremlin-remote-objects.janus-v2.template.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/home/runner/work/inah-commons/inah-commons/src/main/resources/kafka.conf,/home/runner/work/inah-commons/inah-commons/target/scala-2.12/classes/kafka.conf)[0m
+[0m[[0m[0mdebug[0m] [0m[0m	(/home/runner/work/inah-commons/inah-commons/src/main/resources/gremlin-remote-objects_bu.conf,/home/runner/work/inah-commons/inah-commons/target/scala-2.12/classes/gremlin-remote-objects_bu.conf)[0m

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: Slick-CodeGen
+Implementation-Version: 3.3.1
+Specification-Vendor: Typesafe
+Specification-Title: Slick-CodeGen
+Implementation-Vendor-Id: com.typesafe.slick
+Specification-Version: 3.3.1
+Implementation-URL: http://slick.typesafe.com
+Implementation-Vendor: Typesafe
+Main-Class: slick.codegen.SourceCodeGenerator
+

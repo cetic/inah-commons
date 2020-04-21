@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.11
+Created-By: Gradle
+Bundle-ManifestVersion: 2
+Tool: Bnd-3.4.0.201707252008
+Bundle-SymbolicName: groovy-cli-picocli
+Bundle-Version: 2.5.6
+Automatic-Module-Name: org.codehaus.groovy.cli.picocli
+Fragment-Host: groovy
+Specification-Title: Groovy: a powerful, dynamic language for the JVM
+Specification-Version: 2.5.6
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: Groovy: a powerful, dynamic language for the JVM
+Implementation-Version: 2.5.6
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Vendor: The Apache Software Foundation
+Bundle-ClassPath: .
+Eclipse-BuddyPolicy: dependent
+DynamicImport-Package: *
+

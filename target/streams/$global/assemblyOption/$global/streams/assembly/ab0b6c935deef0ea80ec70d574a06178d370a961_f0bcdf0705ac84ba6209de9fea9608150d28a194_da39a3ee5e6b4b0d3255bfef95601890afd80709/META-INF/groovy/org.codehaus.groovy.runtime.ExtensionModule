@@ -1,0 +1,4 @@
+moduleName=groovy-xml
+moduleVersion=2.5.6
+extensionClasses=org.codehaus.groovy.runtime.XmlGroovyMethods
+staticExtensionClasses=

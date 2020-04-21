@@ -1,0 +1,44 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven Bundle Plugin
+Built-By: headius
+Build-Jdk: 1.8.0_131
+Bnd-LastModified: 1507658613380
+Bundle-Description: A library for invoking native functions from java
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: jnr-ffi
+Bundle-SymbolicName: com.github.jnr.ffi
+Bundle-Version: 2.1.7
+Export-Package: jnr.ffi;version="2.1.7",jnr.ffi.annotations;version="2
+ .1.7",jnr.ffi.byref;version="2.1.7",jnr.ffi.mapper;version="2.1.7",jn
+ r.ffi.provider;version="2.1.7",jnr.ffi.provider.converters;version="2
+ .1.7",jnr.ffi.provider.jffi;version="2.1.7",jnr.ffi.provider.jffi.pla
+ tform.aarch64.linux;version="2.1.7",jnr.ffi.provider.jffi.platform.ar
+ m.linux;version="2.1.7",jnr.ffi.provider.jffi.platform.i386.darwin;ve
+ rsion="2.1.7",jnr.ffi.provider.jffi.platform.i386.freebsd;version="2.
+ 1.7",jnr.ffi.provider.jffi.platform.i386.linux;version="2.1.7",jnr.ff
+ i.provider.jffi.platform.i386.openbsd;version="2.1.7",jnr.ffi.provide
+ r.jffi.platform.i386.solaris;version="2.1.7",jnr.ffi.provider.jffi.pl
+ atform.i386.windows;version="2.1.7",jnr.ffi.provider.jffi.platform.mi
+ ps.linux;version="2.1.7",jnr.ffi.provider.jffi.platform.mipsel.linux;
+ version="2.1.7",jnr.ffi.provider.jffi.platform.ppc.aix;version="2.1.7
+ ",jnr.ffi.provider.jffi.platform.ppc.darwin;version="2.1.7",jnr.ffi.p
+ rovider.jffi.platform.ppc.linux;version="2.1.7",jnr.ffi.provider.jffi
+ .platform.ppc64.linux;version="2.1.7",jnr.ffi.provider.jffi.platform.
+ ppc64le.linux;version="2.1.7",jnr.ffi.provider.jffi.platform.s390.lin
+ ux;version="2.1.7",jnr.ffi.provider.jffi.platform.s390x.linux;version
+ ="2.1.7",jnr.ffi.provider.jffi.platform.sparc.solaris;version="2.1.7"
+ ,jnr.ffi.provider.jffi.platform.sparcv9.linux;version="2.1.7",jnr.ffi
+ .provider.jffi.platform.sparcv9.solaris;version="2.1.7",jnr.ffi.provi
+ der.jffi.platform.x86_64.darwin;version="2.1.7",jnr.ffi.provider.jffi
+ .platform.x86_64.freebsd;version="2.1.7",jnr.ffi.provider.jffi.platfo
+ rm.x86_64.linux;version="2.1.7",jnr.ffi.provider.jffi.platform.x86_64
+ .openbsd;version="2.1.7",jnr.ffi.provider.jffi.platform.x86_64.solari
+ s;version="2.1.7",jnr.ffi.provider.jffi.platform.x86_64.windows;versi
+ on="2.1.7",jnr.ffi.types;version="2.1.7",jnr.ffi.util;version="2.1.7"
+ ,jnr.ffi.util.ref;version="2.1.7"
+Import-Package: com.kenai.jffi,jnr.x86asm,org.objectweb.asm;version="[
+ 5.0,6)"
+Tool: Bnd-1.50.0
+

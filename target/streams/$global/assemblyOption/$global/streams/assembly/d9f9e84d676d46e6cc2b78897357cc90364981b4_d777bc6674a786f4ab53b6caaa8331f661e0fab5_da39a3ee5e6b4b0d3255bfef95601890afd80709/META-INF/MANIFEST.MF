@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Implementation-Title: com.netflix.astyanax#astyanax-recipes;3.10.2
+Module-Origin: https://github.com/Netflix/astyanax.git
+Build-Date: 2018-10-04_03:02:59
+Build-Id: 436938991
+Implementation-Version: 3.10.2
+Module-Owner: netflixoss@netflix.com
+Build-Number: 17
+Built-By: travis
+Change: bcc3fd2
+Module-Source: /astyanax-recipes
+Branch: bcc3fd26e2dda05a923751aa32b139f6209fecdf
+Built-Status: integration
+Gradle-Version: 4.8.1
+Build-Job: Netflix/astyanax
+Built-OS: Linux
+X-Compile-Target-JDK: 1.7
+Build-Host: travis-job-8459c8c0-a025-428e-be85-6a6e9e652278
+X-Compile-Source-JDK: 1.7
+Created-By: 1.8.0_151-b12 (Oracle Corporation)
+Module-Email: netflixoss@netflix.com
+Build-Java-Version: 1.8.0_151
+

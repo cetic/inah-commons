@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven Bundle Plugin
+Built-By: headius
+Build-Jdk: 1.8.0_121
+Bnd-LastModified: 1490369320165
+Bundle-Description: A set of platform constants (e.g. errno values)
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Bundle-ManifestVersion: 2
+Bundle-Name: jnr-constants
+Bundle-SymbolicName: com.github.jnr.constants
+Bundle-Version: 0.9.9
+Export-Package: com.kenai.constantine;version="0.9.9",com.kenai.consta
+ ntine.platform;version="0.9.9",jnr.constants;version="0.9.9",jnr.cons
+ tants.platform;version="0.9.9",jnr.constants.platform.darwin;version=
+ "0.9.9",jnr.constants.platform.fake;version="0.9.9",jnr.constants.pla
+ tform.freebsd;version="0.9.9",jnr.constants.platform.linux;version="0
+ .9.9",jnr.constants.platform.openbsd;version="0.9.9",jnr.constants.pl
+ atform.solaris;version="0.9.9",jnr.constants.platform.windows;version
+ ="0.9.9"
+Tool: Bnd-1.50.0
+

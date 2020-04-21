@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: akka-stream-kafka
+Automatic-Module-Name: akka.stream.alpakka.kafka
+Implementation-Version: 1.1.0
+Specification-Vendor: Lightbend Inc.
+Specification-Title: akka-stream-kafka
+Implementation-Vendor-Id: com.typesafe.akka
+Specification-Version: 1.1.0
+Implementation-URL: https://doc.akka.io/docs/alpakka-kafka/current
+Implementation-Vendor: Lightbend Inc.
+

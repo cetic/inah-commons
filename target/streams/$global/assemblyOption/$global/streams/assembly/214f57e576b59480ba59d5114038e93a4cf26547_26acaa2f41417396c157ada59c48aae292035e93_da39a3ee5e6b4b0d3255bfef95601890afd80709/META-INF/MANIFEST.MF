@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Implementation-Title: Apache TinkerPop :: Gremlin Groovy
+Implementation-Version: 3.4.1
+Built-By: smallette
+Specification-Vendor: Apache Software Foundation
+Specification-Title: Apache TinkerPop :: Gremlin Groovy
+Implementation-Vendor-Id: org.apache.tinkerpop
+version: 3.4.1
+Implementation-Vendor: Apache Software Foundation
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_191
+Specification-Version: 3.4
+Implementation-URL: http://tinkerpop.apache.org/gremlin-groovy/
+hash: 821e69fd6d735ff1fce2b87e64f42272c347d6e4
+

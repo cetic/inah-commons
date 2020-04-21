@@ -1,0 +1,42 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.11
+Created-By: Gradle
+Bundle-ManifestVersion: 2
+Tool: Bnd-3.4.0.201707252008
+Export-Package: groovy.inspect.swingui;version="2.5.6",groovy.model;ve
+ rsion="2.5.6",groovy.swing;version="2.5.6",groovy.swing.binding;versi
+ on="2.5.6",groovy.swing.factory;version="2.5.6",groovy.swing.impl;ver
+ sion="2.5.6",org.codehaus.groovy.binding;version="2.5.6",org.codehaus
+ .groovy.runtime;version="2.5.6"
+Import-Package: groovy.beans;resolution:=optional,groovy.lang;resoluti
+ on:=optional,groovy.model;resolution:=optional;version="[2.5,3)",groo
+ vy.swing;resolution:=optional;version="[2.5,3)",groovy.swing.binding;
+ resolution:=optional;version="[2.5,3)",groovy.swing.factory;resolutio
+ n:=optional;version="[2.5,3)",groovy.swing.impl;resolution:=optional;
+ version="[2.5,3)",groovy.transform;resolution:=optional,groovy.util;r
+ esolution:=optional,javax.swing;resolution:=optional,javax.swing.bord
+ er;resolution:=optional,javax.swing.event;resolution:=optional,javax.
+ swing.plaf.metal;resolution:=optional,javax.swing.table;resolution:=o
+ ptional,javax.swing.text;resolution:=optional,javax.swing.tree;resolu
+ tion:=optional,org.codehaus.groovy.binding;resolution:=optional;versi
+ on="[2.5,3)",org.codehaus.groovy.reflection;resolution:=optional,org.
+ codehaus.groovy.runtime;resolution:=optional;version="[2.5,3)",org.co
+ dehaus.groovy.runtime.callsite;resolution:=optional,org.codehaus.groo
+ vy.runtime.typehandling;resolution:=optional,org.codehaus.groovy.runt
+ ime.wrappers;resolution:=optional
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Bundle-SymbolicName: groovy-swing
+Bundle-Version: 2.5.6
+Automatic-Module-Name: org.codehaus.groovy.swing
+Fragment-Host: groovy
+Specification-Title: Groovy: a powerful, dynamic language for the JVM
+Specification-Version: 2.5.6
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: Groovy: a powerful, dynamic language for the JVM
+Implementation-Version: 2.5.6
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Vendor: The Apache Software Foundation
+Bundle-ClassPath: .
+Eclipse-BuddyPolicy: dependent
+DynamicImport-Package: *
+

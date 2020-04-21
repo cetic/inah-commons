@@ -1,0 +1,51 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.11
+Created-By: Gradle
+Bundle-ManifestVersion: 2
+Tool: Bnd-3.4.0.201707252008
+Export-Package: org.codehaus.groovy.tools.shell;version="2.5.6",org.co
+ dehaus.groovy.tools.shell.commands;version="2.5.6",org.codehaus.groov
+ y.tools.shell.completion;version="2.5.6",org.codehaus.groovy.tools.sh
+ ell.util;version="2.5.6"
+Import-Package: groovy.cli.picocli;resolution:=optional,groovy.grape;r
+ esolution:=optional,groovy.inspect.swingui;resolution:=optional,groov
+ y.lang;resolution:=optional,groovy.transform;resolution:=optional,gro
+ ovy.util;resolution:=optional,groovyjarjarantlr;resolution:=optional,
+ groovyjarjarantlr.collections;resolution:=optional,javax.swing;resolu
+ tion:=optional,jline;resolution:=optional,jline.console;resolution:=o
+ ptional,jline.console.completer;resolution:=optional,jline.console.hi
+ story;resolution:=optional,jline.internal;resolution:=optional,org.ap
+ ache.groovy.io;resolution:=optional,org.apache.groovy.util;resolution
+ :=optional,org.codehaus.groovy.antlr;resolution:=optional,org.codehau
+ s.groovy.antlr.parser;resolution:=optional,org.codehaus.groovy.ast;re
+ solution:=optional,org.codehaus.groovy.ast.expr;resolution:=optional,
+ org.codehaus.groovy.classgen;resolution:=optional,org.codehaus.groovy
+ .control;resolution:=optional,org.codehaus.groovy.control.messages;re
+ solution:=optional,org.codehaus.groovy.reflection;resolution:=optiona
+ l,org.codehaus.groovy.runtime;resolution:=optional,org.codehaus.groov
+ y.runtime.callsite;resolution:=optional,org.codehaus.groovy.runtime.p
+ owerassert;resolution:=optional,org.codehaus.groovy.runtime.typehandl
+ ing;resolution:=optional,org.codehaus.groovy.runtime.wrappers;resolut
+ ion:=optional,org.codehaus.groovy.tools;resolution:=optional,org.code
+ haus.groovy.tools.shell;resolution:=optional;version="[2.5,3)",org.co
+ dehaus.groovy.tools.shell.commands;resolution:=optional;version="[2.5
+ ,3)",org.codehaus.groovy.tools.shell.completion;resolution:=optional;
+ version="[2.5,3)",org.codehaus.groovy.tools.shell.util;resolution:=op
+ tional;version="[2.5,3)",org.codehaus.groovy.transform;resolution:=op
+ tional,org.fusesource.jansi;resolution:=optional;version="[1.17,2)"
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.7))"
+Bundle-SymbolicName: groovy-groovysh
+Bundle-Version: 2.5.6
+Automatic-Module-Name: org.codehaus.groovy.groovysh
+Fragment-Host: groovy
+Specification-Title: Groovy: a powerful, dynamic language for the JVM
+Specification-Version: 2.5.6
+Specification-Vendor: The Apache Software Foundation
+Implementation-Title: Groovy: a powerful, dynamic language for the JVM
+Implementation-Version: 2.5.6
+Implementation-Vendor: The Apache Software Foundation
+Bundle-Vendor: The Apache Software Foundation
+Bundle-ClassPath: .
+Eclipse-BuddyPolicy: dependent
+DynamicImport-Package: *
+

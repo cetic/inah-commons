@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Export-Package: com.googlecode.concurrentlinkedhashmap;uses:="sun.misc
+ ";version="1.4.0"
+Built-By: bmanes
+Tool: Bnd-1.50.0
+Bundle-Name: ConcurrentLinkedHashMap
+Created-By: Apache Maven Bundle Plugin
+Build-Jdk: 1.6.0_33
+Bundle-Version: 1.4.0
+Bnd-LastModified: 1375665012247
+Bundle-ManifestVersion: 2
+Bundle-Description: A high performance version of java.util.LinkedHash
+ Map for use as a software cache.
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.txt
+Import-Package: sun.misc
+Bundle-SymbolicName: com.googlecode.concurrentlinkedhashmap.lru
+Archiver-Version: Plexus Archiver
+

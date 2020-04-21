@@ -6,10 +6,11 @@ import akka.http.scaladsl.server.Directive1
 import akka.http.scaladsl.server.Directives._
 import akka.pattern.ask
 import akka.util.Timeout
+import spray.json.{DefaultJsonProtocol, RootJsonFormat}
 
 import scala.concurrent.{ExecutionContextExecutor, Future}
 
-trait BasicAuthenticator extends PasswordUtil {
+trait BasicAuthenticator extends PasswordUtil with DefaultJsonProtocol{
   implicit val dispatcher: ExecutionContextExecutor
   implicit val system: ActorSystem
   implicit val timeout: Timeout
@@ -32,5 +33,6 @@ trait BasicAuthenticator extends PasswordUtil {
 
   def authenticate: Directive1[User] = authenticateOrRejectWithChallenge(authorizeUser _)
 
+  implicit val userJsonFormat : RootJsonFormat[User] = jsonFormat5(User)
 
 }

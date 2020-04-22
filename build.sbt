@@ -48,6 +48,7 @@ libraryDependencies := Seq(
   "org.xerial" % "sqlite-jdbc" % "3.28.0",
   "com.typesafe.slick" %% "slick" % "3.3.1",
   "com.typesafe.slick" %% "slick-codegen" % "3.3.1",
+  "com.github.tminglei" %% "slick-pg" % "0.16.2",
 
   //Spray
   "io.spray" %% "spray-json" % sprayVersion,

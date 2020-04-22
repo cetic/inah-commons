@@ -1,0 +1,74 @@
+package be.cetic.inah.commons.database.sql.management.model
+
+import be.cetic.inah.commons.database.sql.management.ManagementResource
+import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, SchemaNames}
+import slick.dbio.Effect.Write
+import slick.sql.FixedSqlStreamingAction
+
+import scala.concurrent.ExecutionContextExecutor
+
+case class ProjectUserDetailsDto(projectId : String, isContact: Boolean, role: String, userDetailsId : String) extends ManagementResource
+
+trait ProjectUsersDtoMultiDb extends ProjectsDtoMultiDb with UsersDetailsMultiDb with DriverComponent{
+import driver.api._
+
+  class ProjectUsersDto (tag: Tag) extends Table[ProjectUserDetailsDto] (tag, SchemaNames.managementSchemaName, "project_user_details") {
+
+    def projectId  = column[String]("project_id")
+    def userDetailsId = column[String]("user_details_id")
+    def pk = primaryKey("project_user_pk", (projectId, userDetailsId))
+    def project = foreignKey("project_project_fk", projectId, ProjectDao.projects)(_.id)
+    def user = foreignKey("project_user_fk", userDetailsId, UsersDetailsDao.userDetails)(_.email)
+    def isContact = column[Boolean]("is_contact")
+    def role = column[String]("role")
+    def * = (projectId,isContact,role, userDetailsId) <> (ProjectUserDetailsDto.tupled, ProjectUserDetailsDto.unapply)
+
+  }
+
+  implicit val dispatcher: ExecutionContextExecutor
+
+  implicit object ProjectUserDao extends Dao[ProjectUserDetailsDto, (String, String)] {
+
+
+    val thisDriver = driver
+
+    val projectUsers = TableQuery[ProjectUsersDto]
+
+    override def create(element: ProjectUserDetailsDto): DBIOAction[ProjectUserDetailsDto, NoStream, Write] = {
+
+      (projectUsers+=element).map(_=>element)
+    }
+
+    override def update(element: ProjectUserDetailsDto): DBIOAction[ProjectUserDetailsDto, NoStream, Write] = {
+
+      projectUsers.insertOrUpdate(element).map (_ => element)
+    }
+
+    private def readByProjectIdUserId (projectId: String, userDetailsId: String ) = projectUsers.filter(p => (p.projectId === projectId && p.userDetailsId === userDetailsId)).result
+
+    private def queryId(id: (String, String)) = projectUsers.filter(p => p.projectId === id._1 && p.userDetailsId === id._2)
+
+    private def readByProjectId (projectId : String ) = {
+      projectUsers.filter {
+        p => p.projectId === projectId
+      }.result
+    }
+
+    private def readByUserId (userId : String ) = {
+
+      projectUsers.filter {
+        p => p.userDetailsId === userId
+      }
+    }
+
+    override def delete(id: (String, String)) = queryId(id).delete
+    override def readAll = projectUsers.result
+    override def read(id: (String, String)): FixedSqlStreamingAction[Seq[ProjectUserDetailsDto], ProjectUserDetailsDto, Effect.Read] = queryId(id).result
+
+
+  }
+
+
+
+
+}

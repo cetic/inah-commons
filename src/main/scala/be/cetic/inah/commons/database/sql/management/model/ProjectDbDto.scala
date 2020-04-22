@@ -12,16 +12,16 @@ import slick.sql.FixedSqlStreamingAction
 import scala.concurrent.ExecutionContextExecutor
 
 
-case class ProjectDto(id: Option[String], name: String, status: String = ProjectStatus.PENDING, createdAt: Long = System.currentTimeMillis() / 1000, tokenId: Option[Int]) extends ManagementResource {
+case class ProjectDto(id: Option[String], name: String, status: String = ProjectStatus.PENDING, createdAt: Long = System.currentTimeMillis() / 1000, tokenId: Option[Int],  summary : Option [String], duration : Int , requestedStart : Option[Long], requestedEnd : Option[Long]) extends ManagementResource {
   def toDb = {
     val idDb = id.getOrElse(UUID.randomUUID().toString)
-    ProjectDbDto(idDb, name, status, createdAt, tokenId)
+    ProjectDbDto(idDb, name, status, createdAt, tokenId, summary, duration, requestedStart, requestedEnd)
   }
 
   def toView = this.copy(tokenId = None)
 }
 
-case class ProjectDbDto(id: String, name: String, status: String = ProjectStatus.PENDING, createdAt: Long = System.currentTimeMillis() / 1000, tokenId: Option[Int]) extends Dto
+case class ProjectDbDto(id: String, name: String, status: String = ProjectStatus.PENDING, createdAt: Long = System.currentTimeMillis() / 1000, tokenId: Option[Int], summary : Option [String], duration : Int , requestedStart : Option[Long], requestedEnd : Option[Long]) extends Dto
 
 
 trait ProjectsDtoMultiDb extends TokensDtoMultiDb with DriverComponent{
@@ -40,14 +40,19 @@ trait ProjectsDtoMultiDb extends TokensDtoMultiDb with DriverComponent{
 
     def token = foreignKey("projects_token_fk", tokenId, TokensDao.tokens)(_.id)
 
-    def projectTupled = (x: (String, String, String, Long, Option[Int])) => {
+    def summary = column[Option[String]]("summary")
+
+    def duration = column[Int]("duration")
+    def requestedStart = column[Option[Long]]("requested_start")
+    def requestedtEnd = column[Option[Long]]("requested_end")
+    def projectTupled = (x: (String, String, String, Long, Option[Int],Option[String] , Int, Option[Long], Option[Long])) => {
       ProjectDto.tupled(x.copy(_1 = Some(x._1)))
     }
 
     def projectUnapply = (p: ProjectDto) => ProjectDbDto.unapply(p.toDb)
 
 
-    def * = (id, name, status, createdAt, tokenId) <> (projectTupled, projectUnapply)
+    def * = (id, name, status, createdAt, tokenId, summary, duration, requestedStart, requestedtEnd) <> (projectTupled, projectUnapply)
   }
 
 

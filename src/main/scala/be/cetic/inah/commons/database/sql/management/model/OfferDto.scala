@@ -20,6 +20,7 @@ trait OffersDtoMultiDb extends DriverComponent {
 
     def id = column[Int]("id", O.PrimaryKey)
     def name = column[String]("name")
+    //
     def requiredSections = column[List[String]]("required_sections")
     def requiredUploads = column[List[Blob]]("required_uploads")
 

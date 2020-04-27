@@ -5,26 +5,29 @@ import java.sql.{Blob, Driver}
 import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, SchemaNames}
 import be.cetic.inah.commons.database.sql.management.ManagementResource
 import slick.dbio.Effect.Read
+import slick.lifted.{Isomorphism, MappedScalaProductShape, Shape, ShapeLevel}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
+import scala.reflect.ClassTag
 
 
-case class OfferDto (id : Int, name : String, requiredSections : List[String], requiredUploads : List[Blob]) extends ManagementResource
+case class OfferDto (id : Option[Int], name : String, requiredSections : Seq[String], requiredUploads :Blob) extends ManagementResource
 
 trait OffersDtoMultiDb extends DriverComponent {
-
   import driver.api._
 
   class OffersDto (tag : Tag ) extends Table[OfferDto] (tag, SchemaNames.managementSchemaName, "offer"){
 
-    def id = column[Int]("id", O.PrimaryKey)
+    def id = column[Option[Int]]("id", O.PrimaryKey)
     def name = column[String]("name")
     //
-    def requiredSections = column[List[String]]("required_sections")
-    def requiredUploads = column[List[Blob]]("required_uploads")
+    def requiredSections = column[String]("required_sections")
+    def requiredUploads = column[Blob]("required_uploads")
 
-    def * = (id, name, requiredSections, requiredUploads) <> (OfferDto.tupled, OfferDto.unapply)
+    def myTupled = (x: (Option[Int], String, String, Blob)) => OfferDto(x._1, x._2, x._3.split(";"), x._4)
+    def myUnapply : OfferDto => Option[(Option[Int], String, String, Blob)]= (o: OfferDto)=> Some(o.id, o.name, o.requiredSections.mkString(";"), o.requiredUploads)
+    def * = (id, name, requiredSections, requiredUploads) <> (myTupled, myUnapply)
   }
 
   implicit val dispatcher: ExecutionContextExecutor

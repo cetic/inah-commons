@@ -11,7 +11,7 @@ import scala.concurrent.ExecutionContextExecutor
 
 
 case class UserDetailsDto (email : String, firstName : String, lastName : String, position : String, cv :Option[Blob], adress : String,
-                           organisation : Option [String], userId : String ) extends ManagementResource
+                           organisation : Option [String]) extends ManagementResource
 trait UsersDetailsMultiDb extends DriverComponent with UsersDtoMultiDb {
 
 
@@ -26,9 +26,8 @@ trait UsersDetailsMultiDb extends DriverComponent with UsersDtoMultiDb {
     def cv = column[Option[Blob]]("cv")
     def adress = column[String]("adress")
     def organisation = column[Option[String]]("organisation")
-    def userId = column[String]("user_id")
-    def user = foreignKey("user_details_user_fk", userId, UserDao.users)(_.email)
-    def * = (email, firstName,lastName, position, cv, adress, organisation, userId ) <> (UserDetailsDto.tupled, UserDetailsDto.unapply)
+
+    def * = (email, firstName,lastName, position, cv, adress, organisation ) <> (UserDetailsDto.tupled, UserDetailsDto.unapply)
 
   }
 

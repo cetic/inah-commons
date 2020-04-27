@@ -7,21 +7,20 @@ import slick.sql.FixedSqlStreamingAction
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class ProjectUserDetailsDto(projectId : String, isContact: Boolean, role: String, userDetailsId : String) extends ManagementResource
+case class ProjectUserDetailsDto(projectId : String, responsibility: String, userDetailsId : String) extends ManagementResource
 
 trait ProjectUsersDtoMultiDb extends ProjectsDtoMultiDb with UsersDetailsMultiDb with DriverComponent{
 import driver.api._
 
-  class ProjectUsersDto (tag: Tag) extends Table[ProjectUserDetailsDto] (tag, SchemaNames.managementSchemaName, "project_user_details") {
+  class ProjectUsersDetailsDto (tag: Tag) extends Table[ProjectUserDetailsDto] (tag, SchemaNames.managementSchemaName, "project_user_details") {
 
     def projectId  = column[String]("project_id")
     def userDetailsId = column[String]("user_details_id")
     def pk = primaryKey("project_user_pk", (projectId, userDetailsId))
     def project = foreignKey("project_project_fk", projectId, ProjectDao.projects)(_.id)
     def user = foreignKey("project_user_fk", userDetailsId, UsersDetailsDao.userDetails)(_.email)
-    def isContact = column[Boolean]("is_contact")
-    def role = column[String]("role")
-    def * = (projectId,isContact,role, userDetailsId) <> (ProjectUserDetailsDto.tupled, ProjectUserDetailsDto.unapply)
+    def responsibility = column[String]("responsibility")
+    def * = (projectId,responsibility, userDetailsId) <> (ProjectUserDetailsDto.tupled, ProjectUserDetailsDto.unapply)
 
   }
 
@@ -32,7 +31,7 @@ import driver.api._
 
     val thisDriver = driver
 
-    val projectUsers = TableQuery[ProjectUsersDto]
+    val projectUsers = TableQuery[ProjectUsersDetailsDto]
 
     override def create(element: ProjectUserDetailsDto): DBIOAction[ProjectUserDetailsDto, NoStream, Write] = {
 

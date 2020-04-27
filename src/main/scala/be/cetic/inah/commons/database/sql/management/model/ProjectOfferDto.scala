@@ -7,18 +7,18 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class ProjectOfferDto (projectId : String, offerId : Int) extends ManagementResource
-trait ProjectOffersDtoMultiDb extends ProjectsDtoMultiDb with OffersDtoMultiDb with DriverComponent {
+case class ProjectOfferDto (projectId : String, serviceOfferId : Option[Int]) extends ManagementResource
+trait ProjectOffersDtoMultiDb extends ProjectsDtoMultiDb with ServiceOffersDtoMultiDb with DriverComponent {
   import driver.api._
 
   class ProjectOffersDto (tag : Tag ) extends Table[ProjectOfferDto] (tag, SchemaNames.managementSchemaName, "project_offer") {
 
     def projectId  = column[String]("project_id")
-    def offerId = column[Int]("offer_id")
-    def pk = primaryKey("project_offer_pk", (projectId, offerId))
+    def serviceOfferId = column[Option[Int]]("offer_id")
+    def pk = primaryKey("project_offer_pk", (projectId, serviceOfferId))
     def project = foreignKey("project_project_fk", projectId, ProjectDao.projects)(_.id)
-    def offer = foreignKey("project_offer_fk", offerId, OfferDao.offers)(_.id)
-    def * = (projectId, offerId) <> (ProjectOfferDto.tupled, ProjectOfferDto.unapply)
+    def offer = foreignKey("project_offer_fk", serviceOfferId, ServiceOfferDao.serviceOffers)(_.id)
+    def * = (projectId, serviceOfferId) <> (ProjectOfferDto.tupled, ProjectOfferDto.unapply)
   }
 
   implicit val dispatcher: ExecutionContextExecutor
@@ -27,7 +27,7 @@ trait ProjectOffersDtoMultiDb extends ProjectsDtoMultiDb with OffersDtoMultiDb w
     val thisDriver = driver
     val projectOffers = TableQuery[ProjectOffersDto]
 
-    private def queryId(id: (String, Int)) = projectOffers.filter(p => p.projectId === id._1 && p.offerId === id._2)
+    private def queryId(id: (String, Int)) = projectOffers.filter(p => p.projectId === id._1 && p.serviceOfferId === id._2)
 
     def create(element: ProjectOfferDto): DBIOAction[ProjectOfferDto, NoStream, Write] = {
       (projectOffers+=element).map(_=>element)

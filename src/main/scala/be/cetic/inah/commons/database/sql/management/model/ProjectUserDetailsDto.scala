@@ -61,9 +61,9 @@ import driver.api._
       }
     }
 
-    override def delete(id: (String, String)) = queryId(id).delete
-    override def readAll = projectUsers.result
-    override def read(id: (String, String)): FixedSqlStreamingAction[Seq[ProjectUserDetailsDto], ProjectUserDetailsDto, Effect.Read] = queryId(id).result
+    def delete(id: (String, String)) = queryId(id).delete
+    def readAll = projectUsers.result
+    def read(id: (String, String)): FixedSqlStreamingAction[Seq[ProjectUserDetailsDto], ProjectUserDetailsDto, Effect.Read] = queryId(id).result
 
 
   }

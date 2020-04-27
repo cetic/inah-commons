@@ -4,6 +4,7 @@ import java.sql.{Blob, Driver}
 
 import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, SchemaNames}
 import be.cetic.inah.commons.database.sql.management.ManagementResource
+import slick.dbio.Effect.Read
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
@@ -21,7 +22,8 @@ trait OffersDtoMultiDb extends DriverComponent {
     def name = column[String]("name")
     def requiredSections = column[List[String]]("required_sections")
     def requiredUploads = column[List[Blob]]("required_uploads")
-    override def * = ???
+
+    def * = (id, name, requiredSections, requiredUploads) <> (OfferDto.tupled, OfferDto.unapply)
   }
 
   implicit val dispatcher: ExecutionContextExecutor
@@ -31,15 +33,23 @@ trait OffersDtoMultiDb extends DriverComponent {
     val thisDriver = driver
     val offers = TableQuery[OffersDto]
 
-    def queryById (id: Int ) = ???
-    override def create(element: OfferDto): _root_.be.cetic.inah.commons.database.sql.management.model.OffersDtoMultiDb.OfferDao.thisDriver.api.DBIOAction[OfferDto, _root_.be.cetic.inah.commons.database.sql.management.model.OffersDtoMultiDb.OfferDao.thisDriver.api.NoStream, Effect.Write] = ???
+    private def queryById (id: Int ) = offers.filter(o => o.id===id)
 
-    override def update(element: OfferDto): _root_.be.cetic.inah.commons.database.sql.management.model.OffersDtoMultiDb.OfferDao.thisDriver.api.DBIOAction[OfferDto, _root_.be.cetic.inah.commons.database.sql.management.model.OffersDtoMultiDb.OfferDao.thisDriver.api.NoStream, Effect.Write] = ???
+    def create(element: OfferDto): DBIOAction[OfferDto, NoStream, Effect.Write] = {
 
-    override def read(id: Int): FixedSqlStreamingAction[Seq[OfferDto], OfferDto, Effect.Read] = ???
 
-    override def readAll = ???
+      (offers+=element).map(_=>element)
+    }
 
-    override def delete(id: Int): FixedSqlAction[Int, _root_.be.cetic.inah.commons.database.sql.management.model.OffersDtoMultiDb.OfferDao.thisDriver.api.NoStream, Effect.Write] = ???
+    def update(element: OfferDto): DBIOAction[OfferDto, NoStream, Effect.Write] = {
+
+      offers.insertOrUpdate(element).map{_=>element}
+    }
+
+    def read(id: Int): FixedSqlStreamingAction[Seq[OfferDto], OfferDto, Effect.Read] = queryById(id).result
+
+    def readAll : FixedSqlStreamingAction[Seq[OfferDto], OfferDto, Read] = offers.result
+
+    def delete(id: Int) = queryById(id ).delete
   }
 }

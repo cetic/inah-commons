@@ -6,7 +6,7 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
-trait DaoFactory {
+trait DaoFactory extends DaoOps{
   val driver: JdbcProfile
   val dbProfile: Option[String]
   //todo : remove schemaName everywhere
@@ -16,7 +16,7 @@ trait DaoFactory {
 
   import driver.api._
 
-  val db = dbProfile.map(prof => Database.forConfig(prof))
+  val db: driver.backend.DatabaseDef = dbProfile.map(prof => Database.forConfig(prof))
     .getOrElse {
       val pgUrl = sys.env("PG_URL")
       val pgUser = sys.env.getOrElse("PG_USER", "postgres")

@@ -39,7 +39,6 @@ libraryDependencies := Seq(
   "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion % Provided,
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion % Provided,
   "com.typesafe.akka" %% "akka-stream" % akkaVersion % Provided,
-  //"com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test" % Provided,
   "com.typesafe.akka" %% "akka-stream-kafka" % "1.1.0" % Provided,
 
   //sql
@@ -55,8 +54,10 @@ libraryDependencies := Seq(
   "ch.megard" %% "akka-http-cors" % "0.4.2" % Provided,
 
   //Tests
-  "org.scalatest" %% "scalatest" % scalaTestVersion % Provided,
-  "org.scalacheck" %% "scalacheck" % "1.13.5"  % Provided,
+  "org.scalatest" %% "scalatest" % scalaTestVersion % Test,
+  "org.scalacheck" %% "scalacheck" % "1.13.5"  % Test,
+  "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test,
+
 
   //Auth Hash
   "de.mkammerer" % "argon2-jvm" % "2.6" % Provided,

@@ -12,7 +12,7 @@ import slick.sql.FixedSqlStreamingAction
 import scala.concurrent.ExecutionContextExecutor
 
 
-case class ProjectDto(id: Option[String], name: String, status: String = ProjectStatus.PENDING, createdAt: Long = System.currentTimeMillis() / 1000, tokenId: Option[Int]) extends ManagementResource {
+case class ProjectDto(id: Option[String], name: String, status: String = ProjectStatus.PENDING, createdAt: Long = System.currentTimeMillis() / 1000, tokenId: Option[Int] = None) extends ManagementResource {
   def toDb = {
     val idDb = id.getOrElse(UUID.randomUUID().toString)
     ProjectDbDto(idDb, name, status, createdAt, tokenId)
@@ -24,7 +24,8 @@ case class ProjectDto(id: Option[String], name: String, status: String = Project
 case class ProjectDbDto(id: String, name: String, status: String = ProjectStatus.PENDING, createdAt: Long = System.currentTimeMillis() / 1000, tokenId: Option[Int]) extends Dto
 
 
-trait ProjectsDtoMultiDb extends TokensDtoMultiDb with DriverComponent{
+trait ProjectsDtoMultiDb extends TokensDtoMultiDb with DriverComponent {
+
   import driver.api._
 
   class ProjectsDto(tag: Tag) extends Table[ProjectDto](tag, SchemaNames.managementSchemaName, "project") {

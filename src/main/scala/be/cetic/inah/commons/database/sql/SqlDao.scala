@@ -8,6 +8,22 @@ import slick.sql.SqlAction
 
 import scala.concurrent.ExecutionContextExecutor
 
+object SqlDao {
+  var daoFactory: Option[SqlDao] = None
+
+  def dao: SqlDao = daoFactory.get
+
+  def set(dao: SqlDao) = {
+    daoFactory = Some(dao)
+    dao
+  }
+
+  def set(driver: JdbcProfile, dbProfile: Option[String] = None)(implicit dispatcher: ExecutionContextExecutor) = {
+    daoFactory = Some(new SqlDao(driver, dbProfile))
+    dao
+  }
+
+}
 
 class SqlDao(val driver: JdbcProfile, val dbProfile: Option[String] = None)(implicit val dispatcher: ExecutionContextExecutor)
   extends DaoFactory {

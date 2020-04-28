@@ -12,15 +12,15 @@ case class ProjectUserDetailsDto(projectId : String, responsibility: String, use
 trait ProjectUsersDtoMultiDb extends ProjectsDtoMultiDb with UsersDetailsMultiDb with DriverComponent{
 import driver.api._
 
-  class ProjectUsersDetailsDto (tag: Tag) extends Table[ProjectUserDetailsDto] (tag, SchemaNames.managementSchemaName, "project_user_details") {
+  class ProjectUsersDetailsDto (tag: Tag) extends Table[ProjectUserDetailsDto] (tag, SchemaNames.managementSchemaName, "project_user_detail") {
 
     def projectId  = column[String]("project_id")
-    def userDetailsId = column[String]("user_details_id")
-    def pk = primaryKey("project_user_pk", (projectId, userDetailsId))
+    def email = column[String]("email")
+    def pk = primaryKey("project_user_pk", (projectId, email))
     def project = foreignKey("project_project_fk", projectId, ProjectDao.projects)(_.id)
-    def user = foreignKey("project_user_fk", userDetailsId, UsersDetailsDao.userDetails)(_.email)
+    def user = foreignKey("project_user_fk", email, UsersDetailsDao.userDetails)(_.email)
     def responsibility = column[String]("responsibility")
-    def * = (projectId,responsibility, userDetailsId) <> (ProjectUserDetailsDto.tupled, ProjectUserDetailsDto.unapply)
+    def * = (projectId,responsibility, email) <> (ProjectUserDetailsDto.tupled, ProjectUserDetailsDto.unapply)
 
   }
 
@@ -43,9 +43,9 @@ import driver.api._
       projectUsers.insertOrUpdate(element).map (_ => element)
     }
 
-    private def readByProjectIdUserId (projectId: String, userDetailsId: String ) = projectUsers.filter(p => (p.projectId === projectId && p.userDetailsId === userDetailsId)).result
+    private def readByProjectIdUserId (projectId: String, userDetailsId: String ) = projectUsers.filter(p => (p.projectId === projectId && p.email === userDetailsId)).result
 
-    private def queryId(id: (String, String)) = projectUsers.filter(p => p.projectId === id._1 && p.userDetailsId === id._2)
+    private def queryId(id: (String, String)) = projectUsers.filter(p => p.projectId === id._1 && p.email === id._2)
 
     private def readByProjectId (projectId : String ) = {
       projectUsers.filter {
@@ -56,7 +56,7 @@ import driver.api._
     private def readByUserId (userId : String ) = {
 
       projectUsers.filter {
-        p => p.userDetailsId === userId
+        p => p.email === userId
       }
     }
 

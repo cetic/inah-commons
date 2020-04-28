@@ -17,17 +17,17 @@ trait UsersDetailsMultiDb extends DriverComponent with UsersDtoMultiDb {
 
   import driver.api._
 
-  class UsersDetailsDto (tag : Tag ) extends Table[UserDetailsDto] (tag, SchemaNames.managementSchemaName, "user_details") {
+  class UsersDetailsDto (tag : Tag ) extends Table[UserDetailsDto] (tag, SchemaNames.managementSchemaName, "user_detail") {
 
     def email = column [String] ("email", O.PrimaryKey)
     def firstName = column[String]("first_name")
     def lastName = column[String]("last_name")
     def position = column[String]("position")
     def cv = column[Option[Blob]]("cv")
-    def adress = column[String]("adress")
+    def address = column[String]("address")
     def organisation = column[Option[String]]("organisation")
 
-    def * = (email, firstName,lastName, position, cv, adress, organisation ) <> (UserDetailsDto.tupled, UserDetailsDto.unapply)
+    def * = (email, firstName,lastName, position, cv, address, organisation ) <> (UserDetailsDto.tupled, UserDetailsDto.unapply)
 
   }
 

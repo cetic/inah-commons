@@ -32,7 +32,7 @@ trait DaoFactory {
   def createSchema(schema: String) = sqlu"""CREATE SCHEMA IF NOT EXISTS "#$schema";"""
 
 
-  def createTables = schemas.create
+  def createTables = schemas.createIfNotExists
 
   def dropTables = schemas.drop
 

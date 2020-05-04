@@ -19,3 +19,17 @@ object DbScript extends App {
   Await.result(setup, Duration.Inf)
   system.terminate()
 }
+
+
+object DbScriptPrint extends App {
+
+  implicit val system: ActorSystem = ActorSystem("DbDpl")
+  implicit val dispatcher: ExecutionContextExecutor = system.dispatcher
+  val sqlDao = new SqlDao(slick.jdbc.PostgresProfile)
+
+  import sqlDao.managementDao._
+  import sqlDao.driver.api._
+  FeedbackDao.feedbacks.schema.create.statements.map(println)
+
+  UserDatasourceDao.userDatasources.schema.create.statements.map(println)
+}

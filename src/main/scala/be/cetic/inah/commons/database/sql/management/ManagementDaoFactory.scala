@@ -9,10 +9,10 @@ import scala.concurrent.ExecutionContextExecutor
 
 class ManagementDaoFactory(val driver: JdbcProfile, val dbProfile: Option[String] = None)(implicit val dispatcher: ExecutionContextExecutor)
   extends DaoFactory with TokensDtoMultiDb with DatasourcesDtoMultiDb with ProjectsDtoMultiDb with ProjectDatasourcesDtoMultiDb
-    with ProjectResourcesDtoMultiDb
+    with ProjectResourcesDtoMultiDb with FeedbackDtoMultiDb
     with ResourcesDtoMultiDb with UsersDtoMultiDb with ProjectUsersDtoMultiDb with ServiceOffersDtoMultiDb with OfferQuestionsPatternDtoMultiDb
-with QuestionsPatternDtoMultiDb with PatternDescriptionsDtoMultiDb with QuestionContentsDtoMultiDb with OffersAppendicesPatternDtoMultiDb with AppendixContentDtoMultiDb
-with OfferSectionsDtoMultiDb with SectionContentsDtoMultiDb {
+    with QuestionsPatternDtoMultiDb with PatternDescriptionsDtoMultiDb with QuestionContentsDtoMultiDb with OffersAppendicesPatternDtoMultiDb with AppendixContentDtoMultiDb
+    with OfferSectionsDtoMultiDb with SectionContentsDtoMultiDb with UserDatasourcesDtoMultiDb {
 
   import driver.api._
 
@@ -33,7 +33,9 @@ with OfferSectionsDtoMultiDb with SectionContentsDtoMultiDb {
       OfferAppendixPatternDao.offersAppendices.schema ++
       AppendixContentDao.appendixContents.schema ++
       OfferSectionPatternDao.offerSections.schema ++
-      SectionContentDao.sectionContents.schema
+      SectionContentDao.sectionContents.schema ++
+      UserDatasourceDao.userDatasources.schema ++
+      FeedbackDao.feedbacks.schema
 
 
 }

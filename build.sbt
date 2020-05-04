@@ -1,7 +1,7 @@
 import sbt.Keys.libraryDependencies
 
 name := "inah-commons"
-val thisVersion = "0.1.1"
+val thisVersion = "0.2.0"
 version := thisVersion
 scalaVersion := "2.12.8"
 
@@ -17,6 +17,7 @@ import NativePackagerHelper._
 
 mainClass in(Compile, run) := Some("be.cetic.inah.commons.DbScripts")
 mainClass in(Compile, packageBin) := Some("be.cetic.inah.commons.DbScripts")
+
 
 assemblyOutputPath in assembly := file("releases/inah-commons-" + thisVersion + ".jar")
 test in assembly := {}

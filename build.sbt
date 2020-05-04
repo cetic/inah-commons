@@ -1,7 +1,7 @@
 import sbt.Keys.libraryDependencies
 
 name := "inah-commons"
-val thisVersion = "0.2.0"
+val thisVersion = "0.2.1"
 version := thisVersion
 scalaVersion := "2.12.8"
 

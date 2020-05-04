@@ -39,7 +39,7 @@ trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
 
     override def write(obj: ManagementResource): JsValue = {
       obj match {
-        case o: FeedbackDto => datasourceDtoJsonFormat.write(o)
+        case o: DatasourceDto => datasourceDtoJsonFormat.write(o)
         case o: ResourceDto => resourceDtoJsonFormat.write(o)
         case o: ProjectDto => projectDtoJsonFormat.write(o)
         case o: ProjectDatasourceDto => projectDatasourceJsonFormat.write(o)

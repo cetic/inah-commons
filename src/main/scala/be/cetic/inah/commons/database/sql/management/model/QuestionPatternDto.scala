@@ -18,7 +18,6 @@ trait QuestionsPatternDtoMultiDb extends DriverComponent with PatternDescription
     def options = column[String]("options")
     def descriptionId = column[Option[Int]]("description_id")
     def description = foreignKey("question_pattern_description_fk", descriptionId, PatternDescriptionDao.patternDescriptions)(_.id)
-
     def questionPatternTupled = (x : (Option[Int], String, Option[Int])) => QuestionPatternDto(x._1, x._2.split(";"), x._3)
     def questionPatternUnapply : QuestionPatternDto => Option[(Option[Int], String, Option[Int])] = (o: QuestionPatternDto) => Some(o.id, o.options.mkString(";"), o.descriptionId)
 

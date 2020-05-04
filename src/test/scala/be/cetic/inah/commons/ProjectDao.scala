@@ -8,8 +8,8 @@ import be.cetic.inah.commons.database.sql.management.model.{PatternDescriptionDt
 import org.scalatest.{BeforeAndAfterAll, BeforeAndAfterEach, Matchers, WordSpecLike}
 
 
-class ProjectDaoTest extends WordSpecLike with Matchers with BeforeAndAfterAll with BeforeAndAfterEach with ManagementResource
-  with SqlJsonProtocol with PasswordUtil {
+class ProjectDaoActorTest extends WordSpecLike with Matchers with BeforeAndAfterAll with BeforeAndAfterEach with ManagementResource
+  with SqlJsonProtocol with PasswordUtil  {
 
   case class Question(questionId: Int, name: String, description: String, options: Seq[String], value: Option[String] = None)
   case class Appendix(descriptionId: Int, name: String, description: String, filename: Option[String])
@@ -43,6 +43,9 @@ class ProjectDaoTest extends WordSpecLike with Matchers with BeforeAndAfterAll w
     case class SectionContent(projectId: String, descriptionId: Int, sectionId: Int, content: String )
     def createOrUpdateSectionContent(content: SectionContent) : SectionContent = ???
   }
+
+
+
 
   "persist offer choice" in {
     def createOrUpdateOfferChoice(projectId: String, offerIds: Seq[Int]) : Seq[Int] = ???

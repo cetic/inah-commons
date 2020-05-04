@@ -7,7 +7,8 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 import scala.concurrent.ExecutionContextExecutor
 
 case class QuestionContentDto (projectId : String, questionPatternId : Option[Int] , value : String) extends ManagementResource
-trait ProjectSectionsDtoMultiDb extends ProjectsDtoMultiDb with QuestionsPatternDtoMultiDb with DriverComponent {
+
+trait QuestionContentsDtoMultiDb extends ProjectsDtoMultiDb with QuestionsPatternDtoMultiDb with DriverComponent {
 
   import driver.api._
   class QuestionContentsDto (tag : Tag ) extends Table[QuestionContentDto] (tag , SchemaNames.managementSchemaName, "question_content") {

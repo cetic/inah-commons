@@ -21,7 +21,8 @@ trait OfferQuestionsPatternDtoMultiDb extends DriverComponent with ServiceOffers
   }
 
   implicit val dispatcher: ExecutionContextExecutor
-  implicit object OfferQuestionsPatternDao extends Dao[OfferQuestionPatternDto, (Int, Int)] {
+
+  implicit object OfferQuestionPatternDao extends Dao[OfferQuestionPatternDto, (Int, Int)] {
     val thisDriver = driver
     val offerQuestions = TableQuery[OfferQuestionsDto]
     private def queryById (id: (Int, Int)) = offerQuestions.filter(o => o.offerId ===id._1 && o.questionId === id._2)

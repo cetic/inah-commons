@@ -18,19 +18,19 @@ trait SchemaDescriptionJsonProtocol extends SchemaModelJsonProtocol {
         val name = JsString(r.name)
         val model = r.value.asInstanceOf[SchemaModel].toJson
 
-        JsObject(Map("name" -> name, "model" -> model))
+        JsObject(Map("name" -> name, "dao" -> model))
       }.toVector
       )
 
-      JsObject("model" -> modelJson, "refMap" -> refMapJson)
+      JsObject("dao" -> modelJson, "refMap" -> refMapJson)
     }
 
     override def read(json: JsValue): SchemaDescription = {
       val fields = json.asJsObject().fields
-      val model = fields("model").convertTo[SchemaModel].asInstanceOf[RootSchemaModel]
+      val model = fields("dao").convertTo[SchemaModel].asInstanceOf[RootSchemaModel]
       val refMap = fields("refMap").asInstanceOf[JsArray].elements.map { ref =>
         val name = ref.asJsObject.fields("name").asInstanceOf[JsString].value
-        val refModel = ref.asJsObject.fields("model").convertTo[SchemaModel].asInstanceOf[RootSchemaModel]
+        val refModel = ref.asJsObject.fields("dao").convertTo[SchemaModel].asInstanceOf[RootSchemaModel]
         ModelRef(name ,refModel)
       }
       SchemaDescription(model, refMap)

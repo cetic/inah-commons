@@ -8,8 +8,11 @@ import slick.jdbc.JdbcProfile
 import scala.concurrent.ExecutionContextExecutor
 
 class ManagementDaoFactory(val driver: JdbcProfile, val dbProfile: Option[String] = None)(implicit val dispatcher: ExecutionContextExecutor)
-  extends DaoFactory with TokensDtoMultiDb with DatasourcesDtoMultiDb with ProjectsDtoMultiDb with ProjectDatasourcesDtoMultiDb with ProjectResourcesDtoMultiDb
-    with ResourcesDtoMultiDb with UsersDtoMultiDb with ProjectUsersDtoMultiDb {
+  extends DaoFactory with TokensDtoMultiDb with DatasourcesDtoMultiDb with ProjectsDtoMultiDb with ProjectDatasourcesDtoMultiDb
+    with ProjectResourcesDtoMultiDb
+    with ResourcesDtoMultiDb with UsersDtoMultiDb with ProjectUsersDtoMultiDb with ServiceOffersDtoMultiDb with OfferQuestionsPatternDtoMultiDb
+with QuestionsPatternDtoMultiDb with PatternDescriptionsDtoMultiDb with QuestionContentsDtoMultiDb with OffersAppendicesPatternDtoMultiDb with AppendixContentDtoMultiDb
+with OfferSectionsDtoMultiDb with SectionContentsDtoMultiDb {
 
   import driver.api._
 
@@ -20,5 +23,17 @@ class ManagementDaoFactory(val driver: JdbcProfile, val dbProfile: Option[String
       ProjectDatasourceDao.projectDatasources.schema ++
       ProjectResourceDao.projectResources.schema ++
       UserDao.users.schema ++
-      ProjectUserDao.projectUsers.schema
+      ProjectUserDao.projectUsers.schema ++
+      ServiceOfferDao.serviceOffers.schema ++
+      OfferQuestionPatternDao.offerQuestions.schema ++
+      QuestionPatternDao.questionsPattern.schema ++
+      ServiceOfferDao.serviceOffers.schema ++
+      PatternDescriptionDao.patternDescriptions.schema ++
+      QuestionContentDao.questionContents.schema ++
+      OfferAppendixPatternDao.offersAppendices.schema ++
+      AppendixContentDao.appendixContents.schema ++
+      OfferSectionPatternDao.offerSections.schema ++
+      SectionContentDao.sectionContents.schema
+
+
 }

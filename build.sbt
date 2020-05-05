@@ -18,6 +18,7 @@ import NativePackagerHelper._
 mainClass in(Compile, run) := Some("be.cetic.inah.commons.DbScripts")
 mainClass in(Compile, packageBin) := Some("be.cetic.inah.commons.DbScripts")
 
+
 assemblyOutputPath in assembly := file("releases/inah-commons-" + thisVersion + ".jar")
 test in assembly := {}
 
@@ -39,7 +40,7 @@ libraryDependencies := Seq(
   "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion % Provided,
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion % Provided,
   "com.typesafe.akka" %% "akka-stream" % akkaVersion % Provided,
-  "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test",
+  //"com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test" % Provided,
   "com.typesafe.akka" %% "akka-stream-kafka" % "1.1.0" % Provided,
 
   //sql

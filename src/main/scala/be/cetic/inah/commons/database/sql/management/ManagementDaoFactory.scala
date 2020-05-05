@@ -36,6 +36,8 @@ class ManagementDaoFactory(val driver: JdbcProfile, val dbProfile: Option[String
     SubsectionContentDao.subsectionContents.schema ++
     SubsectionPatternDao.subsectionPatterns.schema ++
     UsersDetailsDao.userDetails.schema ++
-    UserDao.users.schema
+    UserDao.users.schema++
+      UserDatasourceDao.userDatasources.schema ++
+      FeedbackDao.feedbacks.schema
 
 }

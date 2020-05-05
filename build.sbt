@@ -40,7 +40,7 @@ libraryDependencies := Seq(
   "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion % Provided,
   "com.typesafe.akka" %% "akka-http" % akkaHttpVersion % Provided,
   "com.typesafe.akka" %% "akka-stream" % akkaVersion % Provided,
-  //"com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test" % Provided,
+  "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Provided,
   "com.typesafe.akka" %% "akka-stream-kafka" % "1.1.0" % Provided,
 
   //sql

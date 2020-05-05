@@ -33,6 +33,6 @@ trait BasicAuthenticator extends PasswordUtil with DefaultJsonProtocol{
 
   def authenticate: Directive1[User] = authenticateOrRejectWithChallenge(authorizeUser _)
 
-  implicit val userJsonFormat : RootJsonFormat[User] = jsonFormat5(User)
+  implicit val userJsonFormat : RootJsonFormat[User] = jsonFormat6(User)
 
 }

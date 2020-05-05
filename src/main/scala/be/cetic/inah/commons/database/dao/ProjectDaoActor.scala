@@ -39,10 +39,134 @@ class ProjectDaoActor extends Actor with ActorLogging with ProjectModel{
     dao.db.run(dao.ServiceOfferDao.serviceOffers.result).mapTo[Seq[ServiceOfferDto]]
 
   }
+  def readProjectContent (projectId : String ) : Future [Application] = {
+
+
+    //Get Seq of questions
+    val questionIdOptions = for {
+
+      projectOffer <- dao.ProjectOfferDao.projectOffers.filter(_.projectId===projectId)
+      serviceOffer <- dao.ServiceOfferDao.serviceOffers.filter(_.id===projectOffer.serviceOfferId)
+      offerQuestionPattern <- dao.OfferQuestionPatternDao.offerQuestions.filter(_.offerId===serviceOffer.id)
+      questionPattern <- dao.QuestionPatternDao.questionsPattern.filter(_.id === offerQuestionPattern.questionId)
+
+    } yield questionPattern
+
+    val resultQuestionIdOptions = dao.db.run(questionIdOptions.result).mapTo[QuestionPatternDto]
+
+
+    //get question name
+    val questionNameDescription = for
+      {
+
+      projectOffer <- dao.ProjectOfferDao.projectOffers.filter(_.projectId===projectId)
+      serviceOffer <- dao.ServiceOfferDao.serviceOffers.filter(_.id===projectOffer.serviceOfferId)
+      offerQuestionPattern <- dao.OfferQuestionPatternDao.offerQuestions.filter(_.offerId===serviceOffer.id)
+      questionPattern <- dao.QuestionPatternDao.questionsPattern.filter(_.id === offerQuestionPattern.questionId)
+      patternDescription <- dao.PatternDescriptionDao.patternDescriptions.filter(_.id === questionPattern.descriptionId)
+
+    } yield patternDescription
+
+    val resultQuestionNameDescription = dao.db.run(questionNameDescription.result).mapTo[PatternDescriptionDto]
+
+
+    val questionValue  = for {
+
+      projectOffer <- dao.ProjectOfferDao.projectOffers.filter(_.projectId===projectId)
+      serviceOffer <- dao.ServiceOfferDao.serviceOffers.filter(_.id===projectOffer.serviceOfferId)
+      offerQuestionPattern <- dao.OfferQuestionPatternDao.offerQuestions.filter(_.offerId===serviceOffer.id)
+      questionPattern <- dao.QuestionPatternDao.questionsPattern.filter(_.id === offerQuestionPattern.questionId)
+      questionContent <- dao.QuestionContentDao.questionContents.filter(_.questionPatternId=== questionPattern.id)
+
+    } yield questionContent
+
+    val resultQuestionContent = dao.db.run(questionValue.result).mapTo[QuestionContentDto]
+
+    val questionFinalRequest = for {
+      idQuestion <- resultQuestionIdOptions.map(_.id)
+      questionName <- resultQuestionNameDescription.map(_.name)
+      questionDescription <- resultQuestionNameDescription.map(_.description)
+      options <- resultQuestionIdOptions.map(_.options)
+      value <- resultQuestionContent.map(_.value)
+      question <- Question(idQuestion,questionName, questionDescription,options, Some(value))
+    } yield question
+
+    //Get Seq of appendices
+    val appendixIdNameDescription = for {
+
+      projectOffer <- dao.ProjectOfferDao.projectOffers.filter(_.projectId===projectId)
+      serviceOffer <- dao.ServiceOfferDao.serviceOffers.filter(_.id===projectOffer.serviceOfferId)
+      offerAppendixPattern <- dao.OfferAppendixPatternDao.offersAppendices.filter(_.offerId===serviceOffer.id)
+      patternDescription <- dao.PatternDescriptionDao.patternDescriptions.filter(_.id===offerAppendixPattern.descriptionId)
+
+    } yield patternDescription
+
+    val resultAppendixIdNameDescription = dao.db.run(appendixIdNameDescription.result).mapTo[PatternDescriptionDto]
+
+
+    val appendixContent = for {
+
+      appendixContent <- dao.AppendixContentDao.appendixContents.filter(_.projectId === projectId)
+    } yield appendixContent
+
+    val resultAppendixContent = dao.db.run(appendixContent.result).mapTo[AppendixContentDto]
+
+    //get sequence of sections
+
+    val sectionDescriptionId = for {
+
+      projectOffer <- dao.ProjectOfferDao.projectOffers.filter(_.projectId===projectId)
+      serviceOffer <- dao.ServiceOfferDao.serviceOffers.filter(_.id===projectOffer.serviceOfferId)
+      offerSectionPattern <- dao.OfferSectionPatternDao.offerSections.filter(_.offerId===serviceOffer.id)
+      sectionPattern <- dao.SectionPatternDao.sections.filter(_.id===offerSectionPattern.sectionPatternId)
+    } yield sectionPattern
+
+    val resultSectionDescription = dao.db.run(sectionDescriptionId.result).mapTo[SectionPatternDto]
+
+    val sectionNameDescription = for {
+      projectOffer <- dao.ProjectOfferDao.projectOffers.filter(_.projectId===projectId)
+      serviceOffer <- dao.ServiceOfferDao.serviceOffers.filter(_.id===projectOffer.serviceOfferId)
+      offerSectionPattern <- dao.OfferSectionPatternDao.offerSections.filter(_.offerId===serviceOffer.id)
+      sectionPattern <- dao.SectionPatternDao.sections.filter(_.id===offerSectionPattern.sectionPatternId)
+      patternDescription <- dao.PatternDescriptionDao.patternDescriptions.filter(_.id===sectionPattern.descriptionId)
+    } yield patternDescription
+
+    val resultSectionNameDescription = dao.db.run(sectionNameDescription.result).mapTo[PatternDescriptionDto]
+
+    //Get Sequence of subsections
+
+    val subsectionDescriptionIdTitle = for
+    {
+      sectionPattern <- sectionDescriptionId
+      projectOffer <- dao.ProjectOfferDao.projectOffers.filter(_.projectId===projectId)
+      serviceOffer <- dao.ServiceOfferDao.serviceOffers.filter(_.id===projectOffer.serviceOfferId)
+      offerSectionPattern <- dao.OfferSectionPatternDao.offerSections.filter( x => x.offerId === serviceOffer.id && x.sectionPatternId === sectionPattern.id)
+      sectionPattern <- dao.SectionPatternDao.sections.filter(_.id === offerSectionPattern.sectionPatternId)
+      patternDescription <- dao.PatternDescriptionDao.patternDescriptions.filter(_.id === sectionPattern.descriptionId)
+
+    } yield patternDescription
+
+    val resultSubsectionDescriptionIdTitle = dao.db.run(subsectionDescriptionIdTitle.result).mapTo[PatternDescriptionDto]
+
+
+    val subsectionContent = for {
+
+      projectOffer <- dao.ProjectOfferDao.projectOffers.filter(_.projectId===projectId)
+      serviceOffer <- dao.ServiceOfferDao.serviceOffers.filter(_.id===projectOffer.serviceOfferId)
+      offerSectionPattern <- dao.OfferSectionPatternDao.offerSections.filter( _.offerId === serviceOffer.id )
+
+    } yield
+
+
+    ???
+
+
+
+  }
 
   def readOfferPattern (offerId : Int) : Future[Offer] = {
 
-//Get Seq of questions
+    //Get Seq of questions
     val questionId = for {
 
       offerQuestionPattern <- dao.OfferQuestionPatternDao.offerQuestions.filter(_.offerId===offerId)
@@ -52,6 +176,7 @@ class ProjectDaoActor extends Actor with ActorLogging with ProjectModel{
 
     val resultQuestionId = dao.db.run(questionId.result).mapTo[QuestionPatternDto]
 
+    //questionname and questionDescription maybe implemented in the same method
     val questionName = for
     {
 
@@ -88,6 +213,7 @@ class ProjectDaoActor extends Actor with ActorLogging with ProjectModel{
     } yield questionPattern
 
     val resultOptions = dao.db.run(options.result).mapTo[QuestionPatternDto]
+
     val questionValue  = for {
       offerQuestionPattern <- dao.OfferQuestionPatternDao.offerQuestions.filter(_.offerId===offerId)
 
@@ -113,7 +239,7 @@ class ProjectDaoActor extends Actor with ActorLogging with ProjectModel{
 
     //questionFinalRequest.mapTo[Seq[Question]]
 
-    //Get Seq of appendix
+    //Get Seq of appendices
 
     val appendixDescriptionId = for {
 
@@ -213,7 +339,6 @@ class ProjectDaoActor extends Actor with ActorLogging with ProjectModel{
       subsection <- Subsection(descriptionId, name, description, Some(content))
     } yield subsection
 
-    //case class Section(sectionId: Int, title: String, description: String, content: Seq[Subsection])
 
     val section = for {
       sectionId <- resultSectionDescription.map(_.sectionPatternId)
@@ -242,14 +367,13 @@ class ProjectDaoActor extends Actor with ActorLogging with ProjectModel{
 
     val q = for {
 
-      questionExist <- dao.QuestionContentDao.questionContents.filter(_.questionPatternId === content.questionPatternId)
-      projectExist <- dao.QuestionContentDao.questionContents.filter(_.projectId ===content.projectId)
-      compute <-   if (projectExist == null && questionExist == null)
+      questionContentExist <- dao.QuestionContentDao.questionContents.filter( x => x.questionPatternId === content.questionPatternId && x.projectId === content.projectId)
+      compute <-   if (questionContentExist == null)
       {
         dao.QuestionContentDao.create(content)
       }else dao.QuestionContentDao.questionContents.update(content)
 
-    } yield questionExist
+    } yield questionContentExist
 
     dao.db.run(q.result).mapTo[QuestionContentDto]
 
@@ -278,7 +402,6 @@ class ProjectDaoActor extends Actor with ActorLogging with ProjectModel{
   def createOrUpdateSectionContent (content : SectionContentDto) : Future[SectionContentDto] = {
       val q = for {
 
-
         sectionContentxist <- dao.SectionContentDao.sectionContents.filter(x=>x.projectId === content.projectId && x.descriptionId === content.descriptionId && x.sectionPatternId === content.sectionPatternId)
 
         compute <- if (sectionContentxist==null)
@@ -291,6 +414,24 @@ class ProjectDaoActor extends Actor with ActorLogging with ProjectModel{
     dao.db.run(q.result).mapTo[SectionContentDto]
 
   }
+
+
+  // "read previous project content" in {
+  //      /// Offer *must* contain whatever existing content, including which offer is selected
+  //      // If there is not content, provide the object with None
+  //      //
+  //      def readProjectContent(projectId: String): Application  = ???
+  //  }
+
+
+  //case class Application(selectedOfferIds: Seq[Int], multichoice: Seq[Question], appendices: Seq[Appendix], sections: Seq[Section])
+  //case class Question(questionId: Option[Int], name: String, description: String, options: Seq[String], value: Option[String] = None)
+  //case class Appendix(descriptionId: Option[Int], name: String, description: String, filename: Option[String])
+  //case class Section(sectionId: Option[Int], title: String, description: String, content: Seq[Subsection])
+  //case class Subsection(descriptionId: Option[Int], name: String, description: String, content: Option[String])
+
+
+
 
 
 }

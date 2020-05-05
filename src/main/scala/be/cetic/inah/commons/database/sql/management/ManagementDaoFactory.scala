@@ -12,7 +12,7 @@ class ManagementDaoFactory(val driver: JdbcProfile, val dbProfile: Option[String
     with ProjectResourcesDtoMultiDb
     with ResourcesDtoMultiDb with UsersDtoMultiDb with ProjectUsersDtoMultiDb with ServiceOffersDtoMultiDb with OfferQuestionsPatternDtoMultiDb
 with QuestionsPatternDtoMultiDb with PatternDescriptionsDtoMultiDb with QuestionContentsDtoMultiDb with OffersAppendicesPatternDtoMultiDb with AppendixContentDtoMultiDb
-with OfferSectionsDtoMultiDb with SectionContentsDtoMultiDb {
+with OfferSectionsDtoMultiDb with SectionContentsDtoMultiDb with ProjectOffersDtoMultiDb {
 
   import driver.api._
 
@@ -33,7 +33,8 @@ with OfferSectionsDtoMultiDb with SectionContentsDtoMultiDb {
       OfferAppendixPatternDao.offersAppendices.schema ++
       AppendixContentDao.appendixContents.schema ++
       OfferSectionPatternDao.offerSections.schema ++
-      SectionContentDao.sectionContents.schema
+      SectionContentDao.sectionContents.schema ++
+      ProjectOfferDao.projectOffers.schema
 
 
 }

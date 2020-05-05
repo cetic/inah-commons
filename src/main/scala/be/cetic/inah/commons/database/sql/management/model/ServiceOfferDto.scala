@@ -14,9 +14,9 @@ trait ServiceOffersDtoMultiDb extends DriverComponent {
 
   class ServiceOffersDto (tag : Tag ) extends Table[ServiceOfferDto] (tag, SchemaNames.managementSchemaName, "service_offer"){
 
-    def id = column[Option[Int]]("id", O.PrimaryKey, O.AutoInc)
+    def id = column[Int]("id", O.PrimaryKey, O.AutoInc)
     def name = column[String]("name")
-    def * = (id, name) <> (ServiceOfferDto.tupled, ServiceOfferDto.unapply)
+    def * = (id.?, name) <> (ServiceOfferDto.tupled, ServiceOfferDto.unapply)
   }
 
   implicit val dispatcher: ExecutionContextExecutor
@@ -25,17 +25,15 @@ trait ServiceOffersDtoMultiDb extends DriverComponent {
 
     val thisDriver = driver
     val serviceOffers = TableQuery[ServiceOffersDto]
+    val autoInc = serviceOffers returning serviceOffers.map(_.id)
 
     private def queryById (id: Int ) = serviceOffers.filter(o => o.id===id)
 
     def create(element: ServiceOfferDto): DBIOAction[ServiceOfferDto, NoStream, Effect.Write] = {
-
-
-      (serviceOffers+=element).map(_=>element)
+      (serviceOffers+=element).map(id=>element.copy(id=Some(id)))
     }
 
     def update(element: ServiceOfferDto): DBIOAction[ServiceOfferDto, NoStream, Effect.Write] = {
-
       serviceOffers.insertOrUpdate(element).map{_=>element}
     }
 

@@ -6,14 +6,12 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class OfferQuestionPatternDto (offerId : Option[Int], questionId : Option[Int]) extends ManagementResource
+case class OfferQuestionPatternDto (offerId : Int, questionId : Int) extends ManagementResource
 trait OfferQuestionsPatternDtoMultiDb extends DriverComponent with ServiceOffersDtoMultiDb with QuestionsPatternDtoMultiDb {
-
   import driver.api._
   class OfferQuestionsDto (tag: Tag) extends Table[OfferQuestionPatternDto] (tag, SchemaNames.managementSchemaName, "offer_question_pattern") {
-
-    def offerId = column[Option[Int]]("offer_id")
-    def questionId = column[Option[Int]]("question_id")
+    def offerId = column[Int]("offer_id")
+    def questionId = column[Int]("question_id")
     def pk = primaryKey("offer_question_pk", (offerId, questionId))
     def offer = foreignKey("offer_question_pattern_offer_fk", offerId, ServiceOfferDao.serviceOffers)(_.id)
     def question = foreignKey("offer_question_pattern_question_fk", questionId, QuestionPatternDao.questionsPattern)(_.id)
@@ -28,7 +26,6 @@ trait OfferQuestionsPatternDtoMultiDb extends DriverComponent with ServiceOffers
     private def queryById (id: (Int, Int)) = offerQuestions.filter(o => o.offerId ===id._1 && o.questionId === id._2)
 
     def create(element: OfferQuestionPatternDto): DBIOAction[OfferQuestionPatternDto, NoStream, Effect.Write] = {
-
       (offerQuestions+=element).map(_=>element)
     }
 

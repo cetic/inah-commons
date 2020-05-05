@@ -6,7 +6,7 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class QuestionContentDto (projectId : String, questionPatternId : Option[Int] , value : String) extends ManagementResource
+case class QuestionContentDto (projectId : String, questionPatternId : Int , value : Option[String]) extends ManagementResource
 
 trait QuestionContentsDtoMultiDb extends ProjectsDtoMultiDb with QuestionsPatternDtoMultiDb with DriverComponent {
 
@@ -14,8 +14,8 @@ trait QuestionContentsDtoMultiDb extends ProjectsDtoMultiDb with QuestionsPatter
   class QuestionContentsDto (tag : Tag ) extends Table[QuestionContentDto] (tag , SchemaNames.managementSchemaName, "question_content") {
 
     def projectId  = column[String]("project_id")
-    def questionPatternId = column[Option[Int]]("question_pattern_id")
-    def value = column[String]("value")
+    def questionPatternId = column[Int]("question_pattern_id")
+    def value = column[Option[String]]("value")
     def pk = primaryKey("question_content_pk", (projectId, questionPatternId))
     def project = foreignKey("project_project_fk", projectId, ProjectDao.projects)(_.id)
     def questionPattern = foreignKey("project_section_fk",questionPatternId, QuestionPatternDao.questionsPattern)(_.id)

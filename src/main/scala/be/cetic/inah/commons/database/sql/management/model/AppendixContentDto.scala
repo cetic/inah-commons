@@ -8,7 +8,7 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class AppendixContentDto (projectId : String, descriptionId : Option[Int], content : Blob) extends ManagementResource
+case class AppendixContentDto (projectId : String, descriptionId : Int, content : Option[Array[Byte]], filename: Option[String]) extends ManagementResource
 
 trait AppendixContentDtoMultiDb extends DriverComponent with ProjectsDtoMultiDb with PatternDescriptionsDtoMultiDb {
 
@@ -17,28 +17,26 @@ trait AppendixContentDtoMultiDb extends DriverComponent with ProjectsDtoMultiDb 
   class AppendicesContentDto (tag: Tag) extends Table[AppendixContentDto] (tag, SchemaNames.managementSchemaName, "appendix_content") {
 
     def projectId = column[String]("project_id")
-    def descriptionId = column[Option[Int]]("description_id")
-    def content = column[Blob]("content")
+    def descriptionId = column[Int]("description_id")
+    def content = column[Option[Array[Byte]]]("content")
+    def filename = column[Option[String]] ("filename")
     def pk = primaryKey("appendix_content_pk", (projectId, descriptionId))
     def project = foreignKey("appendix_content_project_fk", projectId, ProjectDao.projects)(_.id)
     def description = foreignKey("appendix_content_description_fk", descriptionId, PatternDescriptionDao.patternDescriptions)(_.id)
-    def * = (projectId, descriptionId, content) <> (AppendixContentDto.tupled, AppendixContentDto.unapply)
-
+    def * = (projectId, descriptionId, content, filename) <> (AppendixContentDto.tupled, AppendixContentDto.unapply)
   }
 
   implicit val dispatcher: ExecutionContextExecutor
   implicit object AppendixContentDao extends Dao[AppendixContentDto, (String,Int)] {
     val thisDriver = driver
-
     val appendixContents = TableQuery[AppendicesContentDto]
+
     private def queryById (id: (String, Int)) = appendixContents.filter(a =>a.projectId===id._1 && a.descriptionId===id._2)
     def create(element: AppendixContentDto): DBIOAction[AppendixContentDto, NoStream, Effect.Write] = {
-
       (appendixContents+=element).map(_=>element)
     }
 
     def update(element: AppendixContentDto): DBIOAction[AppendixContentDto, NoStream, Effect.Write] = {
-
       (appendixContents.insertOrUpdate(element)).map(_=>element)
     }
 

@@ -9,7 +9,7 @@ import scala.concurrent.ExecutionContextExecutor
 
 case class ProjectUserDetailsDto(projectId : String, responsibility: String, userDetailsId : String) extends ManagementResource
 
-trait ProjectUsersDtoMultiDb extends ProjectsDtoMultiDb with UsersDetailsMultiDb with DriverComponent{
+trait ProjectUserDetailsDtoMultiDb extends ProjectsDtoMultiDb with UsersDetailsMultiDb with DriverComponent{
 import driver.api._
 
   class ProjectUsersDetailsDto (tag: Tag) extends Table[ProjectUserDetailsDto] (tag, SchemaNames.managementSchemaName, "project_user_detail") {
@@ -26,7 +26,7 @@ import driver.api._
 
   implicit val dispatcher: ExecutionContextExecutor
 
-  implicit object ProjectUserDao extends Dao[ProjectUserDetailsDto, (String, String)] {
+  implicit object ProjectUserDetailsDao extends Dao[ProjectUserDetailsDto, (String, String)] {
 
 
     val thisDriver = driver

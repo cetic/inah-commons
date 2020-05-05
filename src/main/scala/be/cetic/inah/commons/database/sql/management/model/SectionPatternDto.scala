@@ -2,49 +2,44 @@ package be.cetic.inah.commons.database.sql.management.model
 
 import be.cetic.inah.commons.database.sql.{Dao, DriverComponent, SchemaNames}
 import be.cetic.inah.commons.database.sql.management.ManagementResource
-import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class SectionPatternDto (id: Option[Int] ,descriptionId : Option[Int] ) extends ManagementResource
+case class SectionPatternDto (id: Option[Int], descriptionId : Int ) extends ManagementResource
 
-trait SectionsPatternDtoMultiDb extends DriverComponent with PatternDescriptionsDtoMultiDb {
-
+trait SectionPatternsDtoMultiDb  extends DriverComponent with ServiceOffersDtoMultiDb with PatternDescriptionsDtoMultiDb  {
   import driver.api._
 
-  class SectionsPatternDto (tag: Tag) extends Table[SectionPatternDto] (tag, SchemaNames.managementSchemaName, "section_pattern") {
+  class SectionPatternsDto (tag: Tag) extends Table[SectionPatternDto] (tag, SchemaNames.managementSchemaName, "section_pattern") {
 
-    def id = column[Option[Int]]("id", O.PrimaryKey, O.AutoInc)
-    def descriptionId = column[Option[Int]] ("description_id")
-    def description = foreignKey("section_pattern_description_fk", descriptionId, PatternDescriptionDao.patternDescriptions)(_.id)
-    def * = (id, descriptionId) <> (SectionPatternDto.tupled, SectionPatternDto.unapply)
+    def id=  column[Int]("id", O.PrimaryKey, O.AutoInc)
+    def descriptionId = column[Int]("description_id")
+    def description = foreignKey("offer_section_pattern_section",descriptionId,PatternDescriptionDao.patternDescriptions)(_.id)
+    def * = (id.?, descriptionId) <> (SectionPatternDto.tupled, SectionPatternDto.unapply)
   }
 
   implicit val dispatcher: ExecutionContextExecutor
 
-  implicit object SectionPatternDao extends Dao[SectionPatternDto, Int]{
-
+  implicit object SectionPatternDao extends Dao[SectionPatternDto, Int] {
     val thisDriver = driver
+    val sectionPatterns = TableQuery[SectionPatternsDto]
+    val autoInc = sectionPatterns returning sectionPatterns.map(_.id)
 
-    val sections = TableQuery[SectionsPatternDto]
-
-
-    private def queryById (id: Int) = sections.filter(s => s.id===id)
+    private def queryById (id: Int)= sectionPatterns.filter(o => o.id === id)
     def create(element: SectionPatternDto): DBIOAction[SectionPatternDto, NoStream, Effect.Write] = {
-
-      (sections+=element).map(_=>element)
+      (autoInc+=element).map(id=>element.copy(id = Some(id)))
     }
 
-   def update(element: SectionPatternDto): DBIOAction[SectionPatternDto, NoStream, Effect.Write] = {
+    def update(element: SectionPatternDto): DBIOAction[SectionPatternDto, NoStream, Effect.Write] = {
+      (sectionPatterns.insertOrUpdate(element)).map(_=>element)
+    }
 
-     sections.insertOrUpdate(element).map(_=>element)
-   }
     def read(id: Int): FixedSqlStreamingAction[Seq[SectionPatternDto], SectionPatternDto, Effect.Read] = queryById(id).result
 
-    def readAll : FixedSqlStreamingAction[Seq[SectionPatternDto], SectionPatternDto, Read] = sections.result
+    def readAll = sectionPatterns.result
 
-    def delete(id: Int) = queryById(id).delete
+    def delete(id: Int)= queryById(id).delete
   }
 
 

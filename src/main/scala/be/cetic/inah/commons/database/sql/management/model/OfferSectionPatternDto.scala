@@ -6,19 +6,18 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class OfferSectionPatternDto (offerId : Option[Int], sectionPatternId : Option[Int] ) extends ManagementResource
+case class OfferSectionPatternDto ( offerId : Int, sectionPatternId : Int ) extends ManagementResource
 
-trait OfferSectionsDtoMultiDb  extends DriverComponent with ServiceOffersDtoMultiDb with SectionsPatternDtoMultiDb {
+trait OfferSectionPatternsDtoMultiDb  extends DriverComponent with ServiceOffersDtoMultiDb with SectionPatternsDtoMultiDb  {
   import driver.api._
 
   class OfferSectionsPatternDto (tag: Tag) extends Table[OfferSectionPatternDto] (tag, SchemaNames.managementSchemaName, "offer_section_pattern") {
 
-    def offerId = column[Option[Int]]("offer_id")
-    def sectionPatternId = column[Option[Int]]("section_pattern_id")
-    def pk = primaryKey("offer_section_pattern_pk", (offerId, sectionPatternId))
+    def offerId = column[Int]("offer_id")
+    def sectionPatternId = column[Int]("section_pattern_id")
     def offer = foreignKey("offer_section_pattern_offer_fk", offerId, ServiceOfferDao.serviceOffers)(_.id)
-    def sectionPattern = foreignKey("offer_section_pattern_section", sectionPatternId, SectionPatternDao.sections)(_.id)
-    def * = (offerId, sectionPatternId) <> (OfferSectionPatternDto.tupled, OfferSectionPatternDto.unapply)
+    def description = foreignKey("offer_section_pattern_section_fk",sectionPatternId,SectionPatternDao.sectionPatterns)(_.id)
+    def * = ( offerId,sectionPatternId) <> (OfferSectionPatternDto.tupled, OfferSectionPatternDto.unapply)
   }
 
   implicit val dispatcher: ExecutionContextExecutor
@@ -30,12 +29,10 @@ trait OfferSectionsDtoMultiDb  extends DriverComponent with ServiceOffersDtoMult
 
     private def queryById (id: (Int, Int))= offerSections.filter(o => o.offerId === id._1 && o.sectionPatternId === id._2)
     def create(element: OfferSectionPatternDto): DBIOAction[OfferSectionPatternDto, NoStream, Effect.Write] = {
-
       (offerSections+=element).map(_=>element)
     }
 
     def update(element: OfferSectionPatternDto): DBIOAction[OfferSectionPatternDto, NoStream, Effect.Write] = {
-
       (offerSections.insertOrUpdate(element)).map(_=>element)
     }
 

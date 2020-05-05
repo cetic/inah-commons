@@ -8,33 +8,34 @@ import slick.jdbc.JdbcProfile
 import scala.concurrent.ExecutionContextExecutor
 
 class ManagementDaoFactory(val driver: JdbcProfile, val dbProfile: Option[String] = None)(implicit val dispatcher: ExecutionContextExecutor)
-  extends DaoFactory with TokensDtoMultiDb with DatasourcesDtoMultiDb with ProjectsDtoMultiDb with ProjectDatasourcesDtoMultiDb
-    with ProjectResourcesDtoMultiDb
-    with ResourcesDtoMultiDb with UsersDtoMultiDb with ProjectUsersDtoMultiDb with ServiceOffersDtoMultiDb with OfferQuestionsPatternDtoMultiDb
-with QuestionsPatternDtoMultiDb with PatternDescriptionsDtoMultiDb with QuestionContentsDtoMultiDb with OffersAppendicesPatternDtoMultiDb with AppendixContentDtoMultiDb
-with OfferSectionsDtoMultiDb with SectionContentsDtoMultiDb with ProjectOffersDtoMultiDb {
+  extends DaoFactory with AppendixContentDtoMultiDb with DatasourcesDtoMultiDb with OffersAppendicesPatternDtoMultiDb with OfferQuestionsPatternDtoMultiDb
+    with OfferSectionPatternsDtoMultiDb with PatternDescriptionsDtoMultiDb with ProjectDatasourcesDtoMultiDb with ProjectsDtoMultiDb
+    with ProjectOffersDtoMultiDb with ProjectResourcesDtoMultiDb with ProjectUserDetailsDtoMultiDb with QuestionContentsDtoMultiDb with QuestionsPatternDtoMultiDb
+    with ResourcesDtoMultiDb with SectionPatternsDtoMultiDb with ServiceOffersDtoMultiDb with SubsectionContentsDtoMultiDb with SubsectionsPatternDtoMultiDb
+    with UsersDetailsMultiDb with UsersDtoMultiDb
+    with TokensDtoMultiDb {
 
   import driver.api._
 
-  def schemas: driver.DDL =
+  def schemas: driver.DDL = AppendixContentDao.appendixContents.schema ++
     DatasourceDao.elements.schema ++
-      ProjectDao.projects.schema ++
-      ResourceDao.resources.schema ++
-      ProjectDatasourceDao.projectDatasources.schema ++
-      ProjectResourceDao.projectResources.schema ++
-      UserDao.users.schema ++
-      ProjectUserDao.projectUsers.schema ++
-      ServiceOfferDao.serviceOffers.schema ++
-      OfferQuestionPatternDao.offerQuestions.schema ++
-      QuestionPatternDao.questionsPattern.schema ++
-      ServiceOfferDao.serviceOffers.schema ++
-      PatternDescriptionDao.patternDescriptions.schema ++
-      QuestionContentDao.questionContents.schema ++
-      OfferAppendixPatternDao.offersAppendices.schema ++
-      AppendixContentDao.appendixContents.schema ++
-      OfferSectionPatternDao.offerSections.schema ++
-      SectionContentDao.sectionContents.schema ++
-      ProjectOfferDao.projectOffers.schema
-
+    OfferAppendixPatternDao.offersAppendices.schema ++
+    OfferQuestionPatternDao.offerQuestions.schema ++
+    OfferSectionPatternDao.offerSections.schema ++
+    PatternDescriptionDao.patternDescriptions.schema ++
+    ProjectDao.projects.schema ++
+    ProjectDatasourceDao.projectDatasources.schema ++
+    ProjectOfferDao.projectOffers.schema ++
+    ProjectResourceDao.projectResources.schema ++
+    ProjectUserDetailsDao.projectUsers.schema ++
+    QuestionContentDao.questionContents.schema ++
+    QuestionPatternDao.questionsPattern.schema ++
+    ResourceDao.resources.schema ++
+    SectionPatternDao.sectionPatterns.schema ++
+    ServiceOfferDao.serviceOffers.schema ++
+    SubsectionContentDao.subsectionContents.schema ++
+    SubsectionPatternDao.subsectionPatterns.schema ++
+    UsersDetailsDao.userDetails.schema ++
+    UserDao.users.schema
 
 }

@@ -7,14 +7,14 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class ProjectOfferDto (projectId : String, serviceOfferId : Option[Int]) extends ManagementResource
+case class ProjectOfferDto (projectId : String, serviceOfferId : Int) extends ManagementResource
 trait ProjectOffersDtoMultiDb extends ProjectsDtoMultiDb with ServiceOffersDtoMultiDb with DriverComponent {
   import driver.api._
 
   class ProjectOffersDto (tag : Tag ) extends Table[ProjectOfferDto] (tag, SchemaNames.managementSchemaName, "project_offer") {
 
     def projectId  = column[String]("project_id")
-    def serviceOfferId = column[Option[Int]]("offer_id")
+    def serviceOfferId = column[Int]("offer_id")
     def pk = primaryKey("project_offer_pk", (projectId, serviceOfferId))
     def project = foreignKey("project_project_fk", projectId, ProjectDao.projects)(_.id)
     def offer = foreignKey("project_offer_fk", serviceOfferId, ServiceOfferDao.serviceOffers)(_.id)

@@ -34,50 +34,48 @@ assemblyMergeStrategy in assembly := {
 
 
 libraryDependencies := Seq(
-  "io.spray" %% "spray-json" % sprayVersion,
 
  //Akka
-  "com.typesafe.akka" %% "akka-actor" % akkaVersion,
-  "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion,
-  "com.typesafe.akka" %% "akka-http" % akkaHttpVersion,
-  "com.typesafe.akka" %% "akka-stream" % akkaVersion,
-  "com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test",
-  "com.typesafe.akka" %% "akka-stream-kafka" % "1.1.0",
+  "com.typesafe.akka" %% "akka-actor" % akkaVersion % Provided,
+  "com.typesafe.akka" %% "akka-http-spray-json" % akkaHttpVersion % Provided,
+  "com.typesafe.akka" %% "akka-http" % akkaHttpVersion % Provided,
+  "com.typesafe.akka" %% "akka-stream" % akkaVersion % Provided,
+  //"com.typesafe.akka" %% "akka-testkit" % akkaVersion % "test" % Provided,
+  "com.typesafe.akka" %% "akka-stream-kafka" % "1.1.0" % Provided,
 
   //sql
-  "org.postgresql" % "postgresql" % "42.2.5",
-  "org.xerial" % "sqlite-jdbc" % "3.28.0",
-  "com.typesafe.slick" %% "slick" % "3.3.1",
-  "com.typesafe.slick" %% "slick-codegen" % "3.3.1",
-  "com.github.tminglei" %% "slick-pg" % "0.16.2",
+  "org.postgresql" % "postgresql" % "42.2.5" % Provided,
+  "org.xerial" % "sqlite-jdbc" % "3.28.0" % Provided,
+  "com.typesafe.slick" %% "slick" % "3.3.1" % Provided,
+  "com.typesafe.slick" %% "slick-codegen" % "3.3.1" % Provided,
 
   //Spray
-  "io.spray" %% "spray-json" % sprayVersion,
+  "io.spray" %% "spray-json" % sprayVersion % Provided,
 
   //Cors
-  "ch.megard" %% "akka-http-cors" % "0.4.2",
+  "ch.megard" %% "akka-http-cors" % "0.4.2" % Provided,
 
   //Tests
-  "org.scalatest" %% "scalatest" % scalaTestVersion % "test",
-  "org.scalacheck" %% "scalacheck" % "1.13.5" % Test,
+  "org.scalatest" %% "scalatest" % scalaTestVersion % Provided,
+  "org.scalacheck" %% "scalacheck" % "1.13.5"  % Provided,
 
   //Auth Hash
-  "de.mkammerer" % "argon2-jvm" % "2.6",
+  "de.mkammerer" % "argon2-jvm" % "2.6" % Provided,
 
   //Janusgraph
-  "org.janusgraph" % "janusgraph-core" % "0.4.0",
-  "org.janusgraph" % "janusgraph-cassandra" % "0.4.0",
-  "org.janusgraph" % "janusgraph-cql" % "0.4.0",
-  "org.janusgraph" % "janusgraph-es" % "0.4.0",
+  "org.janusgraph" % "janusgraph-core" % "0.4.0" % Provided,
+  "org.janusgraph" % "janusgraph-cassandra" % "0.4.0" % Provided,
+  "org.janusgraph" % "janusgraph-cql" % "0.4.0" % Provided,
+  "org.janusgraph" % "janusgraph-es" % "0.4.0" % Provided,
 
   //CouchDb
-  "org.lightcouch" % "lightcouch" % "0.2.0",
+  "org.lightcouch" % "lightcouch" % "0.2.0" % Provided,
 
   //Log
-  "org.slf4j" % "slf4j-simple" % "1.7.12",
+  "org.slf4j" % "slf4j-simple" % "1.7.12" % Provided,
 
   //Scala
-  "org.scala-lang" % "scala-reflect" % scalaVersion.value
+  "org.scala-lang" % "scala-reflect" % scalaVersion.value % Provided
 )
 
 

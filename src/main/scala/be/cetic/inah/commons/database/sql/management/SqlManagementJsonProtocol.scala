@@ -8,7 +8,7 @@ import scala.util.{Failure, Try}
 
 trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
   implicit val datasourceDtoJsonFormat: RootJsonFormat[DatasourceDto] = jsonFormat5(DatasourceDto)
-  implicit val projectDatasourceJsonFormat: RootJsonFormat[ProjectDatasourceDto] = jsonFormat3(ProjectDatasourceDto)
+  implicit val projectDatasourceJsonFormat: RootJsonFormat[ProjectDatasourceDto] = jsonFormat4(ProjectDatasourceDto)
   implicit val userDatasourceJsonFormat: RootJsonFormat[UserDatasourceDto] = jsonFormat2(UserDatasourceDto)
   implicit val projectDtoJsonFormat: RootJsonFormat[ProjectDto] = jsonFormat8(ProjectDto)
   implicit val projectResourceJsonFormat: RootJsonFormat[ProjectResourceDto] = jsonFormat2(ProjectResourceDto)

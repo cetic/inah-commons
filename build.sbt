@@ -1,7 +1,7 @@
 import sbt.Keys.libraryDependencies
 
 name := "inah-commons"
-val thisVersion = "0.3.0"
+val thisVersion = "0.3.5"
 version := thisVersion
 scalaVersion := "2.12.8"
 
@@ -29,7 +29,7 @@ assemblyMergeStrategy in assembly := {
   case n if n.startsWith("reference.conf") => MergeStrategy.concat
   case n if n.endsWith(".conf") => MergeStrategy.concat
   case PathList("META-INF", xs@_*) => MergeStrategy.discard
-  case x => MergeStrategy.first
+  case _ => MergeStrategy.first
 }
 
 

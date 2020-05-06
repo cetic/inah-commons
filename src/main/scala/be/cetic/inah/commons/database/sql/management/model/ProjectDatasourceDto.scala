@@ -7,7 +7,7 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class ProjectDatasourceDto(projectId: String, dataSourceId: Int, acceptedAt: Option[Long] = Some(System.currentTimeMillis() / 1000)) extends ManagementResource
+case class ProjectDatasourceDto(projectId: String, dataSourceId: Int,  sourceToken: String, acceptedAt: Option[Long] = Some(System.currentTimeMillis() / 1000)) extends ManagementResource
 
 
 trait ProjectDatasourcesDtoMultiDb extends ProjectsDtoMultiDb with DriverComponent with DatasourcesDtoMultiDb {
@@ -19,6 +19,8 @@ trait ProjectDatasourcesDtoMultiDb extends ProjectsDtoMultiDb with DriverCompone
 
     def datasourceId: Rep[Int] = column[Int]("datasource_id")
 
+    def sourceToken= column[String]("source_token")
+
     def acceptedAt: Rep[Option[Long]] = column[Option[Long]]("accepted_at")
 
     def pk = primaryKey("project_data_source_pk", (projectId, datasourceId))
@@ -27,7 +29,7 @@ trait ProjectDatasourcesDtoMultiDb extends ProjectsDtoMultiDb with DriverCompone
 
     def datasource = foreignKey("project_datasource_datasource_fk", datasourceId, DatasourceDao.elements)(_.id)
 
-    def * = (projectId, datasourceId, acceptedAt) <> (ProjectDatasourceDto.tupled, ProjectDatasourceDto.unapply)
+    def * = (projectId, datasourceId, sourceToken, acceptedAt) <> (ProjectDatasourceDto.tupled, ProjectDatasourceDto.unapply)
   }
 
 

@@ -22,5 +22,14 @@ class SqlDao(val driver: JdbcProfile, val dbProfile: Option[String] = None)(impl
   override def schemas: driver.DDL = accessControlDao.schemas.asInstanceOf[driver.DDL] ++ managementDao.schemas.asInstanceOf[driver.DDL] ++
     populationDao.schemas.asInstanceOf[driver.DDL]
 
+}
 
+object SqlDao {
+  def apply(driver: JdbcProfile, dbProfile: Option[String] = None)(implicit dispatcher: ExecutionContextExecutor)={
+    daoFactory=Some(new SqlDao(driver, dbProfile))
+  }
+
+  var daoFactory: Option[SqlDao] = None
+
+  def dao = daoFactory.get
 }

@@ -13,7 +13,7 @@ trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
   implicit val offerQuestionPatternDtoJsonFormat : RootJsonFormat[OfferQuestionPatternDto] = jsonFormat2(OfferQuestionPatternDto)
   implicit val offerSectionPatternDtoJsonFormat : RootJsonFormat[OfferSectionPatternDto] = jsonFormat2(OfferSectionPatternDto)
   implicit val patternDescriptionDtoJsonFormat : RootJsonFormat[PatternDescriptionDto] = jsonFormat3(PatternDescriptionDto)
-  implicit val projectDatasourceJsonFormat: RootJsonFormat[ProjectDatasourceDto] = jsonFormat3(ProjectDatasourceDto)
+  implicit val projectDatasourceJsonFormat: RootJsonFormat[ProjectDatasourceDto] = jsonFormat4(ProjectDatasourceDto)
   implicit val projectDtoJsonFormat: RootJsonFormat[ProjectDto] = jsonFormat8(ProjectDto)
   implicit val projectOfferDtoJsonFormat : RootJsonFormat[ProjectOfferDto] = jsonFormat2(ProjectOfferDto)
   implicit val projectResourceDtoJsonFormat: RootJsonFormat[ProjectResourceDto] = jsonFormat2(ProjectResourceDto)

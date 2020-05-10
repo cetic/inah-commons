@@ -10,7 +10,7 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 import scala.concurrent.ExecutionContextExecutor
 
 
-case class UserDetailsDto (email : String, firstName : String, lastName : String, position : String, cv :Option[Blob], adress : String,
+case class UserDetailsDto (email : String, firstName : String, lastName : String, position : String, cv :Option[Array[Byte]], adress : String,
                            organisation : Option [String]) extends ManagementResource
 trait UsersDetailsMultiDb extends DriverComponent with UsersDtoMultiDb {
 
@@ -23,7 +23,7 @@ trait UsersDetailsMultiDb extends DriverComponent with UsersDtoMultiDb {
     def firstName = column[String]("first_name")
     def lastName = column[String]("last_name")
     def position = column[String]("position")
-    def cv = column[Option[Blob]]("cv")
+    def cv = column[Option[Array[Byte]]]("cv")
     def address = column[String]("address")
     def organisation = column[Option[String]]("organisation")
 

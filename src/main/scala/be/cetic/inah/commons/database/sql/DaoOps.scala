@@ -5,6 +5,7 @@ import slick.dbio.Effect.{Read, Write}
 import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 trait DaoOps {
+
   def create[T, PK](pkType: Class[PK], element: T)(implicit dao: Dao[T, PK]): dao.thisDriver.api.DBIOAction[T, dao.thisDriver.api.NoStream, Write] = dao.create(element)
 
   def update[T, PK](pkType: Class[PK], element: T)(implicit dao: Dao[T, PK]): dao.thisDriver.api.DBIOAction[T, dao.thisDriver.api.NoStream, Write] = dao.update(element)

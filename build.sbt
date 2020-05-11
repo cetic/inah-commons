@@ -1,9 +1,9 @@
 import sbt.Keys.libraryDependencies
 
 name := "inah-commons"
-val thisVersion = "0.3.5"
+val thisVersion = "0.3.2"
 version := thisVersion
-scalaVersion := "2.12.8"
+scalaVersion := "2.12.10"
 
 val akkaVersion = "2.6.0"
 val akkaHttpVersion = "10.1.5"
@@ -12,8 +12,6 @@ val scalaTestVersion = "3.0.0"
 
 enablePlugins(JavaAppPackaging, DockerPlugin)
 import NativePackagerHelper._
-
-
 
 mainClass in(Compile, run) := Some("be.cetic.inah.commons.DbScripts")
 mainClass in(Compile, packageBin) := Some("be.cetic.inah.commons.DbScripts")

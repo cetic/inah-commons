@@ -27,6 +27,7 @@ trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
   implicit val subsectionPatternDtoJsonFormat : RootJsonFormat[SubsectionPatternDto] = jsonFormat2(SubsectionPatternDto)
   implicit val userDetailsDtoJsonFormat : RootJsonFormat[UserDetailsDto] = jsonFormat7(UserDetailsDto)
   implicit val userDtoJsonFormat: RootJsonFormat[UserDto] = jsonFormat4(UserDto)
+  implicit val feedbackDtoJsonFormat : RootJsonFormat[FeedbackDto] = jsonFormat5(FeedbackDto)
 
   implicit object ManagementResourceJsonFormat extends RootJsonFormat[ManagementResource] {
     override def read(json: JsValue): ManagementResource = {
@@ -50,7 +51,8 @@ trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
         Try(subsectionContentDtoJsonFormat.read(json)),
         Try(subsectionPatternDtoJsonFormat.read(json)),
         Try(userDetailsDtoJsonFormat.read(json)),
-        Try(userDtoJsonFormat.read(json))
+        Try(userDtoJsonFormat.read(json)),
+        Try(feedbackDtoJsonFormat.read(json))
       )
       trials.find(_.isSuccess)
         .getOrElse(Failure[ManagementResource](new DeserializationException(s"Cannot read $json.")))
@@ -79,6 +81,7 @@ trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
         case o : SubsectionPatternDto => subsectionPatternDtoJsonFormat.write(o)
         case o : UserDetailsDto => userDetailsDtoJsonFormat.write(o)
         case o: UserDto => userDtoJsonFormat.write(o)
+        case o : FeedbackDto => feedbackDtoJsonFormat.write(o)
         case m => throw DeserializationException(s"Support for $m not implemented.")
       }
     }

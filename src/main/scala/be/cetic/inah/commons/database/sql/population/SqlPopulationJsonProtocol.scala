@@ -1,7 +1,7 @@
 package be.cetic.inah.commons.database.sql.population
 
 import be.cetic.inah.commons.database.sql.management.model._
-import be.cetic.inah.commons.database.sql.population.model.{CoverDto, PersonCoverDto, PersonCoverId, PersonPopulationDto, PersonPopulationId, PopulationDto, PseudoDto, TargetDto, TargetId}
+import be.cetic.inah.commons.database.sql.population.model._
 import spray.json.{DefaultJsonProtocol, DeserializationException, JsValue, RootJsonFormat}
 
 import scala.util.{Failure, Try}
@@ -17,6 +17,9 @@ trait SqlPopulationJsonProtocol extends DefaultJsonProtocol {
   implicit val pseudoDtoJsonFormat: RootJsonFormat[PseudoDto] = jsonFormat3(PseudoDto)
   implicit val targetIdJsonFormat: RootJsonFormat[TargetId] = jsonFormat2(TargetId)
   implicit val targetDtoJsonFormat: RootJsonFormat[TargetDto] = jsonFormat3(TargetDto)
+  implicit val dataPersonIdJsonFormat : RootJsonFormat[DataPersonId] = jsonFormat2(DataPersonId)
+  implicit val dataDtoJsonFormat : RootJsonFormat[DataDto] = jsonFormat6(DataDto)
+  implicit val dataSetDtoJsonForrmat : RootJsonFormat[DatasetDto]= jsonFormat4(DatasetDto)
 
 
   implicit object PopulationResourceJsonFormat extends RootJsonFormat[PopulationResource] {
@@ -27,7 +30,9 @@ trait SqlPopulationJsonProtocol extends DefaultJsonProtocol {
         Try(personPopulationJsonFormat.read(json)),
         Try(populationDtoJsonFormat.read(json)),
         Try(pseudoDtoJsonFormat.read(json)),
-        Try(targetDtoJsonFormat.read(json))
+        Try(targetDtoJsonFormat.read(json)),
+        Try(dataDtoJsonFormat.read(json)),
+        Try(dataSetDtoJsonForrmat.read(json))
       )
       trials.find(_.isSuccess)
         .getOrElse(Failure[PopulationResource](new DeserializationException(s"Cannot read $json.")))
@@ -42,6 +47,8 @@ trait SqlPopulationJsonProtocol extends DefaultJsonProtocol {
         case o: PopulationDto => populationDtoJsonFormat.write(o)
         case o: PseudoDto => pseudoDtoJsonFormat.write(o)
         case o: TargetDto => targetDtoJsonFormat.write(o)
+        case o : DataDto => dataDtoJsonFormat.write(o)
+        case o : DatasetDto => dataSetDtoJsonForrmat.write(o)
         case m => throw DeserializationException(s"Support for $m not implemented.")
       }
     }

@@ -20,6 +20,7 @@ trait PersonPopulationDtoMultiDb extends DriverComponent with PopulationsDtoMult
   import driver.api._
 
   class PersonPopulationsDto(tag: Tag) extends Table[PersonPopulationDto](tag, SchemaNames.populationSchemaName, "person_population") {
+
     def populationId = column[String]("population_id")//, O.PrimaryKey)
 
     def population = foreignKey("person_population_fk", populationId, PopulationDao.populations)(_.id)

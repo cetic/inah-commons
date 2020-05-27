@@ -40,6 +40,7 @@ class ProjectDaoActor extends Actor with ActorLogging with ContentReader {
   implicit val timeout: Timeout = Timeout(5 seconds)
 
   def receive: Receive = {
+
     case ReadServiceOffers => readServiceOffer pipeTo sender
     case ReadOfferPattern(offerId) => readOfferPattern(offerId) pipeTo sender
     case SaveQuestionContent(content) => createOrUpdateQuestionContent(content) pipeTo sender

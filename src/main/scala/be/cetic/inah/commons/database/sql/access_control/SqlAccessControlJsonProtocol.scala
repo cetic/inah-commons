@@ -10,7 +10,7 @@ trait SqlAccessControlJsonProtocol extends SprayJsonSupport with DefaultJsonProt
   implicit val serviceDtoJsonFormat: RootJsonFormat[ServiceDto] = jsonFormat5(ServiceDto)
   implicit val ruleDtoJsonFormat: RootJsonFormat[RuleDto] = jsonFormat6(RuleDto)
   implicit val routeDtoJsonFormat: RootJsonFormat[RouteDto] = jsonFormat4(RouteDto)
-  implicit val dataDtoJsonFormat: RootJsonFormat[DataDto] = jsonFormat3(DataDto)
+  implicit val tokenDataDtoJsonFormat: RootJsonFormat[TokenDataDto] = jsonFormat3(TokenDataDto)
   implicit val tokenDtoJsonFormat: RootJsonFormat[TokenDto] = jsonFormat5(TokenDto)
   implicit val tokenContextDtoJsonFormat: RootJsonFormat[TokenContextDto] = jsonFormat2(TokenContextDto)
   implicit val tokenRightDtoJsonFormat: RootJsonFormat[TokenRightDto] = jsonFormat2(TokenRightDto)
@@ -25,7 +25,7 @@ trait SqlAccessControlJsonProtocol extends SprayJsonSupport with DefaultJsonProt
         Try(serviceDtoJsonFormat.read(json)),
         Try(ruleDtoJsonFormat.read(json)),
         Try(routeDtoJsonFormat.read(json)),
-        Try(dataDtoJsonFormat.read(json)),
+        Try(tokenDataDtoJsonFormat.read(json)),
         Try(tokenDtoJsonFormat.read(json)),
         Try(tokenContextDtoJsonFormat.read(json)),
         Try(tokenRightDtoJsonFormat.read(json)),
@@ -43,7 +43,7 @@ trait SqlAccessControlJsonProtocol extends SprayJsonSupport with DefaultJsonProt
         case o: ServiceDto => serviceDtoJsonFormat.write(o)
         case o: RuleDto => ruleDtoJsonFormat.write(o)
         case o: RouteDto => routeDtoJsonFormat.write(o)
-        case o: DataDto => dataDtoJsonFormat.write(o)
+        case o: TokenDataDto => tokenDataDtoJsonFormat.write(o)
         case o: TokenDto => tokenDtoJsonFormat.write(o)
         case o: TokenContextDto => tokenContextDtoJsonFormat.write(o)
         case o: TokenRightDto => tokenRightDtoJsonFormat.write(o)

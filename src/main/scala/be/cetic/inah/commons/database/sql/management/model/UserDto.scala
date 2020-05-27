@@ -10,7 +10,7 @@ import slick.sql.FixedSqlStreamingAction
 import scala.concurrent.ExecutionContextExecutor
 import scala.util.Random
 
-case class UserDto(email: String, name: String, password: String, role: String = UserRoles.USER) extends ManagementResource {
+case class  UserDto(email: String, name: String, password: String, role: String = UserRoles.USER) extends ManagementResource {
   def view() = this.copy(password = "")
 }
 

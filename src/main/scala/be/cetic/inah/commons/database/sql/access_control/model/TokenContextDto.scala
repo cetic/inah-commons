@@ -27,7 +27,7 @@ trait TokenContextsDtoMultiDb extends DriverComponent with TokensDtoMultiDb with
 
     def token: ForeignKeyQuery[TokensDto, TokenDto] = foreignKey("token_context_token_fk", tokenId, TokensDao.tokens)(_.id)
 
-    def context: ForeignKeyQuery[DatasDto, DataDto] = foreignKey("token_context_context_fk", contextId, ContextsDao.contexts)(_.id)
+    def context: ForeignKeyQuery[DatasDto, TokenDataDto] = foreignKey("token_context_context_fk", contextId, ContextsDao.contexts)(_.id)
   }
 
 

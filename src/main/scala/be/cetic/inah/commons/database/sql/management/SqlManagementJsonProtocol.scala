@@ -29,7 +29,6 @@ trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
   implicit val userDatasourceJsonFormat: RootJsonFormat[UserDatasourceDto] = jsonFormat2(UserDatasourceDto)
   implicit val userDetailsDtoJsonFormat: RootJsonFormat[UserDetailsDto] = jsonFormat7(UserDetailsDto)
   implicit val userDtoJsonFormat: RootJsonFormat[UserDto] = jsonFormat4(UserDto)
-  implicit val feedbackDtoJsonFormat : RootJsonFormat[FeedbackDto] = jsonFormat5(FeedbackDto)
 
   implicit object ManagementResourceJsonFormat extends RootJsonFormat[ManagementResource] {
     override def read(json: JsValue): ManagementResource = {

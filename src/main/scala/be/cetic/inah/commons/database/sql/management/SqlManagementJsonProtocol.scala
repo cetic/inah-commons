@@ -29,6 +29,7 @@ trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
   implicit val userDatasourceJsonFormat: RootJsonFormat[UserDatasourceDto] = jsonFormat2(UserDatasourceDto)
   implicit val userDetailsDtoJsonFormat: RootJsonFormat[UserDetailsDto] = jsonFormat7(UserDetailsDto)
   implicit val userDtoJsonFormat: RootJsonFormat[UserDto] = jsonFormat4(UserDto)
+  implicit val statusDtoJsonFormat: RootJsonFormat[StatusDto] = jsonFormat4(StatusDto)
 
   implicit object ManagementResourceJsonFormat extends RootJsonFormat[ManagementResource] {
     override def read(json: JsValue): ManagementResource = {
@@ -88,7 +89,7 @@ trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
         case o: UserDatasourceDto => userDatasourceJsonFormat.write(o)
         case o: UserDetailsDto => userDetailsDtoJsonFormat.write(o)
         case o: UserDto => userDtoJsonFormat.write(o)
-        case o : FeedbackDto => feedbackDtoJsonFormat.write(o)
+        case o: FeedbackDto => feedbackDtoJsonFormat.write(o)
         case m => throw DeserializationException(s"Support for $m not implemented.")
       }
     }

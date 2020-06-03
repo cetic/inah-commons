@@ -8,10 +8,10 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 import scala.concurrent.ExecutionContextExecutor
 
 
-case class StatusDto(id: Option[Int], sourceId: Option[Int], status: String, createdAt: Long) extends DtoWithId[Int] with ManagementResource
+case class StatusDto(id: Option[Int], sourceId: Option[Int], resourceId: Int, status: String, createdAt: Long) extends DtoWithId[Int] with ManagementResource
 
 
-trait StatusDtoMultiDb extends DriverComponent with DatasourcesDtoMultiDb {
+trait StatusDtoMultiDb extends DriverComponent with DatasourcesDtoMultiDb with ResourcesDtoMultiDb {
 
   import driver.api._
 
@@ -20,13 +20,17 @@ trait StatusDtoMultiDb extends DriverComponent with DatasourcesDtoMultiDb {
 
     def sourceId = column[Option[Int]]("datasource_id")
 
+    def resourceId = column[Int]("resource_id")
+
     def status = column[String]("content")
 
     def createdAt = column[Long]("created_at")
 
     def datasource = foreignKey("datasource_id_fk", sourceId, DatasourceDao.elements)(p => p.id)
 
-    def * = (id.?, sourceId, status,  createdAt) <> (StatusDto.tupled, StatusDto.unapply)
+    def resource = foreignKey("resource_id_fk", resourceId, ResourceDao.resources)(p => p.id)
+
+    def * = (id.?, sourceId, resourceId, status, createdAt) <> (StatusDto.tupled, StatusDto.unapply)
   }
 
 

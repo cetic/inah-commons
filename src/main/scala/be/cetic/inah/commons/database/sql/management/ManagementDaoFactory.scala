@@ -12,7 +12,7 @@ class ManagementDaoFactory(val driver: JdbcProfile, val dbProfile: Option[String
     with OfferSectionPatternsDtoMultiDb with PatternDescriptionsDtoMultiDb with ProjectDatasourcesDtoMultiDb with ProjectsDtoMultiDb
     with ProjectOffersDtoMultiDb with ProjectResourcesDtoMultiDb with ProjectUserDetailsDtoMultiDb with QuestionContentsDtoMultiDb with QuestionsPatternDtoMultiDb
     with ResourcesDtoMultiDb with SectionPatternsDtoMultiDb with ServiceOffersDtoMultiDb with SubsectionContentsDtoMultiDb with SubsectionsPatternDtoMultiDb
-    with UsersDetailsMultiDb with UsersDtoMultiDb with UserDatasourcesDtoMultiDb
+    with UsersDetailsMultiDb with UsersDtoMultiDb with UserDatasourcesDtoMultiDb with StatusDtoMultiDb
     with TokensDtoMultiDb {
 
   import driver.api._
@@ -38,6 +38,7 @@ class ManagementDaoFactory(val driver: JdbcProfile, val dbProfile: Option[String
     SubsectionPatternDao.subsectionPatterns.schema ++
     UsersDetailsDao.userDetails.schema ++
     UserDao.users.schema ++
-    UserDatasourceDao.userDatasources.schema
+    UserDatasourceDao.userDatasources.schema ++
+    StatusDao.statuses.schema
 
 }

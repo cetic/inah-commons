@@ -7,7 +7,7 @@ import slick.sql.{FixedSqlAction, FixedSqlStreamingAction}
 
 import scala.concurrent.ExecutionContextExecutor
 
-case class DatasetDto (id : Int , description : String, status : String , populationId : String ) extends DtoWithProvidedId[Int] with PopulationResource
+case class DatasetDto (id : String , description : String, status : String , populationId : String ) extends Dto with PopulationResource
 
 trait DatasetDtoMultiDb extends DriverComponent with PopulationsDtoMultiDb {
 
@@ -15,7 +15,7 @@ trait DatasetDtoMultiDb extends DriverComponent with PopulationsDtoMultiDb {
 
   class DatasetsDto (tag : Tag ) extends Table[DatasetDto] (tag, SchemaNames.populationSchemaName, "dataset") {
 
-    def id = column[Int] ("id", O.PrimaryKey)
+    def id = column[String] ("id", O.PrimaryKey)
     def description = column[String]("description")
     def status = column[String]("status")
     def populationId = column[String]("population_id")
@@ -28,7 +28,7 @@ trait DatasetDtoMultiDb extends DriverComponent with PopulationsDtoMultiDb {
   implicit val dispatcher: ExecutionContextExecutor
 
 
-  implicit object DatasetDao extends Dao[DatasetDto, Int] {
+  implicit object DatasetDao extends Dao[DatasetDto, String] {
 
     override val thisDriver = driver
     val datasets = TableQuery[DatasetsDto]
@@ -42,14 +42,14 @@ trait DatasetDtoMultiDb extends DriverComponent with PopulationsDtoMultiDb {
       datasets.insertOrUpdate(element).map {_=>element}
     }
 
-    private def queryById (id: Int) = datasets.filter(_.id === id)
+    private def queryById (id: String) = datasets.filter(_.id === id)
 
-    def read(id: Int): FixedSqlStreamingAction[Seq[DatasetDto], DatasetDto, Effect.Read] = queryById(id).result
+    def read(id: String): FixedSqlStreamingAction[Seq[DatasetDto], DatasetDto, Effect.Read] = queryById(id).result
 
 
     def readAll : FixedSqlStreamingAction[Seq[DatasetDto], DatasetDto, Effect.Read] = datasets.result
 
-    def delete(id: Int): FixedSqlAction[Int,NoStream, Effect.Write] = queryById(id).delete
+    def delete(id: String): FixedSqlAction[Int, NoStream, Effect.Write] = queryById(id).delete
   }
 
 }

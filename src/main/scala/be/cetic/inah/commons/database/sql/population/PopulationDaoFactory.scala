@@ -7,17 +7,17 @@ import slick.jdbc.JdbcProfile
 import scala.concurrent.ExecutionContextExecutor
 
 class PopulationDaoFactory(val driver: JdbcProfile, val dbProfile: Option[String] = None)(implicit val dispatcher: ExecutionContextExecutor)
-  extends DaoFactory with  PopulationsDtoMultiDb with TargetsDtoMultiDb with CoversDtoMultiDb
-    with PersonCoversDtoMultiDb with PersonPopulationDtoMultiDb with PseudoDtoMultiDb{
+  extends DaoFactory with PopulationsDtoMultiDb with TargetsDtoMultiDb with CoversDtoMultiDb
+    with PersonCoversDtoMultiDb with PersonPopulationDtoMultiDb with PseudoDtoMultiDb with DatasetDtoMultiDb with DataDtoMultiDb {
 
   import driver.api._
 
-  def schemas: driver.DDL =  PopulationDao.populations.schema ++
+  def schemas: driver.DDL = PopulationDao.populations.schema ++
     TargetDao.targets.schema ++
     CoverDao.covers.schema ++
     PersonCoverDao.personCovers.schema ++
     PersonPopulationDao.personPopulations.schema ++
-    PseudoDao.pseudos.schema
-
-
+    PseudoDao.pseudos.schema ++
+    DatasetDao.datasets.schema ++
+    DataDao.datas.schema
 }

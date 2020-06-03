@@ -30,6 +30,7 @@ object DbScriptPrint extends App {
   import sqlDao.managementDao.driver.api._
   sqlDao.managementDao.schemas.create.statements.map(println)
   println("")
+
   system.terminate()
 }
 

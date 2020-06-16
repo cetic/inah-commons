@@ -13,7 +13,7 @@ case class DataDto(id: Option[Int], datasetId: String, personId: String, ts: Lon
   extends PopulationResource with Dto
 
 
-trait DataDtoMultiDb extends DriverComponent with PersonPopulationDtoMultiDb with DatasetDtoMultiDb {
+trait DataDtoMultiDb extends DriverComponent with PersonPopulationDtoMultiDb with DatasetsDtoMultiDb {
 
   import driver.api._
 

@@ -1,7 +1,7 @@
 import sbt.Keys.libraryDependencies
 
 name := "inah-commons"
-val thisVersion = "0.3.9"
+val thisVersion = "0.3.11"
 version := thisVersion
 scalaVersion := "2.12.10"
 
@@ -16,7 +16,6 @@ import NativePackagerHelper._
 mainClass in(Compile, run) := Some("be.cetic.inah.commons.DbScripts")
 mainClass in(Compile, packageBin) := Some("be.cetic.inah.commons.DbScripts")
 
-
 assemblyOutputPath in assembly := file("releases/inah-commons-" + thisVersion + ".jar")
 test in assembly := {}
 
@@ -29,7 +28,6 @@ assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs@_*) => MergeStrategy.discard
   case _ => MergeStrategy.first
 }
-
 
 libraryDependencies := Seq(
 

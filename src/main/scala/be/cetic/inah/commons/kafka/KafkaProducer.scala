@@ -20,6 +20,7 @@ class KafkaProducer(configPath: Option[String], bootstrapServer: String)(implici
   val config = configPath.map(ConfigFactory.load).getOrElse(ConfigFactory.load).getConfig("akka.kafka.producer")
   val producerSettings = ProducerSettings(context.system, new StringSerializer, new StringSerializer).withBootstrapServers(bootstrapServer)
 
+
   val completionMatcher: PartialFunction[Any, CompletionStrategy] = {case _: Success => CompletionStrategy.immediately}
 
   val source = Source.actorRefWithBackpressure[ProducerRecord[String, String]]("ack", completionMatcher, PartialFunction.empty)

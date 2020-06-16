@@ -8,7 +8,7 @@ import scala.concurrent.ExecutionContextExecutor
 
 class PopulationDaoFactory(val driver: JdbcProfile, val dbProfile: Option[String] = None)(implicit val dispatcher: ExecutionContextExecutor)
   extends DaoFactory with PopulationsDtoMultiDb with TargetsDtoMultiDb with CoversDtoMultiDb
-    with PersonCoversDtoMultiDb with PersonPopulationDtoMultiDb with PseudoDtoMultiDb with DatasetDtoMultiDb with DataDtoMultiDb {
+    with PersonCoversDtoMultiDb with PersonPopulationDtoMultiDb with PseudoDtoMultiDb with DatasetsDtoMultiDb with DataDtoMultiDb {
 
   import driver.api._
 

@@ -9,7 +9,7 @@ import scala.concurrent.ExecutionContextExecutor
 
 case class DatasetDto (id : String , description : String, status : String , populationId : String ) extends Dto with PopulationResource
 
-trait DatasetDtoMultiDb extends DriverComponent with PopulationsDtoMultiDb {
+trait DatasetsDtoMultiDb extends DriverComponent with PopulationsDtoMultiDb {
 
   import driver.api._
 

@@ -27,8 +27,8 @@ object DbScriptPrint extends App {
   val sqlDao = new SqlDao(slick.jdbc.PostgresProfile)
 
   println("")
-  import sqlDao.managementDao.driver.api._
-  sqlDao.managementDao.schemas.create.statements.map(println)
+  import sqlDao.tempObjectDao.driver.api._
+  sqlDao.tempObjectDao.schemas.create.statements.map(println)
   println("")
 
   system.terminate()

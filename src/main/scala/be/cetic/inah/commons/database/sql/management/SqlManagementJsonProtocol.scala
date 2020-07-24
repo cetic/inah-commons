@@ -33,6 +33,7 @@ trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
 
   implicit object ManagementResourceJsonFormat extends RootJsonFormat[ManagementResource] {
     override def read(json: JsValue): ManagementResource = {
+
       val trials = Seq(
         Try(offerAppendixPatternDtoJsonFormat.read(json)),
         Try(appendixContentDtoJsonFormat.read(json)),
@@ -56,9 +57,9 @@ trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
         Try(userDetailsDtoJsonFormat.read(json)),
         Try(userDtoJsonFormat.read(json)),
         Try(serviceOfferDtoJsonFormat.read(json)),
-
         Try(userDtoJsonFormat.read(json)),
         Try(feedbackDtoJsonFormat.read(json))
+
       )
       trials.find(_.isSuccess)
         .getOrElse(Failure[ManagementResource](new DeserializationException(s"Cannot read $json.")))
@@ -90,6 +91,7 @@ trait SqlManagementJsonProtocol extends DefaultJsonProtocol {
         case o: UserDetailsDto => userDetailsDtoJsonFormat.write(o)
         case o: UserDto => userDtoJsonFormat.write(o)
         case o: FeedbackDto => feedbackDtoJsonFormat.write(o)
+
         case m => throw DeserializationException(s"Support for $m not implemented.")
       }
     }

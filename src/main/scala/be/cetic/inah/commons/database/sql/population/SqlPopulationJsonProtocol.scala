@@ -8,6 +8,7 @@ import scala.util.{Failure, Try}
 
 
 trait SqlPopulationJsonProtocol extends DefaultJsonProtocol {
+
   implicit val coverDtoJsonFormat : RootJsonFormat[CoverDto] = jsonFormat5(CoverDto)
   implicit val personCoverIdJsonFormat: RootJsonFormat[PersonCoverId] = jsonFormat2(PersonCoverId)
   implicit val personCoverDtoJsonFormat: RootJsonFormat[PersonCoverDto] = jsonFormat4(PersonCoverDto)
@@ -51,7 +52,5 @@ trait SqlPopulationJsonProtocol extends DefaultJsonProtocol {
         case m => throw DeserializationException(s"Support for $m not implemented.")
       }
     }
-
   }
-
 }

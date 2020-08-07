@@ -1,12 +1,11 @@
 import sbt.Keys.libraryDependencies
 
 name := "inah-commons"
-val thisVersion = "0.3.13"
+val thisVersion = "0.3.19"
 version := thisVersion
 scalaVersion := "2.12.10"
-
 val akkaVersion = "2.6.0"
-val akkaHttpVersion = "10.1.5"
+val akkaHttpVersion = "10.1.11"
 val sprayVersion = "1.3.2"
 val scalaTestVersion = "3.0.0"
 
@@ -53,6 +52,8 @@ libraryDependencies := Seq(
 
   //Tests
   "org.scalatest" %% "scalatest" % scalaTestVersion,
+  //"org.scalatest" %% "scalatest" % scalaTestVersion % "test",
+  "com.typesafe.akka" %% "akka-http-testkit" % akkaHttpVersion,
   "org.scalacheck" %% "scalacheck" % "1.13.5"  % Provided,
 
   //Auth Hash

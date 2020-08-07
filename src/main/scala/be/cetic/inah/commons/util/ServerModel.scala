@@ -6,16 +6,14 @@ import spray.json.JsValue
 
 
 case class Host(host: String, description: String, openApi: Boolean = true)
-case class RoutesTests (server: Server)
 case class Server(host: Seq[Host], name: String, description: String, version: String, routes: Seq[RouteDescription] = Seq())  {
 
   def withRoutes(routes: Seq[RouteDescription]): Server = this.copy(routes = routes)
 
 }
 
-
 case class RequestDescription(pathParameters: Map[String, Any] = Map(), body: Option[JsValue] = None,
-                              query: Map[String, Any] = Map(), headers: Map[String, String] = Map(),
+                              query: Map[String, String] = Map(), headers: Map[String, String] = Map(),
                               credentials: Option[HttpCredentials] = None, expectedCode: StatusCode = StatusCodes.OK,
                               acceptsStream: Boolean = false, responseStream: Boolean = false, summary: String = "") {
 
@@ -41,7 +39,7 @@ case class RouteDescription(method: HttpMethod, path: String, summary: String = 
   def withTags(tags: String*): RouteDescription = this.copy(tags = (this.tags ++ tags).distinct)
 
   def withRequest (pathParameters: Map[String, Any] = Map(), body: Option[JsValue] = None,
-                   query: Map[String, Any] = Map(), headers: Map[String, String] = Map(),
+                   query: Map[String, String] = Map(), headers: Map[String, String] = Map(),
                    credentials: Option[HttpCredentials] = None, expectedCode: StatusCode = StatusCodes.OK,
                    acceptsStream: Boolean = false, responseStream: Boolean = false, summary: String = "") : RouteDescription =  {
 
@@ -68,3 +66,5 @@ object Routes {
   def delete(route: String) = RouteDescription(HttpMethods.DELETE, route)
 
 }
+
+
